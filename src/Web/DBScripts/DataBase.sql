@@ -200,7 +200,7 @@ CREATE TABLE [dbo].[Site](
 ) ON [PRIMARY]
 GO
 SET IDENTITY_INSERT [dbo].[Site] ON
-INSERT [dbo].[Site] ([ID], [Name], [Url], [KeyWords], [Description], [UploadMaxSize], [UploadAllowExt], [WatermarkEnable], [WatermarkMinWidth], [WatermarkMinHeight], [WatermarkImg], [WatermarkPct], [WatermarkQuality], [WatermarkPos], [GoogleJS], [CopyRight], [IsValidePermission], [IsFromFile], [IsDeleloper], [CreateUserID], [LastUpdateUserID], [CreateDate], [LastUpdateDate], [IsDeleted]) VALUES (1, N'WeBaseFrame', N'http://webbaseframe.yswenli.net/', N'WeBaseFrame', N'WeBaseFrame Power by wenli', 1024, N'doc|docx|ppt|pptx|pdf', 0, NULL, 20, N'/upload/2013/1016/20131016113227512.gif', 80, 80, 1, N'', N'31312321313', 1, 0, 1, NULL, 2, NULL, CAST(0x0000A73D00F2DFEA AS DateTime), 0)
+INSERT [dbo].[Site] ([ID], [Name], [Url], [KeyWords], [Description], [UploadMaxSize], [UploadAllowExt], [WatermarkEnable], [WatermarkMinWidth], [WatermarkMinHeight], [WatermarkImg], [WatermarkPct], [WatermarkQuality], [WatermarkPos], [GoogleJS], [CopyRight], [IsValidePermission], [IsFromFile], [IsDeleloper], [CreateUserID], [LastUpdateUserID], [CreateDate], [LastUpdateDate], [IsDeleted]) VALUES (1, N'WeBaseFrame', N'http://webbaseframe.ysyswenli.net/', N'WeBaseFrame', N'WeBaseFrame Power by yswenli', 1024, N'doc|docx|ppt|pptx|pdf', 0, NULL, 20, N'/upload/2013/1016/20131016113227512.gif', 80, 80, 1, N'', N'31312321313', 1, 0, 1, NULL, 2, NULL, CAST(0x0000A73D00F2DFEA AS DateTime), 0)
 SET IDENTITY_INSERT [dbo].[Site] OFF
 /****** Object:  Table [dbo].[Role]    Script Date: 03/21/2017 15:03:41 ******/
 SET ANSI_NULLS ON

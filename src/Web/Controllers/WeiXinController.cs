@@ -40,7 +40,7 @@ namespace Web.Controllers
 
                     var user = new UserAPI().GetUser(userID);
 
-                    result = wxHelper.ReplyImage("系统不会回复你的", "你以为它会回复你", user.Avatar, "http://www.yswenli.net");
+                    result = wxHelper.ReplyImage("系统不会回复你的", "你以为它会回复你", user.Avatar, "http://www.ysyswenli.net");
 
                     break;
                 case ReceiveMsgType.Image:
@@ -99,7 +99,7 @@ namespace Web.Controllers
                         case ReceiveMsgType.EventType.ClickEvent: //微信自定义EventKey
                             if (messageAPI.Message.Element("EventKey").Value == "Photo")
                             {
-                                result = wxHelper.ReplyImage("test", "test", "http://wx.qlogo.cn/mmhead/Q3auHgzwzM7G71S7KIpSKIhvsnZoTsEw1qbMySdHZJH6rLYUmNKLFw/0", "http://www.yswenli.net");
+                                result = wxHelper.ReplyImage("test", "test", "http://wx.qlogo.cn/mmhead/Q3auHgzwzM7G71S7KIpSKIhvsnZoTsEw1qbMySdHZJH6rLYUmNKLFw/0", "http://www.ysyswenli.net");
                             }
                             break;
                         case ReceiveMsgType.EventType.ViewEvent:
@@ -110,7 +110,7 @@ namespace Web.Controllers
 
                             break;
                         case ReceiveMsgType.EventType.PicSysPhotoEvent:
-                            result = wxHelper.ReplyImage("test", "test", "http://wx.qlogo.cn/mmhead/Q3auHgzwzM7G71S7KIpSKIhvsnZoTsEw1qbMySdHZJH6rLYUmNKLFw/0", "http://www.yswenli.net");
+                            result = wxHelper.ReplyImage("test", "test", "http://wx.qlogo.cn/mmhead/Q3auHgzwzM7G71S7KIpSKIhvsnZoTsEw1qbMySdHZJH6rLYUmNKLFw/0", "http://www.ysyswenli.net");
                             break;
                         default:
 

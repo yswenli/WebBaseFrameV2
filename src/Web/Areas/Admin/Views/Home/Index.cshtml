@@ -11,8 +11,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta http-equiv="Content-Language" content="zh-cn" />
-    <meta name="author" content="R&D Wenli" />
-    <meta name="copyright" content="Copyright Wenli All Rights Reserved." />
+    <meta name="author" content="R&D yswenli" />
+    <meta name="copyright" content="Copyright yswenli All Rights Reserved." />
     <meta name="robots" content="all" />
     <meta name="keywords" content="@(ViewBag.KeyWords != null ? ViewBag.KeyWords : Libraries.CurrentSite.KeyWords)">
     <meta name="description" content="@(ViewBag.Description != null ? ViewBag.Description : Libraries.CurrentSite.Description)" />
@@ -54,7 +54,7 @@
                 }
             });
             window.onresize = function () {
-                var heights = document.documentElement.clientHeight - 80;
+                var heights = document.documentElement.clientHeight - 100;
                 document.getElementById('rightMain').height = heights;
                 var openClose = $("#rightMain").height();
             }
@@ -167,6 +167,8 @@
         <div class="clearfix">
         </div>
     </div>
-    <footer id="footer"></footer>
+    <footer id="footer">
+        WebBaseFrame 2013 - @DateTime.Now.Year Develop By yswenli
+    </footer>
 </body>
 </html>

@@ -653,11 +653,11 @@ data_tables.htmlme @media(max-width:979px) {
     }
 
 .bg-green {
-    background-color: #769f5d!important;
+    background-color: #769f5d !important;
 }
 
 .bg-orange {
-    background-color: #ffa200!important;
+    background-color: #ffa200 !important;
 }
 /*表单文字*/
 .control-label {
@@ -896,4 +896,9 @@ input:focus, textarea:focus {
         border-color: #6f6;
         box-shadow: 0 0 20px rgba(0,255,0,.6), inset 0 0 10px rgba(0,255,0,.4), 0 2px 0 #fff;
     }
+}
+
+#footer {
+    text-align:right;
+    padding-right:10px;
 }
