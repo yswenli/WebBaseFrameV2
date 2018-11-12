@@ -1,0 +1,53 @@
+﻿@using MvcPager;
+@using WEF.MvcPager;
+@using WebBaseFrame.Models
+@using Libraries;
+@model PagedList<PermissionData>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th class="checkbox-column">
+                <input type="checkbox" name="checkall" onchange="selectall(this,'ID')" />
+            </th>
+            <th class="sorting" data-sort="PID">PID</th>
+            <th class="sorting" data-sort="RID">RID</th>
+            <th class="sorting" data-sort="MID">MID</th>
+            <th class="sorting" data-sort="HasPermission">HasPermission</th>
+
+            <th class="btns-column">
+                操作
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td class="checkbox-column"><input type="checkbox" name="ID" value="@item.ID" /></td>
+                <td>@item.PID</td>
+                <td>@item.RID</td>
+                <td>@item.MID</td>
+                <td>@item.HasPermission</td>
+
+                <td class="btns-column">
+                    @Html.ViewButton("详细", "/admin/PermissionData/Detail", new { href = "/admin/PermissionData/Detail?id=" + item.ID })
+                    @Html.EditButton("编辑", "/admin/PermissionData/Edit", new { href = "/admin/PermissionData/Edit?id=" + item.ID })
+                    @Html.DeleteButton("删除", "/admin/PermissionData/Delete", new { href = "javascript:void(0);", onclick = "Delete('/admin/PermissionData/Delete/" + item.ID + "',this,'one');" })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<div class="dt_footer fixed">
+    <div class="row-fluid">
+        <div class="span4">
+            <div class="dataTables_info" id="DataTables_Table_0_info">
+                @Model.CurrentPageIndex/@Model.TotalPageCount 页, 共@(Model.TotalItemCount)条记录
+            </div>
+        </div>
+        <div class="span8">
+            <div class="pagination">@Html.Pager(Model)</div>
+        </div>
+    </div>
+</div>
+@Html.PermissionValideScript()

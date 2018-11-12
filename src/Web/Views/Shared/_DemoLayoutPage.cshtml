@@ -1,0 +1,84 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewBag.Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Language" content="zh-cn" />
+    <meta name="author" content="R&D wenli 2015" />
+    <meta name="copyright" content="Copyright Wenli All Rights Reserved." />
+    <meta name="robots" content="all" />
+    <meta name="keywords" content="@(ViewBag.KeyWords != null ? ViewBag.KeyWords : Libraries.CurrentSite.KeyWords)">
+    <meta name="description" content="@(ViewBag.Description != null ? ViewBag.Description : Libraries.CurrentSite.Description)" />
+    <link href="~/Areas/Admin/Content/icons/icons.css" rel="stylesheet" />
+    <link href="~/Areas/Admin/Content/common.css" rel="stylesheet" />
+    <link href="~/Areas/Admin/Content/error.min.css" rel="stylesheet" />
+    <link href="~/Areas/Admin/Content/js/jquery-ui/jquery-ui.css" rel="stylesheet" />
+    <link href="~/Areas/Admin/Content/js/ibutton/jquery.ibutton.css" rel="stylesheet" />
+    <link href="~/Areas/Admin/Content/js/uniform/css/uniform.default.css" rel="stylesheet" />
+    <link href="~/Areas/Admin/Content/js/treeview/jquery.treeview.css" rel="stylesheet" />
+    <link href="~/Areas/Admin/Content/js/select2/select2.css" rel="stylesheet" />
+    <link href="~/Areas/Admin/Content/js/jquery.timepicker.addon/jquery-ui-timepicker-addon.css" rel="stylesheet" />
+    <link href="~/Areas/Admin/Content/js/formvalidator/formvalidator.css" rel="stylesheet" />
+    <link href="~/Areas/Admin/Content/js/elfinder/css/elfinder.min.css" rel="stylesheet" />
+    <link href="~/Areas/Admin/Content/js/kindeditor-4.1.9/themes/default/default.css" rel="stylesheet" />
+    <link href="~/Areas/Admin/Content/js/kindeditor-4.1.9/plugins/code/prettify.css" rel="stylesheet" />
+    <link href="~/Areas/Admin/Content/js/bootstrap/css/bootstrap.css" rel="stylesheet" />
+    <link href="~/Areas/Admin/Content/js/wizard/wizard.css" rel="stylesheet" />
+    <link href="~/Areas/Admin/Content/print.css" rel="stylesheet" />
+    <link href="~/Areas/Admin/Content/css.css" rel="stylesheet" />
+    <!--[if lt IE 7]><link href="~/Areas/Admin/Content/ie6_7.css" rel="stylesheet" /><![endif]-->
+    <!--[if lt IE 6]><link href="~/Areas/Admin/Content/ie6_7.css" rel="stylesheet" /><![endif]-->
+    <script src="~/Areas/Admin/Content/js/jquery.min.js"></script>
+    <script src="~/Areas/Admin/Content/js/jquery-ui/jquery-ui.js"></script>
+    <script src="~/Areas/Admin/Content/js/jquery.sGallery.js"></script>
+    <script src="~/Areas/Admin/Content/js/jquery.placeholder.min.js"></script>
+    <script src="~/Areas/Admin/Content/js/jquery.imgpreview.js"></script>
+    <script src="~/Areas/Admin/Content/js/jquery.cookie.js"></script>
+    <script src="~/Areas/Admin/Content/js/html5.js"></script>
+    <!--[if lt IE 9]><script src="/areas/admin/content/js/html5shiv.js?body=1"></script><![endif]-->
+    <script src="~/Areas/Admin/Content/js/uniform/jquery.uniform.min.js"></script>
+    <script src="~/Areas/Admin/Content/js/treeview/jquery.treeview.js"></script>
+    <script src="~/Areas/Admin/Content/js/swfupload/swfupload.js"></script>
+    <script src="~/Areas/Admin/Content/js/sheepit/jquery.sheepit.js"></script>
+    <script src="~/Areas/Admin/Content/js/select2/select2.min.js"></script>
+    <script src="~/Areas/Admin/Content/js/jquery.timepicker.addon/jquery-ui-timepicker-addon.js"></script>
+    <script src="~/Areas/Admin/Content/js/jquery.timepicker.addon/i18n/jquery-ui-timepicker-zh-CN.js"></script>
+    <script src="~/Areas/Admin/Content/js/ibutton/jquery.ibutton.min.js"></script>
+    <script src="~/Areas/Admin/Content/js/formvalidator/formvalidator.js"></script>
+    <script src="~/Areas/Admin/Content/js/formvalidator/formvalidatorregex.js"></script>
+    <script src="~/Areas/Admin/Content/js/elfinder/js/elfinder.min.js"></script>
+    <script src="~/Areas/Admin/Content/js/elfinder/js/i18n/elfinder.zh_CN.js"></script>
+    <script src="~/Areas/Admin/Content/js/artDialog/artDialog.js?skin=default"></script>
+    <script src="~/Areas/Admin/Content/js/artDialog/plugins/iframeTools.source.js"></script>
+    <script src="~/Areas/Admin/Content/js/format.multi.js"></script>
+    <script src="~/Areas/Admin/Content/js/content_addtop.js"></script>
+    <script src="~/Areas/Admin/Content/js/colorpicker.js"></script>
+    <script src="~/Areas/Admin/Content/js/sidebar.js"></script>
+    <script src="~/Areas/Admin/Content/js/kindeditor-4.1.9/kindeditor.js"></script>
+    <script src="~/Areas/Admin/Content/js/kindeditor-4.1.9/plugins/code/prettify.js"></script>
+    <script src="~/Areas/Admin/Content/js/kindeditor-4.1.9/lang/zh_CN.js"></script>
+    <script src="~/Areas/Admin/Content/js/wizard/wizard.min.js"></script>
+    <script src="~/Areas/Admin/Content/js/wizard/jquery.form.min.js"></script>
+    <script src="~/Areas/Admin/Content/js/ckplayer6.3/ckplayer/ckplayer.js"></script>
+    <script src="~/Areas/Admin/Content/js/scripts.js"></script>
+</head>
+<body>
+    <link href="~/Content/css/css.css" rel="stylesheet" />
+    @Html.Partial("_Header")
+    <div id="fixed-alert">
+        <div class="alert">
+            <button type="button" class="close">×</button>
+            <i class="icol-exclamation-octagon-fram"></i><strong></strong><span></span>
+        </div>
+    </div>
+    <div class="row-fluid" style="padding-top: 5px;">
+        <div class="span12">
+            <div class="container-fluid">
+                @RenderBody()
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+

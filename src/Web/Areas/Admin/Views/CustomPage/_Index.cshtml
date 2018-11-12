@@ -1,0 +1,52 @@
+﻿@using MvcPager;
+@using WEF.MvcPager;
+@using WebBaseFrame.Models
+@using Libraries;
+@model PagedList<CustomPage>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th class="checkbox-column">
+                <input type="checkbox" name="checkall" onchange="selectall(this,'ID')" />
+            </th>
+            <th class="sorting" data-sort="Type">类型</th>
+            <th class="sorting" data-sort="Controller">控制器</th>
+            <th class="sorting" data-sort="Action">方法</th>
+            <th class="sorting" data-sort="Path">地址</th>
+
+            <th class="btns-column">
+                操作
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td class="checkbox-column"><input type="checkbox" name="ID" value="@item.ID" /></td>
+                <td>@item.Type</td>
+                <td>@item.Controller</td>
+                <td>@item.Action</td>
+                <td>@item.Path</td>
+                <td class="btns-column">
+                    @Html.ViewButton("查看", "/admin/CustomPage/Detail", new { href = "/admin/CustomPage/Detail?id=" + item.ID })
+                    @Html.EditButton("编辑", "/admin/CustomPage/Edit", new { href = "/admin/CustomPage/Edit?id=" + item.ID })
+                    @Html.DeleteButton("删除", "/admin/CustomPage/Delete", new { href = "javascript:void(0);", onclick = "Delete('/admin/CustomPage/Delete/" + item.ID + "',this,'one');" })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<div class="dt_footer fixed">
+    <div class="row-fluid">
+        <div class="span4">
+            <div class="dataTables_info" id="DataTables_Table_0_info">
+                @Model.CurrentPageIndex/@Model.TotalPageCount 页, 共@(Model.TotalItemCount)条记录
+            </div>
+        </div>
+        <div class="span8">
+            <div class="pagination">@Html.Pager(Model)</div>
+        </div>
+    </div>
+</div>
+@Html.PermissionValideScript()

@@ -1,0 +1,59 @@
+﻿@using Libraries;
+@using WebBaseFrame.Models
+@model Member
+<input id="ID" name ="ID" type="hidden" value ="@Model.ID" />
+<div class="control-group" style="height:500px;">
+    <div class="span12">
+        <div class="span12">
+            <div class="control-group">
+                <a href="#"><i class="icos-multiple-users"></i>用户</a>
+            </div>
+            <div class="control-group">
+                <label class="control-label">用户名</label><div class="controls">
+                    <input id="UserName" name ="UserName" type="text" value ="@Model.UserName" required />
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">密码</label><div class="controls">
+                    <input id="PwdNotMD5" name ="PwdNotMD5" type="text" value ="@Model.PwdNotMD5" required />
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">角色</label><div class="controls">
+                    @Html.DropDownList("RoleID", "Role", "IsDeleted<>1", string.Empty, "ID", "RoleName", @Model.RoleID, "required")
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">姓名</label><div class="controls">
+                    <input id="RealName" name ="RealName" type="text" value ="@Model.RealName" required />
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">手机</label><div class="controls">
+                    <input id="Mobile" name ="Mobile" type="text" value ="@Model.Mobile" />
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">邮箱</label><div class="controls">
+                    <input id="Email" name ="Email" type="text" value ="@Model.Email" />
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">头像</label><div class="controls">
+                    <input id="Avatar" name ="Avatar" type="text" value ="@Model.Avatar" class="file" />
+                </div>
+            </div>
+        </div>
+        @if (Model.RoleID == -1) //用户权限配置默认隐藏
+        {
+            <div class="span6">
+                <div class="control-group">
+                    <a href="#"><i class="icos-key"></i>权限</a>
+                </div>
+                <div style="max-height: 500px; overflow: auto;">
+                    @Html.Action("_Treeview", "PermissionMap", new { Type = 1, ID = Model.ID })
+                </div>
+            </div>
+        }
+    </div>
+</div>

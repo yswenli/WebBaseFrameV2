@@ -1,0 +1,129 @@
+﻿@using System.Data;
+@using Libraries;
+@using WEF.MvcPager;
+@model PagedList<DataRow>
+@{
+    string tableName = Request.QueryString["tableName"];
+}
+<input id="oldTableName" name ="oldTableName" type="hidden" value ="@tableName" />
+<div class="control-group">
+    <label class="control-label">
+        @if (!string.IsNullOrEmpty(tableName))
+        {
+            <input type="button" class="btn btn-primary" value="删除表" onclick="if (confirm('确定要删除当前表吗？')) { removeTable($('#oldTableName').val()); }">
+        }
+        <b>表名</b></label><div class="controls">
+            <input id="tableName" name ="tableName" type="text" value ="@tableName" required />
+        </div>
+</div>
+@if (string.IsNullOrEmpty(tableName))
+{
+                
+    <div class="control-group">
+        <label class="control-label"></label>
+        <div class="controls">
+            <label><input id="basicFiled" name="basicFiled" type="checkbox" value="True" checked="checked" />是否自动生成基本字段</label>
+        </div>
+    </div>
+}
+@if (Model != null && Model.Count > 0)
+{
+    DataTable column = ViewData["column"] as DataTable;
+    foreach (var item in Model)
+    {
+    <div class="control-group">
+        @for (int i = 0; i < column.Columns.Count; i++)
+        {
+            <div style="clear: both; margin-bottom: 5px;">
+                @if (i == 1 || i == 2 || i == 5)
+                {
+                    <label class="control-label">@(column.Columns[i].ColumnName)</label><div class="controls">
+                        <select name ="@(column.Columns[i].ColumnName)" val="@item[i]" required>
+                            <option value="否">否</option>
+                            <option value="是">是</option>
+                        </select>
+                    </div>
+                }
+                else if (i == 3)
+                {
+                    <label class="control-label">@(column.Columns[i].ColumnName)</label><div class="controls">
+                        <select name ="@(column.Columns[i].ColumnName)" val="@item[i].ToString().ToLower()">
+                            @foreach (var typeItem in Enum.GetNames(typeof(Web.Areas.Manager.Helper.DBColumnTypeEnum)))
+                            {
+                                <option value="@typeItem.ToLower()">@typeItem.ToLower()</option>
+                            }
+                        </select>
+                    </div>
+                }
+                else if (i == 8 || i == 9)
+                {
+                    <label class="control-label">@(column.Columns[i].ColumnName)</label><div class="controls">
+                        <input name ="@(column.Columns[i].ColumnName)" type="text" value ="@item[i]" readonly="readonly" />
+                    </div>
+                }
+                else if (i == 0)
+                {
+                    <label class="control-label">
+                        <input type="button" class="btn btn-primary" value="删除列" onclick="if (confirm('确定要删除当前列吗？')) { removeCloumn($(this)); }">
+                        @(column.Columns[i].ColumnName)</label><div class="controls">
+                            <input name ="@(column.Columns[i].ColumnName)" type="text" value ="@item[i]" required />
+                        </div>
+                }
+                else if (i == 4)
+                {
+                    int length = 50;
+                    try
+                    {
+                        if (item[i - 1].ToString().IndexOf("nchar") > -1 || item[i - 1].ToString().IndexOf("ntext") > -1 || item[i - 1].ToString().IndexOf("nvarchar") > -1)
+                        {
+                            length = Convert.ToInt32(item[i]) / 2;
+                        }
+                        else
+                        {
+                            length = Convert.ToInt32(item[i]);
+                        }
+                    }
+                    catch { }
+                    <label class="control-label">@(column.Columns[i].ColumnName)</label><div class="controls">
+                        <input name ="@(column.Columns[i].ColumnName)" type="text" value ="@length" required />
+                    </div>
+                }
+                else
+                {
+                    <label class="control-label">@(column.Columns[i].ColumnName)</label><div class="controls">
+                        <input name ="@(column.Columns[i].ColumnName)" type="text" value ="@item[i]" required />
+                    </div>
+                }
+            </div>
+        }
+    </div> 
+    }
+}
+<div id="new-cloumn-group">
+</div>
+<div class="control-group">
+    <input id="addCloumn" type="button" class="btn btn-primary" value="新增列" />
+</div>
+<script type="text/javascript">
+    //删除表
+    function removeTable(tableName) {
+        $.get("/Manager/DataBase/RemoveTable?rnd=" + (new Date().getMilliseconds()), { "tableName": tableName }, function (data) {
+            location.href = "/Manager/DataBase/Index";
+        });
+    }
+    //删除列
+    function removeCloumn(obj) {
+        var columnName = obj.parent().next().children("input:eq(0)").val();
+        $.get("/Manager/DataBase/RemoveColumn?rnd=" + (new Date().getMilliseconds()), { "tableName": $("#oldTableName").val(), "columnName": columnName }, function (data) {
+            obj.parents('.control-group').remove();
+        });
+    }
+    //添加列
+    $(function () {
+        $("#addCloumn").click(function () {
+            $.get("/Manager/DataBase/GetColumnHtml?rnd=" + (new Date().getMilliseconds()), null, function (data) {
+                $("#new-cloumn-group").append(data);
+            });
+        });
+    });
+</script>

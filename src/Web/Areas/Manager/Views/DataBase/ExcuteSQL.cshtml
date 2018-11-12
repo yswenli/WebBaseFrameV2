@@ -1,0 +1,54 @@
+﻿@using Libraries;
+@{
+    ViewBag.Title = "ExcuteSQL";
+    Layout = "~/Areas/Manager/Views/Shared/_Layout.cshtml";
+    string tableName = Request.QueryString["tableName"];
+}
+<script type="text/javascript">
+    function excuteSQL() {
+        var artAlert = art.dialog({ lock: true, icon: _icon(0), content: "正在执行，请稍候...", ok: true, cancel: false });
+        var isExport = false;
+        if ($("input[name='export']").eq(0).is(":checked")) {
+            isExport = true;
+        }
+        if (isExport) {
+            location.href = "/Manager/DataBase/ExportSQL?sqlStr=" + escape($("#sqlStr").val());
+            artAlert.close();
+        }
+        else {
+            $.post("/Manager/DataBase/ExcuteSQL", { "sqlStr": $("#sqlStr").val() }, function (data) {
+                $("#excuteResult").html("执行结果：" + data).show();
+                artAlert.close();
+            });
+        }
+    }
+</script>
+<div class="row-fluid">
+    <div class="span12 widget">
+        <div class="widget-header light">
+            <span class="title"><i class="icon-pencil"></i>执行SQL</span>
+        </div>
+        <div class="widget-content form-container">
+            <form name="myform" id="myform" action="" method="post" class="form-horizontal validator">
+                <div class="control-group">
+                    <label class="control-label">SQL：</label>
+                    <div class="controls">
+                        <textarea id="sqlStr" style="width: 80%; height: 100px;"></textarea>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label">导出：</label>
+                    <div class="controls">
+                        @Html.RadioButton("export", new string[] { "是", "否" }, new string[] { "是", "否" }, "否")
+                    </div>
+                </div>
+                <div id="excuteResult" class="control-group" style="display: none;">
+                </div>
+                <div class="form-actions fixed">
+                    <input type="button" class="btn btn-primary" value="确 定" onclick="excuteSQL();" />
+                    <a class="btn" href="/Manager/DataBase/Index">返 回</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

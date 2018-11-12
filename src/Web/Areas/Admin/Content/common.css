@@ -1,0 +1,2379 @@
+/*
+ * Cloud-bms
+ */
+/*------------------------------------*\
+    $Retina Images
+    Usage:
+  @include image-2x("2x.png",10px,2px);
+\*------------------------------------*/
+/* line 1, ../../../app/assets/stylesheets/_base/_reset_.scss */
+*
+{
+	margin: 0;
+	padding: 0;
+}
+
+/* line 6, ../../../app/assets/stylesheets/_base/_reset_.scss */
+html
+{
+	background: white;
+	color: #333333;
+	-webkit-text-size-adjust: 100%;
+	-moz-text-size-adjust: 100%;
+	-ms-text-size-adjust: 100%;
+}
+
+/* line 13, ../../../app/assets/stylesheets/_base/_reset_.scss */
+body,
+button, input, select, textarea
+{
+	font: 14px/1.5 "Helvetica Neue", arial, sans-serif;
+}
+
+/* line 18, ../../../app/assets/stylesheets/_base/_reset_.scss */
+h1, h2, h3, h4, h5, h6,
+input, select, textarea
+{
+	font-size: 100%;
+}
+
+/* line 22, ../../../app/assets/stylesheets/_base/_reset_.scss */
+a
+{
+	color: #0088cc;
+	text-decoration: none;
+}
+	/* line 25, ../../../app/assets/stylesheets/_base/_reset_.scss */
+	a:hover
+	{
+		color: #005580;
+		text-decoration: underline;
+	}
+
+/* line 31, ../../../app/assets/stylesheets/_base/_reset_.scss */
+ul, ol
+{
+	list-style: none;
+}
+
+/* line 35, ../../../app/assets/stylesheets/_base/_reset_.scss */
+address, em
+{
+	font-style: normal;
+}
+
+/* line 39, ../../../app/assets/stylesheets/_base/_reset_.scss */
+fieldset, img
+{
+	border: 0;
+}
+
+/* line 43, ../../../app/assets/stylesheets/_base/_reset_.scss */
+code
+{
+	font-family: Monaco, Consolas, 'Lucida Console', monospace;
+}
+
+/* line 48, ../../../app/assets/stylesheets/_base/_reset_.scss */
+audio, canvas, video
+{
+	display: inline-block;
+	*display: inline;
+	*zoom: 1;
+}
+
+/* line 53, ../../../app/assets/stylesheets/_base/_reset_.scss */
+sub, sup
+{
+	position: relative;
+	font-size: 75%;
+	line-height: 0;
+	vertical-align: baseline;
+}
+
+input[type='text']
+{
+	height: 25px;
+}
+/* line 59, ../../../app/assets/stylesheets/_base/_reset_.scss */
+sup
+{
+	top: -0.5em;
+}
+
+/* line 62, ../../../app/assets/stylesheets/_base/_reset_.scss */
+sub
+{
+	bottom: -0.25em;
+}
+
+/* line 66, ../../../app/assets/stylesheets/_base/_reset_.scss */
+table
+{
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+/* line 70, ../../../app/assets/stylesheets/_base/_reset_.scss */
+th
+{
+	text-align: left;
+}
+
+/* line 77, ../../../app/assets/stylesheets/_base/_reset_.scss */
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section
+{
+	display: block;
+}
+
+/* line 2, ../../../app/assets/stylesheets/_base/_utilities_.scss */
+.clearfix, .section
+{
+	*zoom: 1;
+}
+	/* line 7, ../../../app/assets/stylesheets/_base/_mixins_.scss */
+	.clearfix:before, .section:before, .clearfix:after, .section:after
+	{
+		content: '\20';
+		display: table;
+	}
+
+	/* line 11, ../../../app/assets/stylesheets/_base/_mixins_.scss */
+	.section .tip_left
+	{
+		float: left;
+		width: 100px;
+	}
+
+	.section .tip_right
+	{
+		float: left;
+		width: 695px;
+	}
+
+		.section .tip_right .tip_content
+		{
+			width: 500px;
+			min-height: 70px;
+			border-radius: 5px;
+			background: #FFE4F1;
+			color: #000;
+			position: relative;
+			border: 1px solid #E3D2DA;
+		}
+
+			.section .tip_right .tip_content p
+			{
+				line-height: 30px;
+				padding-left: 10px;
+			}
+
+			.section .tip_right .tip_content .tip_arrow
+			{
+				position: absolute;
+				top: 10px;
+				left: -32px;
+				background: url('img/pointer.jpg') no-repeat;
+				width: 33px;
+				height: 31px;
+			}
+
+	.clearfix:after, .section:after
+	{
+		clear: both;
+	}
+
+/* line 7, ../../../app/assets/stylesheets/_base/_utilities_.scss */
+.float-l
+{
+	float: left;
+}
+
+/* line 10, ../../../app/assets/stylesheets/_base/_utilities_.scss */
+.float-r
+{
+	float: right;
+}
+
+/* line 15, ../../../app/assets/stylesheets/_base/_utilities_.scss */
+.hide
+{
+	display: none;
+}
+
+/* line 18, ../../../app/assets/stylesheets/_base/_utilities_.scss */
+.show
+{
+	display: block;
+}
+
+/* line 21, ../../../app/assets/stylesheets/_base/_utilities_.scss */
+.inline-show
+{
+	display: inline-block;
+}
+
+/* line 26, ../../../app/assets/stylesheets/_base/_utilities_.scss */
+.align-l
+{
+	text-align: left;
+}
+
+/* line 29, ../../../app/assets/stylesheets/_base/_utilities_.scss */
+.align-c
+{
+	text-align: center;
+}
+
+/* line 32, ../../../app/assets/stylesheets/_base/_utilities_.scss */
+.align-r
+{
+	text-align: right;
+}
+
+/* line 37, ../../../app/assets/stylesheets/_base/_utilities_.scss */
+.nowrap
+{
+	white-space: nowrap;
+}
+
+/* line 42, ../../../app/assets/stylesheets/_base/_utilities_.scss */
+.disabled
+{
+	cursor: default;
+}
+
+/* line 45, ../../../app/assets/stylesheets/_base/_utilities_.scss */
+a.disabled:hover
+{
+	text-decoration: none;
+	cursor: default;
+}
+
+/* line 2, ../../../app/assets/stylesheets/_base/ui/_button_.scss */
+.btn
+{
+	padding: 3px 12px 2px;
+	vertical-align: middle;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	border-color: #e6e6e6 #e6e6e6 #bfbfbf;
+	border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+	background-color: whitesmoke;
+	background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffffff), color-stop(100%, #e6e6e6));
+	background-image: -webkit-linear-gradient(top, #ffffff, #e6e6e6);
+	background-image: -moz-linear-gradient(top, #ffffff, #e6e6e6);
+	background-image: -o-linear-gradient(top, #ffffff, #e6e6e6);
+	background-image: linear-gradient(top, #ffffff, #e6e6e6);
+	background-repeat: repeat-x;
+	-webkit-box-shadow: 0 1px rgba(255, 255, 255, 0.2) inset, 0 1px 2px rgba(0, 0, 0, 0.1);
+	-moz-box-shadow: 0 1px rgba(255, 255, 255, 0.2) inset, 0 1px 2px rgba(0, 0, 0, 0.1);
+	box-shadow: 0 1px rgba(255, 255, 255, 0.2) inset, 0 1px 2px rgba(0, 0, 0, 0.1);
+	color: #555555;
+	font-size: 15px;
+	text-align: center;
+	text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
+	line-height: 23px;
+	cursor: pointer;
+	*+padding-top:0;
+}
+	/* line 57, ../../../app/assets/stylesheets/_base/_mixins_.scss */
+	.btn:hover
+	{
+		background-color: #e6e6e6;
+	}
+	/* line 61, ../../../app/assets/stylesheets/_base/_mixins_.scss */
+	.btn.active, .btn:active
+	{
+		background-color: #e6e6e6;
+		background-image: none;
+		outline: 0;
+		-webkit-box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);
+		-moz-box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);
+		box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);
+	}
+	/* line 68, ../../../app/assets/stylesheets/_base/_mixins_.scss */
+	.btn.disabled, .btn[disabled]
+	{
+		border-color: #cccccc \9;
+		background-color: #e6e6e6;
+	}
+	/* line 16, ../../../app/assets/stylesheets/_base/ui/_button_.scss */
+	.btn:hover
+	{
+		color: #555555;
+		text-decoration: none;
+		background-position: 0 -15px;
+		-webkit-transition: background-position 0.1s linear;
+		-moz-transition: background-position 0.1s linear;
+		-o-transition: background-position 0.1s linear;
+		transition: background-position 0.1s linear;
+	}
+	/* line 23, ../../../app/assets/stylesheets/_base/ui/_button_.scss */
+	.btn.disabled, .btn[disabled]
+	{
+		background-image: none;
+		-webkit-box-shadow: none;
+		-moz-box-shadow: none;
+		box-shadow: none;
+		filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=65);
+		opacity: 0.65;
+		color: #7b7b7b;
+		cursor: default;
+	}
+		/* line 30, ../../../app/assets/stylesheets/_base/ui/_button_.scss */
+		.btn.disabled:hover, .btn[disabled]:hover
+		{
+			color: #7b7b7b;
+		}
+
+/* line 37, ../../../app/assets/stylesheets/_base/ui/_button_.scss */
+.btn-small
+{
+	font-size: 12px;
+	line-height: 18px;
+}
+
+/* line 41, ../../../app/assets/stylesheets/_base/ui/_button_.scss */
+.btn-large
+{
+	padding: 8px 20px 7px;
+	font-size: 19px;
+	line-height: normal;
+	border-radius: 5px;
+}
+
+/* line 50, ../../../app/assets/stylesheets/_base/ui/_button_.scss */
+.btn.dropdown-toggle .caret
+{
+	display: inline-block;
+	width: 0;
+	height: 0;
+	margin-left: 5px;
+	border: 4px solid transparent;
+	border-top-color: black;
+	vertical-align: middle;
+}
+/* line 60, ../../../app/assets/stylesheets/_base/ui/_button_.scss */
+.btn-large.dropdown-toggle .caret
+{
+	border-width: 6px;
+	margin-top: 2px;
+}
+
+/* line 70, ../../../app/assets/stylesheets/_base/ui/_button_.scss */
+.btn-red, .btn-red:hover,
+.btn-green, .btn-green:hover,
+.btn-orange, .btn-orange:hover,
+.btn-black, .btn-black:hover
+{
+	color: white;
+	text-shadow: 0 -1px rgba(0, 0, 0, 0.25);
+}
+	/* line 74, ../../../app/assets/stylesheets/_base/ui/_button_.scss */
+	.btn-red.dropdown-toggle .caret, .btn-red:hover.dropdown-toggle .caret,
+	.btn-green.dropdown-toggle .caret, .btn-green:hover.dropdown-toggle .caret,
+	.btn-orange.dropdown-toggle .caret, .btn-orange:hover.dropdown-toggle .caret,
+	.btn-black.dropdown-toggle .caret, .btn-black:hover.dropdown-toggle .caret
+	{
+		border-top-color: white;
+	}
+
+/* line 78, ../../../app/assets/stylesheets/_base/ui/_button_.scss */
+.btn-red
+{
+	border-color: #f9baae #f9baae #f47d67;
+	border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+	background-color: #f2837c;
+	background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ee5f5b), color-stop(100%, #f9baae));
+	background-image: -webkit-linear-gradient(top, #ee5f5b, #f9baae);
+	background-image: -moz-linear-gradient(top, #ee5f5b, #f9baae);
+	background-image: -o-linear-gradient(top, #ee5f5b, #f9baae);
+	background-image: linear-gradient(top, #ee5f5b, #f9baae);
+	background-repeat: repeat-x;
+}
+	/* line 57, ../../../app/assets/stylesheets/_base/_mixins_.scss */
+	.btn-red:hover
+	{
+		background-color: #f9baae;
+	}
+	/* line 61, ../../../app/assets/stylesheets/_base/_mixins_.scss */
+	.btn-red.active, .btn-red:active
+	{
+		background-color: #f9baae;
+		background-image: none;
+		outline: 0;
+		-webkit-box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);
+		-moz-box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);
+		box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);
+	}
+	/* line 68, ../../../app/assets/stylesheets/_base/_mixins_.scss */
+	.btn-red.disabled, .btn-red[disabled]
+	{
+		border-color: #cccccc \9;
+		background-color: #e6e6e6;
+	}
+
+/* line 81, ../../../app/assets/stylesheets/_base/ui/_button_.scss */
+.btn-green
+{
+	border-color: #86bd55 #86bd55 #608e37;
+	border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+	background-color: #95d23a;
+	background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #a0e028), color-stop(100%, #86bd55));
+	background-image: -webkit-linear-gradient(top, #a0e028, #86bd55);
+	background-image: -moz-linear-gradient(top, #a0e028, #86bd55);
+	background-image: -o-linear-gradient(top, #a0e028, #86bd55);
+	background-image: linear-gradient(top, #a0e028, #86bd55);
+	background-repeat: repeat-x;
+}
+	/* line 57, ../../../app/assets/stylesheets/_base/_mixins_.scss */
+	.btn-green:hover
+	{
+		background-color: #86bd55;
+	}
+	/* line 61, ../../../app/assets/stylesheets/_base/_mixins_.scss */
+	.btn-green.active, .btn-green:active
+	{
+		background-color: #86bd55;
+		background-image: none;
+		outline: 0;
+		-webkit-box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);
+		-moz-box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);
+		box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);
+	}
+	/* line 68, ../../../app/assets/stylesheets/_base/_mixins_.scss */
+	.btn-green.disabled, .btn-green[disabled]
+	{
+		border-color: #cccccc \9;
+		background-color: #e6e6e6;
+	}
+
+/* line 84, ../../../app/assets/stylesheets/_base/ui/_button_.scss */
+.btn-orange
+{
+	border-color: #f89406 #f89406 #ad6704;
+	border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+	background-color: #f9a732;
+	background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #fbb450), color-stop(100%, #f89406));
+	background-image: -webkit-linear-gradient(top, #fbb450, #f89406);
+	background-image: -moz-linear-gradient(top, #fbb450, #f89406);
+	background-image: -o-linear-gradient(top, #fbb450, #f89406);
+	background-image: linear-gradient(top, #fbb450, #f89406);
+	background-repeat: repeat-x;
+}
+	/* line 57, ../../../app/assets/stylesheets/_base/_mixins_.scss */
+	.btn-orange:hover
+	{
+		background-color: #f89406;
+	}
+	/* line 61, ../../../app/assets/stylesheets/_base/_mixins_.scss */
+	.btn-orange.active, .btn-orange:active
+	{
+		background-color: #f89406;
+		background-image: none;
+		outline: 0;
+		-webkit-box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);
+		-moz-box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);
+		box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);
+	}
+	/* line 68, ../../../app/assets/stylesheets/_base/_mixins_.scss */
+	.btn-orange.disabled, .btn-orange[disabled]
+	{
+		border-color: #cccccc \9;
+		background-color: #e6e6e6;
+	}
+
+/* line 87, ../../../app/assets/stylesheets/_base/ui/_button_.scss */
+.btn-black
+{
+	border-color: #3b3b3b #3b3b3b #151515;
+	border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+	background-color: #4d4d4d;
+	background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #5a5a5a), color-stop(100%, #3b3b3b));
+	background-image: -webkit-linear-gradient(top, #5a5a5a, #3b3b3b);
+	background-image: -moz-linear-gradient(top, #5a5a5a, #3b3b3b);
+	background-image: -o-linear-gradient(top, #5a5a5a, #3b3b3b);
+	background-image: linear-gradient(top, #5a5a5a, #3b3b3b);
+	background-repeat: repeat-x;
+}
+	/* line 57, ../../../app/assets/stylesheets/_base/_mixins_.scss */
+	.btn-black:hover
+	{
+		background-color: #3b3b3b;
+	}
+	/* line 61, ../../../app/assets/stylesheets/_base/_mixins_.scss */
+	.btn-black.active, .btn-black:active
+	{
+		background-color: #3b3b3b;
+		background-image: none;
+		outline: 0;
+		-webkit-box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);
+		-moz-box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);
+		box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);
+	}
+	/* line 68, ../../../app/assets/stylesheets/_base/_mixins_.scss */
+	.btn-black.disabled, .btn-black[disabled]
+	{
+		border-color: #cccccc \9;
+		background-color: #e6e6e6;
+	}
+
+/* line 93, ../../../app/assets/stylesheets/_base/ui/_button_.scss */
+.btn,
+.btn-toolbar .btn-group
+{
+	display: inline-block;
+	*display: inline;
+	*zoom: 1;
+}
+
+/* line 98, ../../../app/assets/stylesheets/_base/ui/_button_.scss */
+.btn-toolbar
+{
+	font-size: 0;
+}
+	/* line 103, ../../../app/assets/stylesheets/_base/ui/_button_.scss */
+	.btn-toolbar .btn + .btn,
+	.btn-toolbar .btn-group + .btn,
+	.btn-toolbar .btn + .btn-group
+	{
+		margin-left: 5px;
+	}
+
+/* line 108, ../../../app/assets/stylesheets/_base/ui/_button_.scss */
+.btn-group
+{
+	*margin-left: .3em;
+	font-size: 0;
+	white-space: nowrap;
+}
+	/* line 113, ../../../app/assets/stylesheets/_base/ui/_button_.scss */
+	.btn-group:first-child
+	{
+		*margin-left: 0;
+	}
+	/* line 117, ../../../app/assets/stylesheets/_base/ui/_button_.scss */
+	.btn-group + .btn-group
+	{
+		margin-left: 5px;
+	}
+	/* line 121, ../../../app/assets/stylesheets/_base/ui/_button_.scss */
+	.btn-group > .btn
+	{
+		position: relative;
+		border-radius: 0;
+	}
+		/* line 125, ../../../app/assets/stylesheets/_base/ui/_button_.scss */
+		.btn-group > .btn + .btn
+		{
+			margin-left: -1px;
+		}
+		/* line 129, ../../../app/assets/stylesheets/_base/ui/_button_.scss */
+		.btn-group > .btn:first-child
+		{
+			margin-left: 0;
+			border-radius: 4px 0 0 4px;
+		}
+		/* line 134, ../../../app/assets/stylesheets/_base/ui/_button_.scss */
+		.btn-group > .btn:last-child
+		{
+			border-radius: 0 4px 4px 0;
+		}
+
+/* line 142, ../../../app/assets/stylesheets/_base/ui/_button_.scss */
+button.btn
+{
+	*padding: 2px 1px 0;
+	*line-height: 22px;
+}
+	/* line 143, ../../../app/assets/stylesheets/_base/ui/_button_.scss */
+	button.btn::-moz-focus-inner
+	{
+		padding: 0;
+		border: 0;
+	}
+/* line 152, ../../../app/assets/stylesheets/_base/ui/_button_.scss */
+button.btn-large
+{
+	*padding-top: 8px;
+	*padding-bottom: 7px;
+}
+
+/* line 2, ../../../app/assets/stylesheets/_base/ui/_input_.scss */
+.input
+{
+	width: 210px;
+	height: 18px;
+	padding: 5px;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+	-webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+	-moz-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+	color: #555555;
+	line-height: 1;
+	vertical-align: middle;
+}
+	/* line 12, ../../../app/assets/stylesheets/_base/ui/_input_.scss */
+	.input:focus
+	{
+		border-color: #999999;
+		-webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(0, 0, 0, 0.1);
+		-moz-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(0, 0, 0, 0.1);
+		box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(0, 0, 0, 0.1);
+		outline: 0;
+		outline: thin dotted \9;
+	}
+	/* line 19, ../../../app/assets/stylesheets/_base/ui/_input_.scss */
+	.input.disabled, .input[disabled], .input[readonly]
+	{
+		border-color: #ddd;
+		background-color: #f5f5f5;
+		cursor: not-allowed;
+	}
+
+/* line 25, ../../../app/assets/stylesheets/_base/ui/_input_.scss */
+textarea.input
+{
+	height: auto;
+	line-height: 1.5;
+	word-wrap: break-word;
+}
+
+/* line 30, ../../../app/assets/stylesheets/_base/ui/_input_.scss */
+select.input
+{
+	width: auto;
+	height: auto;
+}
+
+/* line 34, ../../../app/assets/stylesheets/_base/ui/_input_.scss */
+.input-mini
+{
+	width: 60px;
+}
+
+/* line 35, ../../../app/assets/stylesheets/_base/ui/_input_.scss */
+.input-small
+{
+	width: 90px;
+}
+
+/* line 36, ../../../app/assets/stylesheets/_base/ui/_input_.scss */
+.input-medium
+{
+	width: 150px;
+}
+
+/* line 37, ../../../app/assets/stylesheets/_base/ui/_input_.scss */
+.input-large
+{
+	width: 270px;
+}
+
+/* line 38, ../../../app/assets/stylesheets/_base/ui/_input_.scss */
+.input-xlarge
+{
+	width: 330px;
+}
+
+/* line 39, ../../../app/assets/stylesheets/_base/ui/_input_.scss */
+.input-xxlarge
+{
+	width: 420px;
+}
+
+/* line 40, ../../../app/assets/stylesheets/_base/ui/_input_.scss */
+.input-fullsize
+{
+	width: 99%;
+}
+
+/* line 41, ../../../app/assets/stylesheets/_base/ui/_input_.scss */
+.input-upper
+{
+	text-transform: uppercase;
+}
+
+/* line 42, ../../../app/assets/stylesheets/_base/ui/_input_.scss */
+.input-lower
+{
+	text-transform: lowercase;
+}
+
+/* line 76, ../../../app/assets/stylesheets/_base/_mixins_.scss */
+:-moz-placeholder
+{
+	color: #999999;
+}
+
+/* line 79, ../../../app/assets/stylesheets/_base/_mixins_.scss */
+::-webkit-input-placeholder
+{
+	color: #999999;
+}
+
+/* line 4, ../../../app/assets/stylesheets/romance/common.scss*/
+
+/* line 7, ../../../app/assets/stylesheets/romance/common.scss */
+.header
+{
+	position: fixed;
+	z-index: 1000;
+	width: 100%;
+	height: 47px;
+	border: solid #bdbdbd;
+	border-width: 2px 0 1px;
+	background-color: #ece9e6;
+	background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #f8f4f2), color-stop(100%, #eae7e5));
+	background-image: -webkit-linear-gradient(#f8f4f2, #eae7e5);
+	background-image: -moz-linear-gradient(#f8f4f2, #eae7e5);
+	background-image: -o-linear-gradient(#f8f4f2, #eae7e5);
+	background-image: linear-gradient(#f8f4f2, #eae7e5);
+	box-shadow: 0 1px #faf9f8 inset, 0 1px 3px rgba(188, 189, 189, 0.6);
+}
+	/* line 18, ../../../app/assets/stylesheets/romance/common.scss */
+	.header > div
+	{
+		position: relative;
+		width: 100%;
+		min-width: 1202px;
+		margin: 0 auto;
+	}
+
+/* line 26, ../../../app/assets/stylesheets/romance/common.scss */
+.main-wrap
+{
+	min-width: 864px;
+	margin: 0 auto;
+	padding: 50px 0 0 138px;
+}
+
+/* line 45, ../../../app/assets/stylesheets/romance/common.scss */
+.section
+{
+	margin: 20px 0 0;
+	padding: 0 35px;
+}
+
+	.section .tab_header
+	{
+		padding: 0;
+		margin: 0;
+	}
+
+		.section .tab_header li
+		{
+			line-height: 45px;
+			height: 45px;
+			background: #5395b6;
+			float: left;
+			color: #fff;
+			font-weight: bold;
+			border-left: 1px solid #8db9ce;
+			border-right: 1px solid #8db9ce;
+			text-align: center;
+		}
+
+.tab_body
+{
+	width: 1110px;
+	height: 500px;
+	overflow-y: auto;
+}
+
+	.tab_body td
+	{
+		text-align: center;
+		height: 40px;
+	}
+
+.gray
+{
+	background: #eff2f4;
+}
+/* line 52, ../../../app/assets/stylesheets/romance/common.scss */
+.section .tab_box
+{
+	float: left;
+	width: 500px;
+	margin: 0 15px;
+}
+	/* line 56, ../../../app/assets/stylesheets/romance/common.scss */
+	.section .tab_box .rep_tab
+	{
+		width: 100%;
+	}
+		/* line 58, ../../../app/assets/stylesheets/romance/common.scss */
+		.section .tab_box .rep_tab th
+		{
+			background: #F9BAAE;
+		}
+			/* line 59, ../../../app/assets/stylesheets/romance/common.scss */
+			.section .tab_box .rep_tab th:first-child
+			{
+				width: 350px;
+				text-align: center;
+				line-height: 35px;
+				height: 35px;
+			}
+		/* line 60, ../../../app/assets/stylesheets/romance/common.scss */
+		.section .tab_box .rep_tab th, .section .tab_box .rep_tab td
+		{
+			height: 35px;
+			line-height: 35px;
+			padding: 5px 10px;
+			border: 1px solid #ccc;
+		}
+
+.section .left_box
+{
+	float: left;
+}
+
+.section .right_box
+{
+	float: right;
+}
+/* line 69, ../../../app/assets/stylesheets/romance/common.scss */
+.clear
+{
+	*zoom: 1;
+}
+	/* line 7, ../../../app/assets/stylesheets/_base/_mixins_.scss */
+	.clear:before, .clear:after
+	{
+		content: '\20';
+		display: table;
+	}
+	/* line 11, ../../../app/assets/stylesheets/_base/_mixins_.scss */
+	.clear:after
+	{
+		clear: both;
+	}
+
+/* line 76, ../../../app/assets/stylesheets/romance/common.scss */
+.top-nav li
+{
+	display: inline;
+}
+	/* line 79, ../../../app/assets/stylesheets/romance/common.scss */
+	.top-nav li.logo
+	{
+		position: relative;
+		display: inline-block;
+		float: left;
+		width: 136px;
+		height: 47px;
+		border-right: 1px solid #dcdad8;
+		background: url(img/logo.png) no-repeat center center;
+		box-shadow: 1px 0 #fefdfd;
+	}
+		/* line 89, ../../../app/assets/stylesheets/romance/common.scss */
+		.top-nav li.logo ul
+		{
+			display: none;
+			position: absolute;
+			width: 100%;
+			background: #f5f5f5;
+			box-shadow: 0 0 20px black;
+			overflow: hidden;
+		}
+			/* line 97, ../../../app/assets/stylesheets/romance/common.scss */
+			.top-nav li.logo ul li
+			{
+				display: block;
+			}
+				/* line 100, ../../../app/assets/stylesheets/romance/common.scss */
+				.top-nav li.logo ul li a
+				{
+					display: block;
+					float: none;
+					border: none;
+					border-bottom: 1px solid #dcdad8;
+					box-shadow: none;
+					text-indent: -9999px;
+				}
+					/* line 108, ../../../app/assets/stylesheets/romance/common.scss */
+					.top-nav li.logo ul li a:hover
+					{
+						background-color: #e9e5e1;
+					}
+				/* line 112, ../../../app/assets/stylesheets/romance/common.scss */
+				.top-nav li.logo ul li .is
+				{
+					background: url(img/logo.png) center no-repeat;
+				}
+				/* line 116, ../../../app/assets/stylesheets/romance/common.scss */
+				.top-nav li.logo ul li .wutian
+				{
+					background: url(img/wutian.png) center no-repeat;
+				}
+				/* line 120, ../../../app/assets/stylesheets/romance/common.scss */
+				.top-nav li.logo ul li .zhishi
+				{
+					background: url(img/zhishi.png) center no-repeat;
+				}
+	/* line 126, ../../../app/assets/stylesheets/romance/common.scss */
+	.top-nav li.no-logo
+	{
+		background: none;
+	}
+	/* line 129, ../../../app/assets/stylesheets/romance/common.scss */
+	.top-nav li.logo-zhishi
+	{
+		background: url(img/zhishi.png) no-repeat center center;
+	}
+	/* line 132, ../../../app/assets/stylesheets/romance/common.scss */
+	.top-nav li.logo-tsa
+	{
+		background: url(img/wutian.png) no-repeat center center;
+	}
+	/* line 135, ../../../app/assets/stylesheets/romance/common.scss */
+	.top-nav li.logo-gsk
+	{
+		background: url(img/sanofi.png) center no-repeat;
+		background-size: 100%;
+	}
+/* line 141, ../../../app/assets/stylesheets/romance/common.scss */
+.top-nav a
+{
+	display: inline-block;
+	float: left;
+	padding: 0 25px;
+	border-right: 1px solid #dcdad8;
+	box-shadow: 1px 0 #fefdfd;
+	color: #3b3b3b;
+	font-size: 16px;
+	font-weight: bold;
+	line-height: 47px;
+	text-align: center;
+	text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
+	/*     max-width: 24px;
+      height: 47px;
+      overflow: hidden;
+      @include transition-property(max-width);
+      @include transition-duration(0.2s);
+      @include transition-timing-function(ease); */
+}
+	/* line 160, ../../../app/assets/stylesheets/romance/common.scss */
+	.top-nav a:hover
+	{
+		background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #f2ede8), color-stop(100%, #e1ddda));
+		background-image: -webkit-linear-gradient(#f2ede8, #e1ddda);
+		background-image: -moz-linear-gradient(#f2ede8, #e1ddda);
+		background-image: -o-linear-gradient(#f2ede8, #e1ddda);
+		background-image: linear-gradient(#f2ede8, #e1ddda);
+		box-shadow: 1px 0 #fefdfd, 1px 0 #fefdfd inset;
+		text-decoration: none;
+	}
+	/* line 167, ../../../app/assets/stylesheets/romance/common.scss */
+	.top-nav a.active
+	{
+		height: 46px;
+		border-bottom: 2px solid #337499;
+		background: #d3e7f1;
+		box-shadow: 1px 0 #fefdfd, 1px 0 #fefdfd inset;
+	}
+/* line 177, ../../../app/assets/stylesheets/romance/common.scss */
+.top-nav b
+{
+	display: inline-block;
+	width: 24px;
+	height: 20px;
+	margin: 0 5px 5px 0;
+	background: url(img/nav-icons-sc78da228f0.png) no-repeat 999px 999px;
+	vertical-align: middle;
+}
+/* line 187, ../../../app/assets/stylesheets/romance/common.scss */
+.top-nav .dashboard b
+{
+	background-position: 0 -120px;
+}
+/* line 187, ../../../app/assets/stylesheets/romance/common.scss */
+.top-nav .msg b
+{
+	background-position: 0 -160px;
+}
+/* line 187, ../../../app/assets/stylesheets/romance/common.scss */
+.top-nav .publish b
+{
+	background-position: 0 -60px;
+}
+/* line 187, ../../../app/assets/stylesheets/romance/common.scss */
+.top-nav .file b
+{
+	background-position: 0 -140px;
+}
+/* line 187, ../../../app/assets/stylesheets/romance/common.scss */
+.top-nav .user b
+{
+	background-position: 0 -180px;
+}
+/* line 187, ../../../app/assets/stylesheets/romance/common.scss */
+.top-nav .report b
+{
+	background-position: 0 -200px;
+}
+/* line 187, ../../../app/assets/stylesheets/romance/common.scss */
+.top-nav .forum b
+{
+	background-position: 0 -80px;
+}
+/* line 187, ../../../app/assets/stylesheets/romance/common.scss */
+.top-nav .learning b
+{
+	background-position: 0 -20px;
+}
+/* line 187, ../../../app/assets/stylesheets/romance/common.scss */
+.top-nav .calendar b
+{
+	background-position: 0 -100px;
+}
+/* line 187, ../../../app/assets/stylesheets/romance/common.scss */
+.top-nav .news b
+{
+	background-position: 0 -40px;
+}
+/* line 187, ../../../app/assets/stylesheets/romance/common.scss */
+.top-nav .cabin b
+{
+	background-position: 0 0;
+}
+
+/* line 194, ../../../app/assets/stylesheets/romance/common.scss */
+#top-user-links
+{
+	display: none;
+	position: absolute;
+	top: 40px;
+	right: 5px;
+	z-index: 1001;
+	width: 146px;
+	border: 1px solid #e2e2e2;
+	border-radius: 4px;
+	background: #f3f0ed;
+	box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+	/* line 206, ../../../app/assets/stylesheets/romance/common.scss */
+	#top-user-links a
+	{
+		display: block;
+		width: 100%;
+		height: 34px;
+		line-height: 34px;
+		border-top: 1px solid #e2e2e2;
+		border-radius: 2px;
+		box-shadow: 0 1px #fefdfd inset;
+		color: #8b8a8a;
+		text-indent: 2em;
+	}
+		/* line 217, ../../../app/assets/stylesheets/romance/common.scss */
+		#top-user-links a:hover
+		{
+			background: #f9baae;
+			text-decoration: none;
+		}
+	/* line 223, ../../../app/assets/stylesheets/romance/common.scss */
+	#top-user-links li:first-child a
+	{
+		border-top: 0;
+	}
+
+/* line 228, ../../../app/assets/stylesheets/romance/common.scss */
+#top-user-name
+{
+	position: absolute;
+	right: 5px;
+	z-index: 1002;
+	height: 47px;
+	line-height: 47px;
+}
+	/* line 235, ../../../app/assets/stylesheets/romance/common.scss */
+	#top-user-name b
+	{
+		display: inline-block;
+		width: 60px;
+		height: 36px;
+		margin: 0 0 5px 15px;
+		border: 1px solid transparent;
+		border-radius: 4px 4px 0 0;
+		vertical-align: middle;
+	}
+	/* line 245, ../../../app/assets/stylesheets/romance/common.scss */
+	#top-user-name.active b
+	{
+		border: 1px solid #e2e2e2;
+		border-bottom-color: #f3f0ed;
+		background: #f3f0ed;
+		box-shadow: 1px -2px 2px rgba(0, 0, 0, 0.1), 1px 1px #fefdfd inset;
+	}
+
+/* line 253, ../../../app/assets/stylesheets/romance/common.scss */
+#top-user-avatar
+{
+	position: absolute;
+	top: 8px;
+	right: 16px;
+	z-index: 1003;
+	width: 38px;
+	height: 38px;
+	border-radius: 4px;
+	padding: 3px;
+	border: 1px solid #939192;
+	background: #f3f0ed;
+	box-shadow: 1px 1px #fff inset, -1px -1px #fff inset;
+	cursor: pointer;
+}
+	/* line 265, ../../../app/assets/stylesheets/romance/common.scss */
+	#top-user-avatar img
+	{
+		display: block;
+		width: 36px;
+		height: 36px;
+		border-radius: 3px;
+		border: 1px solid #a4a4a4;
+	}
+	/* line 271, ../../../app/assets/stylesheets/romance/common.scss */
+	#top-user-avatar:after
+	{
+		content: '\20';
+		position: absolute;
+		right: -8px;
+		bottom: 8px;
+		width: 0;
+		height: 0;
+		border: 3px solid transparent;
+		border-top-color: #a09f9f;
+	}
+
+/* line 282, ../../../app/assets/stylesheets/romance/common.scss */
+.top-links
+{
+	float: right;
+	margin: 13px 35px 0 0;
+}
+	/* line 287, ../../../app/assets/stylesheets/romance/common.scss */
+	.top-links li
+	{
+		float: left;
+	}
+		/* line 289, ../../../app/assets/stylesheets/romance/common.scss */
+		.top-links li.choose-module
+		{
+			margin: 0 0 0 6px;
+		}
+		/* line 292, ../../../app/assets/stylesheets/romance/common.scss */
+		.top-links li.change-lang
+		{
+			margin: 0 0 0 6px;
+			border-right: 1px solid #dcdad8;
+		}
+			/* line 295, ../../../app/assets/stylesheets/romance/common.scss */
+			.top-links li.change-lang a
+			{
+				float: left;
+				height: 19px;
+				width: 19px;
+				border: 1px solid #dcdad8;
+				border-right: none;
+				text-align: center;
+			}
+				/* line 302, ../../../app/assets/stylesheets/romance/common.scss */
+				.top-links li.change-lang a.active
+				{
+					background: #f9baae;
+				}
+				/* line 305, ../../../app/assets/stylesheets/romance/common.scss */
+				.top-links li.change-lang a:hover
+				{
+					text-decoration: none;
+					background: #f9baae;
+				}
+
+/* line 316, ../../../app/assets/stylesheets/romance/common.scss */
+.subnav
+{
+	position: fixed;
+	top: 50px;
+	bottom: 0;
+	z-index: 20;
+	width: 137px;
+	height: 100%;
+	margin-left: -138px;
+	border-right: 1px solid #fff;
+	background: #3b3b3b;
+}
+	/* line 327, ../../../app/assets/stylesheets/romance/common.scss */
+	.subnav dt, .subnav a
+	{
+		position: relative;
+		border-bottom: 1px solid #4f4f4f;
+		text-indent: 1.5em;
+	}
+		/* line 332, ../../../app/assets/stylesheets/romance/common.scss */
+		.subnav dt.active:before, .subnav dt.active:after, .subnav a.active:before, .subnav a.active:after
+		{
+			content: '\20';
+			position: absolute;
+			top: 50%;
+			right: -16px;
+			width: 0;
+			height: 0;
+			margin-top: -7px;
+			border: 8px solid transparent;
+			border-left-color: #fff;
+		}
+		/* line 342, ../../../app/assets/stylesheets/romance/common.scss */
+		.subnav dt.active:after, .subnav a.active:after
+		{
+			right: -15px;
+		}
+	/* line 347, ../../../app/assets/stylesheets/romance/common.scss */
+	.subnav dt
+	{
+		height: 42px;
+		line-height: 42px;
+		background: #222222;
+		color: #eeeeee;
+		font-size: 15px;
+		font-weight: bold;
+		text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
+	}
+		/* line 356, ../../../app/assets/stylesheets/romance/common.scss */
+		.subnav dt.active:after
+		{
+			border-left-color: #222222;
+		}
+	/* line 361, ../../../app/assets/stylesheets/romance/common.scss */
+	.subnav b
+	{
+		display: none;
+	}
+	/* line 374, ../../../app/assets/stylesheets/romance/common.scss */
+	.subnav a
+	{
+		display: block;
+		height: 42px;
+		line-height: 42px;
+		color: #c9c9c9;
+	}
+
+		.subnav a.first
+		{
+			background: #000;
+		}
+		/* line 380, ../../../app/assets/stylesheets/romance/common.scss */
+		.subnav a.active
+		{
+			color: #fff;
+		}
+			/* line 383, ../../../app/assets/stylesheets/romance/common.scss */
+			.subnav a.active:after
+			{
+				border-left-color: #3b3b3b;
+			}
+		/* line 388, ../../../app/assets/stylesheets/romance/common.scss */
+		.subnav a:hover
+		{
+			background: #4a4544;
+			text-decoration: none;
+		}
+			/* line 392, ../../../app/assets/stylesheets/romance/common.scss */
+			.subnav a:hover.active:after
+			{
+				border-left-color: #4a4544;
+			}
+		/* line 409, ../../../app/assets/stylesheets/romance/common.scss */
+		.subnav a.sub_sub_link:before
+		{
+			content: ' 20';
+			position: absolute;
+			top: 50%;
+			right: 20px;
+			width: 0;
+			height: 0;
+			margin-top: -8px;
+			border: 8px solid transparent;
+			border-right-color: #fff;
+			text-indent: -9999px;
+		}
+		/* line 423, ../../../app/assets/stylesheets/romance/common.scss */
+		.subnav a.sub_sub_link.arrowBottom:before
+		{
+			right: 15px;
+			margin-top: -4px;
+			border: 8px solid transparent;
+			border-top-color: #fff;
+		}
+	/* line 432, ../../../app/assets/stylesheets/romance/common.scss */
+	.subnav .sub_sub_nav
+	{
+		display: none;
+		font-size: 80%;
+		overflow: hidden;
+	}
+		/* line 437, ../../../app/assets/stylesheets/romance/common.scss */
+		.subnav .sub_sub_nav.show
+		{
+			display: block;
+		}
+		/* line 441, ../../../app/assets/stylesheets/romance/common.scss */
+		.subnav .sub_sub_nav a
+		{
+			position: relative;
+			padding-left: 20px;
+			height: 26px;
+			line-height: 26px;
+		}
+			/* line 447, ../../../app/assets/stylesheets/romance/common.scss */
+			.subnav .sub_sub_nav a.active
+			{
+				color: #ed7957;
+			}
+				/* line 450, ../../../app/assets/stylesheets/romance/common.scss */
+				.subnav .sub_sub_nav a.active:after
+				{
+					display: none;
+				}
+				/* line 454, ../../../app/assets/stylesheets/romance/common.scss */
+				.subnav .sub_sub_nav a.active:before
+				{
+					display: none;
+				}
+			/* line 459, ../../../app/assets/stylesheets/romance/common.scss */
+			.subnav .sub_sub_nav a .tips
+			{
+				position: absolute;
+				top: 50%;
+				right: 5px;
+				display: block;
+				margin-top: -10px;
+				width: 20px;
+				height: 20px;
+				background: #ed7957;
+				border-radius: 10px;
+				color: white;
+				line-height: 20px;
+				text-indent: 0;
+				text-align: center;
+				overflow: hidden;
+			}
+
+/* line 480, ../../../app/assets/stylesheets/romance/common.scss */
+.crumb
+{
+	padding: 0 0 0 40px;
+	height: 40px;
+	line-height: 40px;
+	border-bottom: 1px solid #d5d5d5;
+	background-color: #dbdbdb;
+	background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #f1f1f1), color-stop(100%, #dbdbdb));
+	background-image: -webkit-linear-gradient(#f1f1f1, #dbdbdb);
+	background-image: -moz-linear-gradient(#f1f1f1, #dbdbdb);
+	background-image: -o-linear-gradient(#f1f1f1, #dbdbdb);
+	background-image: linear-gradient(#f1f1f1, #dbdbdb);
+	color: #555555;
+	text-shadow: 1px 1px rgba(255, 255, 255, 0.8);
+}
+	/* line 490, ../../../app/assets/stylesheets/romance/common.scss */
+	.crumb i
+	{
+		padding: 0 10px;
+		color: #999999;
+	}
+	/* line 495, ../../../app/assets/stylesheets/romance/common.scss */
+	.crumb a
+	{
+		color: #555555;
+	}
+	/* line 499, ../../../app/assets/stylesheets/romance/common.scss */
+	.crumb .active
+	{
+		color: #999999;
+	}
+
+/* line 506, ../../../app/assets/stylesheets/romance/common.scss */
+.btn-toolbar
+{
+	font-size: 0;
+}
+	/* line 511, ../../../app/assets/stylesheets/romance/common.scss */
+	.btn-toolbar .btn-group + .btn,
+	.btn-toolbar .btn + .btn-group,
+	.btn-toolbar .btn-group + .btn-group
+	{
+		margin-left: 20px;
+	}
+
+/* line 517, ../../../app/assets/stylesheets/romance/common.scss */
+.counter
+{
+	float: right;
+	font-size: 16px;
+}
+	/* line 522, ../../../app/assets/stylesheets/romance/common.scss */
+	.counter em
+	{
+		font-style: italic;
+		font-size: 1.3em;
+		font-family: Georgia, Tahoma, Arial;
+		vertical-align: baseline;
+	}
+	/* line 529, ../../../app/assets/stylesheets/romance/common.scss */
+	.counter.error
+	{
+		color: #b94a48;
+	}
+	/* line 533, ../../../app/assets/stylesheets/romance/common.scss */
+	.counter.float-l
+	{
+		float: left;
+	}
+
+/* line 539, ../../../app/assets/stylesheets/romance/common.scss */
+.recycle-bin
+{
+	display: block;
+	margin-right: 17px;
+	width: 22px;
+	height: 25px;
+	background: url(/assets/romance/recycle-bin.png) no-repeat;
+	text-indent: -9999px;
+	overflow: hidden;
+}
+
+/* line 2, ../../../app/assets/stylesheets/romance/partial/_search-form_.scss */
+.search-form
+{
+	display: inline-block;
+	vertical-align: middle;
+}
+	/* line 6, ../../../app/assets/stylesheets/romance/partial/_search-form_.scss */
+	.search-form .input
+	{
+		display: inline-block;
+		float: left;
+		padding-left: 12px;
+		padding-right: 8px;
+		border-radius: 14px 0 0 14px;
+	}
+	/* line 16, ../../../app/assets/stylesheets/romance/partial/_search-form_.scss */
+	.search-form .btn
+	{
+		float: left;
+		border-radius: 0 14px 14px 0;
+		margin-left: -1px;
+		vertical-align: top;
+	}
+	/* line 22, ../../../app/assets/stylesheets/romance/partial/_search-form_.scss */
+	.search-form.file-search
+	{
+		margin: 5px 35px 0 0;
+	}
+
+/* line 3, ../../../app/assets/stylesheets/romance/partial/_folder-tree_.scss */
+.folder-vol
+{
+	margin-right: 20px;
+}
+
+/* line 7, ../../../app/assets/stylesheets/romance/partial/_folder-tree_.scss */
+.folder-tree
+{
+	position: relative;
+	float: left;
+	width: 256px;
+	height: auto;
+	max-height: auto;
+	overflow-x: hidden;
+	overflow-y: auto;
+	box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+	/* line 17, ../../../app/assets/stylesheets/romance/partial/_folder-tree_.scss */
+	.folder-tree > header
+	{
+		background-color: #ed7957;
+		color: #fff;
+	}
+
+/* line 24, ../../../app/assets/stylesheets/romance/partial/_folder-tree_.scss */
+.folder-category > header
+{
+	position: relative;
+	border-bottom: 1px solid #dfdfdf;
+	background-color: #ececec;
+	cursor: pointer;
+}
+	/* line 30, ../../../app/assets/stylesheets/romance/partial/_folder-tree_.scss */
+	.folder-category > header.nested-folder
+	{
+		display: none;
+		padding-left: 2em;
+		color: #999999;
+	}
+		/* line 35, ../../../app/assets/stylesheets/romance/partial/_folder-tree_.scss */
+		.folder-category > header.nested-folder.intercommingled-folder:before
+		{
+			display: none;
+		}
+	/* line 39, ../../../app/assets/stylesheets/romance/partial/_folder-tree_.scss */
+	.folder-category > header:before
+	{
+		content: '\20';
+		float: left;
+		width: 0;
+		height: 0;
+		margin: 7px 5px 0 3px;
+		border: transparent 5px solid;
+		border-left-color: #666;
+	}
+	/* line 49, ../../../app/assets/stylesheets/romance/partial/_folder-tree_.scss */
+	.folder-category > header:hover
+	{
+		color: #0088cc;
+	}
+		/* line 51, ../../../app/assets/stylesheets/romance/partial/_folder-tree_.scss */
+		.folder-category > header:hover a.edit
+		{
+			display: inline;
+			top: 7px;
+			right: 20px;
+		}
+		/* line 56, ../../../app/assets/stylesheets/romance/partial/_folder-tree_.scss */
+		.folder-category > header:hover:before
+		{
+			border-left-color: #0088cc;
+		}
+/* line 62, ../../../app/assets/stylesheets/romance/partial/_folder-tree_.scss */
+.folder-category ul
+{
+	display: none;
+	min-height: 28px;
+	border-bottom: 1px solid #dfdfdf;
+	background-color: #fff;
+}
+	/* line 68, ../../../app/assets/stylesheets/romance/partial/_folder-tree_.scss */
+	.folder-category ul li
+	{
+		position: relative;
+	}
+		/* line 70, ../../../app/assets/stylesheets/romance/partial/_folder-tree_.scss */
+		.folder-category ul li em
+		{
+			position: absolute;
+			display: block;
+			right: 10px;
+			top: 5px;
+			width: 16px;
+			height: 16px;
+			line-height: 16px;
+			text-align: center;
+			color: white;
+			background: #ed7957;
+			border-radius: 8px;
+			font-size: 10px;
+		}
+		/* line 85, ../../../app/assets/stylesheets/romance/partial/_folder-tree_.scss */
+		.folder-category ul li:hover a.edit
+		{
+			display: inline;
+		}
+	/* line 91, ../../../app/assets/stylesheets/romance/partial/_folder-tree_.scss */
+	.folder-category ul a
+	{
+		position: relative;
+		display: block;
+		height: 28px;
+		line-height: 28px;
+		overflow-x: hidden;
+		padding: 0 20px;
+		white-space: nowrap;
+	}
+		/* line 100, ../../../app/assets/stylesheets/romance/partial/_folder-tree_.scss */
+		.folder-category ul a:hover, .folder-category ul a.active
+		{
+			background-color: #fce2d5;
+			text-decoration: none;
+		}
+		/* line 105, ../../../app/assets/stylesheets/romance/partial/_folder-tree_.scss */
+		.folder-category ul a.selected
+		{
+			background-image: url(/assets/selected.png);
+			background-repeat: no-repeat;
+			background-position: 95% center;
+		}
+		/* line 113, ../../../app/assets/stylesheets/romance/partial/_folder-tree_.scss */
+		.folder-category ul a .tips
+		{
+			position: absolute;
+			top: 50%;
+			right: 10px;
+			display: block;
+			margin-top: -10px;
+			width: 20px;
+			height: 20px;
+			background: #ed7957;
+			border-radius: 10px;
+			color: white;
+			font-size: 80%;
+			line-height: 20px;
+			text-indent: 0;
+			text-align: center;
+			overflow: hidden;
+		}
+/* line 133, ../../../app/assets/stylesheets/romance/partial/_folder-tree_.scss */
+.folder-category .edit
+{
+	display: none;
+	position: absolute;
+	right: 0;
+	top: 0;
+	z-index: 2;
+}
+	/* line 140, ../../../app/assets/stylesheets/romance/partial/_folder-tree_.scss */
+	.folder-category .edit:hover
+	{
+		background: transparent;
+	}
+/* line 145, ../../../app/assets/stylesheets/romance/partial/_folder-tree_.scss */
+.folder-category .pass
+{
+	position: absolute;
+	right: 0;
+	top: 0;
+	z-index: 2;
+}
+	/* line 151, ../../../app/assets/stylesheets/romance/partial/_folder-tree_.scss */
+	.folder-category .pass:hover
+	{
+		background: transparent;
+	}
+/* line 155, ../../../app/assets/stylesheets/romance/partial/_folder-tree_.scss */
+.folder-category span.pass
+{
+	right: 10px;
+	top: 5px;
+	color: #999999;
+	font-weight: normal;
+}
+/* line 163, ../../../app/assets/stylesheets/romance/partial/_folder-tree_.scss */
+.folder-category.active > header
+{
+	color: #0088cc;
+}
+	/* line 168, ../../../app/assets/stylesheets/romance/partial/_folder-tree_.scss */
+	.folder-category.active > header:before
+	{
+		margin: 9px 9px 0 0;
+		border-left-color: transparent;
+		border-top-color: #0088cc;
+	}
+/* line 176, ../../../app/assets/stylesheets/romance/partial/_folder-tree_.scss */
+.folder-category.active > ul
+{
+	display: block;
+}
+/* line 179, ../../../app/assets/stylesheets/romance/partial/_folder-tree_.scss */
+.folder-category.active .nested-folder
+{
+	display: block;
+}
+
+/* line 186, ../../../app/assets/stylesheets/romance/partial/_folder-tree_.scss */
+.folder-tree > header, .folder-category > header
+{
+	padding: 5px 15px;
+	border-top: 1px solid white;
+	font-weight: bold;
+}
+
+
+/* line 208, ../../../app/assets/stylesheets/romance/partial/_folder-tree_.scss */
+.btn.dropdown-toggle
+{
+	float: left;
+	margin-right: 25px;
+}
+
+/* line 1, ../../../app/assets/stylesheets/romance/partial/_multi-select_.scss */
+.multi-select
+{
+	padding: 0;
+	box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+	text-indent: .5em;
+	min-width: 250px;
+}
+	/* line 6, ../../../app/assets/stylesheets/romance/partial/_multi-select_.scss */
+	.multi-select[multiple]
+	{
+		min-height: 250px;
+		*height: 250px;
+	}
+	/* line 12, ../../../app/assets/stylesheets/romance/partial/_multi-select_.scss */
+	.multi-select option
+	{
+		height: 16px;
+		padding: 6px 0;
+		background-color: #fff;
+		text-indent: .5em;
+		cursor: pointer;
+	}
+		/* line 19, ../../../app/assets/stylesheets/romance/partial/_multi-select_.scss */
+		.multi-select option:hover
+		{
+			background-color: #fce2d5;
+		}
+	/* line 24, ../../../app/assets/stylesheets/romance/partial/_multi-select_.scss */
+	.multi-select optgroup
+	{
+		padding-top: 6px;
+		background-color: #ececec;
+		font-weight: 400;
+		text-indent: .5em;
+	}
+		/* line 30, ../../../app/assets/stylesheets/romance/partial/_multi-select_.scss */
+		.multi-select optgroup option
+		{
+			text-indent: 1.5em;
+		}
+			/* line 33, ../../../app/assets/stylesheets/romance/partial/_multi-select_.scss */
+			.multi-select optgroup option:first-of-type
+			{
+				margin-top: 6px;
+			}
+
+/*
+ * flash[:notice]
+ */
+/* line 5, ../../../app/assets/stylesheets/romance/partial/_flash-notice_.scss */
+#flash-notice
+{
+	position: absolute;
+	top: 50px;
+	left: 0;
+	width: 100%;
+	text-align: center;
+}
+	/* line 12, ../../../app/assets/stylesheets/romance/partial/_flash-notice_.scss */
+	#flash-notice div
+	{
+		display: inline-block;
+		*display: inline;
+		*zoom: 1;
+		padding: 10px 20px;
+		border: 1px solid #ddd;
+		border-radius: 4px;
+		font-size: 14px;
+		text-shadow: 0 1px rgba(255, 255, 255, 0.5);
+		*line-height: 40px;
+	}
+		/* line 22, ../../../app/assets/stylesheets/romance/partial/_flash-notice_.scss */
+		#flash-notice div a
+		{
+			color: inherit;
+			text-decoration: underline;
+		}
+	/* line 28, ../../../app/assets/stylesheets/romance/partial/_flash-notice_.scss */
+	#flash-notice .warning
+	{
+		border-color: #fbeed5;
+		background-color: #fcf8e3;
+		color: #c09853;
+	}
+	/* line 34, ../../../app/assets/stylesheets/romance/partial/_flash-notice_.scss */
+	#flash-notice .error
+	{
+		border-color: #eed3d7;
+		background-color: #f2dede;
+		color: #b94a48;
+	}
+	/* line 40, ../../../app/assets/stylesheets/romance/partial/_flash-notice_.scss */
+	#flash-notice .success
+	{
+		border-color: #d6e9c6;
+		background-color: #dff0d8;
+		color: #468847;
+	}
+	/* line 46, ../../../app/assets/stylesheets/romance/partial/_flash-notice_.scss */
+	#flash-notice .info
+	{
+		border-color: #bce8f1;
+		background-color: #d9edf7;
+		color: #3a87ad;
+	}
+
+.calander
+{
+	background: url(img/nav-icons-sc78da228f0.png) 0 -100px no-repeat;
+	padding: 0 15px;
+}
+
+.txt_gray
+{
+	color: #ccc;
+}
+
+.red
+{
+	color: red;
+}
+
+.lang_txt
+{
+	width: 400px;
+}
+
+.form_tabP
+{
+}
+
+.form_tab td
+{
+	height: 35px;
+	line-height: 35px;
+}
+
+.separate
+{
+	border-left: 1px solid #ccc;
+	padding: 3px 0;
+	line-height: 75px;
+}
+
+.txt_hours
+{
+	width: 50px;
+	margin-right: 10px;
+}
+
+.txt_minutes
+{
+	width: 50px;
+	margin-right: 10px;
+}
+
+.meet_tab
+{
+	width: 850px;
+}
+
+	.meet_tab th
+	{
+		text-align: center;
+		color: #fff;
+		height: 35px;
+		line-height: 35px;
+		border-left: 1px solid #ccc;
+		border-right: 1px solid #ccc;
+		background: #5395b6;
+	}
+
+	.meet_tab td
+	{
+		text-align: center;
+		border-left: 1px solid #fff;
+		height: 35px;
+		line-height: 35px;
+		border-right: 1px solid #fff;
+	}
+
+.title
+{
+	height: 30px;
+	line-height: 30px;
+}
+
+.input_content
+{
+	margin-top: 20px;
+}
+
+#checkbox_content
+{
+	display: none;
+}
+
+	#checkbox_content .cb
+	{
+		padding: 0 8px;
+	}
+
+		#checkbox_content .cb input
+		{
+			margin-right: 8px;
+		}
+
+.pad_3
+{
+	padding-left: 3em;
+}
+
+.pass
+{
+	margin: 0 15px;
+	background: #398bae;
+	border: 1px solid #ccc;
+	cursor: pointer;
+	color: #fff;
+	padding: 0 20px;
+	font-weight: bold;
+	border-radius: 5px;
+	height: 30px;
+	line-height: 30px;
+}
+
+.reject
+{
+	margin: 0 15px;
+	background: red;
+	border: 1px solid #ccc;
+	cursor: pointer;
+	color: #fff;
+	padding: 0 20px;
+	font-weight: bold;
+	border-radius: 5px;
+	height: 30px;
+	line-height: 30px;
+}
+
+#cancle
+{
+	color: #5c5151;
+	text-decoration: none;
+	padding: 0 20px 0 50px;
+}
+
+#preview
+{
+	color: blue;
+}
+
+.meet_content
+{
+	width: 800px;
+	line-height: 30px;
+}
+
+#search
+{
+	height: auto;
+}
+
+.mar-ie
+{
+	*margin-left: 15px;
+}
+
+.filter
+{
+	cursor: pointer;
+	background: url('img/filter.jpg') no-repeat right center;
+	padding-right: 20px;
+}
+/* 2013-07-01ÐÂÔö */
+.top-nav .pro_man b
+{
+	background-position: 0 -240px;
+}
+
+.top-nav .database b
+{
+	background-position: 0 -220px;
+}
+
+.tab_body td
+{
+	padding: 10px 0;
+}
+
+.tab_body .align-l
+{
+	text-align: left;
+}
+
+.WdateFmtErr
+{
+	width: 148px;
+}
+
+.step
+{
+	margin-top: 20px;
+	padding: 0 35px;
+}
+
+	.step ul
+	{
+		width: 100%;
+		overflow: hidden;
+	}
+
+		.step ul li
+		{
+			float: left;
+			width: 33.3%;
+			height: 28px;
+			background-color: #d1dee8;
+			line-height: 28px;
+			text-align: center;
+			color: #ffffff;
+		}
+
+		.step ul .active
+		{
+			background-color: #6b93b3;
+		}
+
+.form_title
+{
+	font-size: 20px;
+	margin: 10px 0;
+}
+
+.sub_form
+{
+	width: 80%;
+	margin: 0 20px;
+}
+
+	.sub_form .textarea
+	{
+		width: 505px;
+		height: 50px;
+		resize: none;
+	}
+
+.top-nav li.logo ul
+{
+	display: block;
+}
+
+.sub_item
+{
+	padding-left: 20px;
+}
+
+.folder-tree.large
+{
+	width: 340px;
+	margin-left: 20px;
+}
+
+.folder-tree
+{
+	height: 340px;
+	overflow: auto;
+	box-shadow: none;
+}
+
+	.folder-tree .folder-category
+	{
+		line-height: 15px;
+	}
+
+.folder-category header
+{
+	border: 1px solid #49adeb;
+}
+
+.folder-category > header:before
+{
+	content: none;
+}
+
+.folder-category ul
+{
+	display: block;
+	border: none;
+	border-left: 1px solid #ccc;
+	border-right: 1px solid #ccc;
+}
+
+.folder-tree.large header
+{
+	cursor: default;
+}
+
+	.folder-tree.large header:hover
+	{
+		color: #333;
+	}
+
+.folder-tree.large .folder-category ul li
+{
+	border-bottom: 1px solid #e4e4e4;
+	position: relative;
+	display: block;
+	height: 28px;
+	line-height: 28px;
+	overflow-x: hidden;
+	padding: 0 20px;
+	white-space: nowrap;
+}
+
+.folder-category ul a:hover, .folder-category ul a.active
+{
+	background-color: #EAF4F9;
+}
+
+.contents-list
+{
+	width: 930px;
+	height: 545px;
+	margin-left: 276px;
+	overflow: hidden;
+}
+
+	.contents-list .tab_header
+	{
+		width: 100%;
+		overflow: hidden;
+	}
+
+	.contents-list .tab_body
+	{
+		width: 100%;
+	}
+
+.section .tab_header
+{
+	width: 1110px;
+}
+
+.tab_body
+{
+	position: relative;
+}
+
+.select-active
+{
+	z-index: 200;
+}
+
+.select
+{
+	position: relative;
+	width: 50px;
+	margin: 0 auto;
+	border-radius: 5px;
+}
+
+	.select a
+	{
+		display: block;
+		white-space: nowrap;
+		padding: 5px 1em;
+		border-radius: 5px;
+	}
+
+	.select ul
+	{
+		display: none;
+		position: absolute;
+		z-index: 200;
+		top: 28px;
+		left: 0;
+		min-width: 4em;
+		padding: 5px 0;
+		white-space: nowrap;
+		background: white;
+		border-radius: 5px;
+	}
+
+		.select ul li a
+		{
+			padding: 4px 1em;
+			border: none;
+			border-radius: 0;
+		}
+
+			.select ul li a.selected
+			{
+				background: #EAF4F9;
+			}
+
+			.select ul li a:hover
+			{
+				background: #EAF4F9;
+			}
+
+			.select ul li a:after
+			{
+				display: none;
+			}
+
+	.select a:after
+	{
+		position: relative;
+		left: 4px;
+		top: 0.8em;
+		border-right: 4px solid transparent;
+		border-top: 5px solid #555555;
+		border-left: 4px solid transparent;
+		content: "";
+	}
+
+	.select:hover ul
+	{
+		display: block;
+	}
+
+.select-thead a
+{
+	padding: 0 1em;
+}
+
+	.select-thead a:after
+	{
+		border-top-color: white;
+	}
+
+.select-thead ul
+{
+	top: 21px;
+	background: #ed7957;
+}
+
+	.select-thead ul a:hover
+	{
+		color: #555555;
+	}
+
+.select-edit a
+{
+	padding: 0 1em 0 0;
+}
+
+.select-edit ul
+{
+	top: -9px;
+	left: -13px;
+	border: 1px solid #c0c0c0;
+}
+
+.select-normal a
+{
+	border: 1px solid #c0c0c0;
+}
+
+.select-normal ul
+{
+	border: 1px solid #c0c0c0;
+}
+
+.sim-select
+{
+	display: inline-block;
+	position: relative;
+	width: 300px;
+	height: 37px;
+	margin: 5px 0;
+}
+
+	.sim-select .input
+	{
+		width: 288px;
+	}
+
+	.sim-select .item-wrap
+	{
+		display: none;
+		position: absolute;
+		top: 36px;
+		left: 0;
+		width: 278px;
+		height: 200px;
+		padding: 0 10px;
+		background-color: #FFF;
+		border: 1px solid #CCC;
+		border-bottom-left-radius: 10px;
+		border-bottom-right-radius: 10px;
+		overflow: auto;
+	}
+
+		.sim-select .item-wrap li
+		{
+			float: left;
+			width: 33.3%;
+			cursor: pointer;
+		}
+
+/* header-functions */
+.header-functions
+{
+	width: 200px;
+	float: right;
+	font-size: 12px;
+}
+
+	.header-functions dl
+	{
+		margin: 0;
+		float: left;
+	}
+
+		.header-functions dl dt
+		{
+			float: left;
+			width: 100px;
+			font-weight: normal;
+			text-align: right;
+			padding-top: 5px;
+		}
+
+	.header-functions .name
+	{
+		display: block;
+	}
+
+	.header-functions dl dd
+	{
+		margin-left: 110px;
+		width: 42px;
+		padding: 1px;
+		background: #fff;
+		box-shadow: 0 0 3px #fff;
+	}
+
+	.header-functions .exit
+	{
+		width: 30px;
+		height: 30px;
+		float: left;
+		margin: 8px 0 0 10px;
+	}
+
+		.header-functions .exit a
+		{
+			display: block;
+			text-align: center;
+			padding:6px 0px 6px 2px;
+			border: 1px solid #fff;
+			border-radius: 5px;
+		}
+
+			.header-functions .exit a:hover
+			{
+				background: rgba(0, 0, 0, 0.05);
+				color: #ccc;
+			}
+
+			.header-functions .exit a:active
+			{
+				.header-functions .exit border-top-color: #0077b3;
+				background: #0077b3;
+			}
+
+	.header-functions .avatar
+	{
+		width: 42px;
+		height: 42px;
+	}
+
+ul, ol
+{
+	padding: 0;
+	margin: 0;
+}

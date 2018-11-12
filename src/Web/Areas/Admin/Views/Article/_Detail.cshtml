@@ -1,0 +1,37 @@
+﻿@model WebBaseFrame.Models.Article
+<div class="control-group">
+    <label class="control-label">排序</label><div class="controls padt5">@Model.SortID</div>
+</div>
+<div class="control-group">
+    <label class="control-label">类别</label><div class="controls padt5">@Model.KID</div>
+</div>
+<div class="control-group">
+    <label class="control-label">标题</label><div class="controls padt5">@Model.Title</div>
+</div>
+<div class="control-group">
+    <label class="control-label">简述</label><div class="controls padt5">@Model.Summary</div>
+</div>
+<div class="control-group">
+    <label class="control-label">关建字</label><div class="controls padt5">@Model.KeyWords</div>
+</div>
+<div class="control-group">
+    <label class="control-label">内容</label><div class="controls padt5">@Html.Raw(Model.Content)</div>
+</div>
+<div class="control-group">
+    <label class="control-label">引用</label><div class="controls padt5">@Model.Quote</div>
+</div>
+<div class="control-group">
+    <label class="control-label">缩略图</label><div class="controls padt5">
+        <img src="@Model.Thumbs" /></div>
+</div>
+<div class="control-group">
+    <label class="control-label">附件</label><div class="controls padt5">
+        @if (!string.IsNullOrEmpty(Model.Files))
+        {
+            foreach (var src in Model.Files.Split(','))
+            {
+            <div><a href="@src" target="_blank">@src</a></div>
+            }
+        }
+    </div>
+</div>

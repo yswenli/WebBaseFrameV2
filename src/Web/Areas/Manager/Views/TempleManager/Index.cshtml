@@ -1,0 +1,64 @@
+﻿@using System.Data;
+@using Libraries;
+@using MvcPager;
+@using WEF.MvcPager;
+@using Web.Areas.Manager.Helper;
+@model PagedList<TempInfo>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Manager/Views/Shared/_Layout.cshtml";
+}
+<div class="row-fluid">
+    <div class="datatable span12">
+        <div class="navbar">
+            <div class="navbar-inner">
+                <div class="btn-toolbar pull-left"><a title='创建新记录' class="btn btn-primary permission" href="/Manager/TempleManager/Create">创建新记录</a></div>
+                <div class="nav-collapse pull-right">
+                    <ul class="nav">
+                        <li class="active"><a href="javascript:void(0);"><i class="icol-table"></i>列表</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="dt-pages tab-content">
+            <div class="dt_header">
+                <form action="/Manager/DataBase/Index" method="get">
+                    <div class="row-fluid">
+                        <div class="span6">
+                            <div class="btn-group pull-left">
+
+                            </div>
+                        </div>
+                        <div class="span6">
+                            <div class="pull-right">
+                                <label>
+                                    <select name="pagesize" class="input-mini">
+                                        <option value="10" selected="selected">10</option>
+                                        <option value="25">25</option>
+                                        <option value="50">50</option>
+                                        <option value="100">100</option>
+                                    </select>
+                                    条记录每页
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="alert alert-info" id="control_search" style="@(string.IsNullOrEmpty(Request.QueryString["kind"]) ? "display: none" : "");margin-bottom:0px;">
+                        <div class="control-group">
+                            <label class="control-label">
+                                表名
+                            </label><div class="controls">
+                                <input id="tableName" name="tableName" type="text" />
+                                <button class="btn skip" type="submit"><i class="icos-magnifying-glass"></i>搜 索</button>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </form>
+            </div>
+            <div class="dataTables_wrapper">
+                @Html.Partial("_Index", Model, ViewData)
+            </div>
+        </div>
+    </div>
+</div>

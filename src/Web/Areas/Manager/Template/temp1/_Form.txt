@@ -1,0 +1,4 @@
+﻿@using Common;
+@using WebBaseFrame.Models
+@model [ClassName]
+[Field]

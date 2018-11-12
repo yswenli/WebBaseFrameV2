@@ -1,0 +1,57 @@
+﻿@using System.Data;
+@model DataTable
+@if (Model != null && Model.Rows.Count > 0)
+{
+    for (int i = 0; i < Model.Columns.Count; i++)
+    {
+        if (Model.Columns[i].DataType == typeof(Boolean))
+        {
+    <div class="form-group">
+        <label class="col-sm-2 control-label">@Model.Columns[i].ColumnName</label>
+        <div class="col-sm-10">
+            <select name="@Model.Columns[i].ColumnName" class="form-control" >
+                <option value="True" @(Model.Rows[0][i] != null ? "" : ((bool)Model.Rows[0][i] == true ? "selected" : ""))>是</option>
+                <option value="False" @(Model.Rows[0][i] != null ? "" : ((bool)Model.Rows[0][i] != true ? "selected" : ""))>否</option>
+            </select>
+        </div>
+    </div>
+        }
+        else
+        {
+    <div class="form-group">
+        <label class="col-sm-2 control-label">@Model.Columns[i].ColumnName</label>
+        <div class="col-sm-10">
+            <input type="text" name="@Model.Columns[i].ColumnName" class="form-control" value="@Html.Raw(Model.Rows[0][i])" placeholder="@Model.Columns[i].DataType" />
+        </div>
+    </div>
+        }
+    }
+}
+else
+{
+    for (int i = 0; i < Model.Columns.Count; i++)
+    {
+        if (Model.Columns[i].DataType == typeof(Boolean))
+        {
+    <div class="form-group">
+        <label class="col-sm-2 control-label">@Model.Columns[i].ColumnName</label>
+        <div class="col-sm-10">
+            <select name="@Model.Columns[i].ColumnName" class="form-control" >
+                <option value="True">是</option>
+                <option value="False">否</option>
+            </select>
+        </div>
+    </div>
+        }
+        else
+        {
+    <div class="form-group">
+        <label class="col-sm-2 control-label">@Model.Columns[i].ColumnName </label>
+        <div class="col-sm-10">
+            <input type="text" name="@Model.Columns[i].ColumnName" class="form-control" value="" placeholder="@Model.Columns[i].DataType" />
+        </div>
+    </div>
+        }
+    }
+
+}

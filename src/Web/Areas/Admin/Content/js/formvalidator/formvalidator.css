@@ -1,0 +1,9 @@
+﻿/*表单验证*/
+.onShow,.onFocus,.onError,.onCorrect,.onLoad,.onTime{font-size:9pt;display:inline-block;display:-moz-inline-stack;zoom:1;*display:inline; vertical-align:middle;
+													 color:#444;padding:0; margin-left:3px;_margin-left:2px}
+.onShow{background-position:3px -147px;border-color:#40B3FF;color:#ff0000;}
+.onFocus{background-position:3px -147px;border-color:#40B3FF;color:#ff0000;}
+.onError{background-position:3px -47px;border-color:#40B3FF; color:#ff0000}
+.onCorrect{background:url(img/msg_bg.png) no-repeat;background-position:3px -247px;border-color:#40B3FF;color:#56AC0B;height:20px;width:20px;}
+.onLamp{background-position:3px -200px}
+.onTime{background-position:3px -1356px}

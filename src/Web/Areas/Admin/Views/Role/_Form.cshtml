@@ -1,0 +1,35 @@
+﻿@using Libraries;
+@using WebBaseFrame.Models
+@model Role
+<input id="ID" name ="ID" type="hidden" value ="@Model.ID" />
+<div class="control-group">
+    <div class="span12">
+        <div class="span6">
+            <div class="control-group">
+                <a href="#"><i class="icos-multiple-users"></i>角色</a>
+            </div>
+            <div class="control-group">
+                <label class="control-label">角色名称</label><div class="controls">
+                    <input id="RoleName" name ="RoleName" type="text" value ="@Model.RoleName" required />
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">角色描述</label><div class="controls">
+                    <textarea id="Description" name="Description">@Model.Description</textarea>
+                </div>
+            </div>
+        </div>
+        @if (Model.ID != 1)
+        {
+            <div class="span6">
+                <div class="control-group">
+                    <a href="#"><i class="icos-key"></i>权限</a>
+                </div>
+                <div style="max-height: 500px; overflow: auto;">
+                    @Html.Action("_Treeview", "PermissionMap", new { Type = 0, ID = Model.ID })
+                </div>
+            </div>
+        }
+    </div>
+</div>
+@Html.PermissionValideScript()

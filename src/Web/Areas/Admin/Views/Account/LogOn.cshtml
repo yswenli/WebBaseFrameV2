@@ -1,0 +1,242 @@
+﻿@{
+    Layout = null;    
+}
+@using Libraries;
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="lt-ie9 lt-ie8 lt-ie7" lang="zh"> <![endif]-->
+<!--[if IE 7]>    <html class="lt-ie9 lt-ie8" lang="zh"> <![endif]-->
+<!--[if IE 8]>    <html class="lt-ie9" lang="zh"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="zh">
+<!--<![endif]-->
+<head>
+    <title>@CurrentSite.Title - 用户登录</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="R&D wenli">
+    <link href="~/Areas/Admin/Content/common.css" rel="stylesheet" />
+    <link href="~/Areas/Admin/Content/error.min.css" rel="stylesheet" />
+    <link href="~/Areas/Admin/Content/ie6_7.css" rel="stylesheet" />
+    <link href="~/Areas/Admin/Content/login.min.css" rel="stylesheet" />
+    <link href="~/Areas/Admin/Content/print.css" rel="stylesheet" />
+    <link href="~/Areas/Admin/Content/js/wizard/wizard.css" rel="stylesheet" />
+    <link href="~/Areas/Admin/Content/js/uniform/css/uniform.default.css" rel="stylesheet" />
+    <link href="~/Areas/Admin/Content/js/treeview/jquery.treeview.css" rel="stylesheet" />
+    <link href="~/Areas/Admin/Content/js/swfupload/swfupload.css" rel="stylesheet" />
+    <link href="~/Areas/Admin/Content/js/select2/select2.css" rel="stylesheet" />
+    <link href="~/Areas/Admin/Content/js/jquery.timepicker.addon/jquery-ui-timepicker-addon.css" rel="stylesheet" />
+    <link href="~/Areas/Admin/Content/js/jquery-ui/jquery-ui.css" rel="stylesheet" />
+    <link href="~/Areas/Admin/Content/js/ibutton/jquery.ibutton.css" rel="stylesheet" />
+    <link href="~/Areas/Admin/Content/js/formvalidator/formvalidator.css" rel="stylesheet" />
+    <link href="~/Areas/Admin/Content/js/elfinder/css/elfinder.min.css" rel="stylesheet" />
+    <link href="~/Areas/Admin/Content/js/bootstrap/css/bootstrap.css" rel="stylesheet" />
+    <link href="~/Areas/Admin/Content/js/artDialog/skins/blue.css" rel="stylesheet" />
+    <link href="~/Areas/Admin/Content/icons/icons.css" rel="stylesheet" />
+    <link href="~/Areas/Admin/Content/js/grumble/css/grumble.min.css" rel="stylesheet" />
+    <script src="~/Areas/Admin/Content/js/jquery.min.js"></script>
+    <script src="~/Areas/Admin/Content/js/jquery-ui/jquery-ui.js"></script>
+    <script src="~/Areas/Admin/Content/js/jquery.sGallery.js"></script>
+    <script src="~/Areas/Admin/Content/js/jquery.placeholder.min.js"></script>
+    <script src="~/Areas/Admin/Content/js/jquery.imgpreview.js"></script>
+    <script src="~/Areas/Admin/Content/js/jquery.cookie.js"></script>
+    <script src="~/Areas/Admin/Content/js/html5.js"></script>
+    <!--[if lt IE 9]><script src="/areas/admin/content/js/html5shiv.js?body=1"></script><![endif]-->
+    <script src="~/Areas/Admin/Content/js/wizard/wizard.min.js"></script>
+    <script src="~/Areas/Admin/Content/js/wizard/jquery.form.min.js"></script>
+    <script src="~/Areas/Admin/Content/js/uniform/jquery.uniform.min.js"></script>
+    <script src="~/Areas/Admin/Content/js/treeview/jquery.treeview.js"></script>
+    <script src="~/Areas/Admin/Content/js/swfupload/swfupload.js"></script>
+    <script src="~/Areas/Admin/Content/js/sheepit/jquery.sheepit.js"></script>
+    <script src="~/Areas/Admin/Content/js/select2/select2.min.js"></script>
+    <script src="~/Areas/Admin/Content/js/jquery.timepicker.addon/jquery-ui-timepicker-addon.js"></script>
+    <script src="~/Areas/Admin/Content/js/jquery.timepicker.addon/i18n/jquery-ui-timepicker-zh-CN.js"></script>
+    <script src="~/Areas/Admin/Content/js/ibutton/jquery.ibutton.min.js"></script>
+    <script src="~/Areas/Admin/Content/js/formvalidator/formvalidator.js"></script>
+    <script src="~/Areas/Admin/Content/js/formvalidator/formvalidatorregex.js"></script>
+    <script src="~/Areas/Admin/Content/js/elfinder/js/elfinder.min.js"></script>
+    <script src="~/Areas/Admin/Content/js/elfinder/js/i18n/elfinder.zh_CN.js"></script>
+    <script src="~/Areas/Admin/Content/js/kindeditor-4.1.9/kindeditor.js"></script>
+    <script src="~/Areas/Admin/Content/js/kindeditor-4.1.9/plugins/code/prettify.js"></script>
+    <script src="~/Areas/Admin/Content/js/kindeditor-4.1.9/lang/zh_CN.js"></script>
+    <script src="~/Areas/Admin/Content/js/artDialog/artDialog.source.js"></script>
+    <script src="~/Areas/Admin/Content/js/artDialog/jquery.artDialog.source.js"></script>
+    <script src="~/Areas/Admin/Content/js/artDialog/plugins/iframeTools.source.js"></script>
+    <script src="~/Areas/Admin/Content/js/format.multi.js"></script>
+    <script src="~/Areas/Admin/Content/js/content_addtop.js"></script>
+    <script src="~/Areas/Admin/Content/js/colorpicker.js"></script>
+    <script src="~/Areas/Admin/Content/js/sidebar.js"></script>
+    <script src="~/Areas/Admin/Content/js/scripts.js"></script>
+    <script src="~/Areas/Admin/Content/js/grumble/js/jquery.grumble.min.js"></script>
+    <!--[if lt IE 9]>
+    <script src="/areas/admin/content/js/html5.js"></script>
+    <![endif]-->
+    <script type="text/javascript">
+        (function ($, window, document, undefined) {
+
+            var LoginScreen = function () { }
+
+            LoginScreen.prototype = {
+
+                init: function () {
+                    this.transitionFn = this['_fade'];
+                    $('#login-inner .login-inner-form').removeClass('active');
+
+                    var firstInnerForm = $('#login-inner .login-inner-form:first').addClass('active');
+
+                    $('#login-buttons .btn').each($.proxy(function (i, btn) {
+                        var target = $($(btn).data('target'));
+
+                        if (target && target.length) {
+                            $(btn).toggleClass('disabled', $(target).is('.active'))
+                                .on('click', $.proxy(this._clickHandler, this));
+                        }
+                    }, this));
+
+                    return this;
+                },
+
+                _clickHandler: function (e) {
+                    var btn = $(e.currentTarget),
+                        target = $(btn.data('target'));
+
+                    if (!btn.is('.disabled')) {
+                        if (this.transitionFn.call(this, target)) {
+                            $('#login-buttons .btn').not(btn.addClass('disabled')).removeClass('disabled');
+                        }
+                    }
+
+                    e.preventDefault();
+                },
+
+                _fade: function (target) {
+                    return !!$('.login-inner-form.active').stop().fadeOut('normal', function () {
+                        target.stop().fadeIn('normal', function () {
+                            target.addClass('active');
+                        });
+                        $(this).removeClass('active');
+                    }).length;
+                }
+            };
+
+            $.loginScreen = new LoginScreen();
+
+            $(document).ready(function (e) {
+
+                $.loginScreen.init();
+
+                // Style checkboxes and radios
+                $.fn.uniform && $(':radio.uniform, :checkbox.uniform').uniform();
+
+                // IE Placeholder
+                $.fn.placeholder && $('[placeholder]').placeholder();
+
+                // Validations
+                if ($.fn.validate) {
+
+                    $('.login-inner-form > form').each(function () {
+                        $(this).validate();
+                    });
+                }
+
+                $('#login-buttons').grumble(
+	                {
+	                    text: '忘记密码？',
+	                    angle: 70,
+	                    distance: 40,
+	                    showAfter: 1000,
+	                    type: 'alt-',
+	                    hideAfter: 2000
+	                }
+                );
+                $('#input-password').grumble(
+                    {
+                        text: '请填写密码',
+                        angle: 90,
+                        distance: 120,
+                        showAfter: 2000,
+                        hideAfter: false,
+                        hasHideButton: true,
+                        buttonHideText: '戳破!'
+                    }
+                );
+            });
+
+
+        })(jQuery, window, document);
+
+        $(function () {
+            $("#img-verifycode").click(function () {
+                var src = $(this).attr("src").split('?')[0];
+                $(this).attr("src", src + "?n=" + (new Date().getTime()))
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <div id="fixed-alert">
+        <div class="alert">
+            <button type="button" class="close">×</button>
+            <i class="icol-exclamation-octagon-fram"></i><strong></strong><span></span>
+        </div>
+    </div>
+    <div id="login-wrap">
+        <h3 style="text-align: center">@Libraries.CurrentSite.Title</h3>
+        <div id="login-buttons">
+            <div class="btn-wrap">
+                <button type="button" class="btn" data-target="#login-form"><i class="icos-admin-user"></i></button>
+            </div>
+            <div class="btn-wrap">
+                <button type="button" class="btn" data-target="#forget-form"><i class="icos-key"></i></button>
+            </div>
+        </div>
+
+        <div id="login-inner" class="login-inset">
+            <div id="login-circle">
+                <section id="login-form" class="login-inner-form">
+                    <h1>登录</h1>
+                    <form id="f_login" action="" method="post">
+                        <div class="control-group-merged">
+                            <div class="control-group">
+                                <input type="text" placeholder="用户名" name="username" id="input-username" class="big" required>
+                            </div>
+                            <div class="control-group">
+                                <input type="password" placeholder="密码" name="password" id="input-password" class="big" required>
+                            </div>
+                            <div class="control-group" style="position: relative;">
+                                <input type="text" placeholder="验证码" name="verifycode" id="input-verifycode" class="big" required>
+                                <img id="img-verifycode" src="/admin/ajax/verifycode?n=@Guid.NewGuid().ToString()" style="cursor: pointer; position: absolute; top: 2px; right: 10px;" title="点击更换验证码" />
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="checkbox">
+                                <input type="checkbox" name="auto" value="True" checked>
+                                一周内免登录
+                            </label>
+                        </div>
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-success btn-block btn-large" data-msg="fixed">马上登录</button>
+                        </div>
+                    </form>
+                </section>
+                <section id="forget-form" class="login-inner-form">
+                    <h1>忘记密码</h1>
+                    <form id="f_forgetpassword" action="/admin/account/forgetpwd" method="post">
+                        <div class="control-group">
+                            <div class="controls">
+                                <input type="text" name="email" class="big email" placeholder="请输入邮箱地址" required>
+                            </div>
+                        </div>
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-danger btn-block btn-large" data-msg="fixed">重置密码</button>
+                        </div>
+                    </form>
+                </section>
+            </div>
+
+        </div>
+    </div>
+    <div style="margin: 10px auto 0px auto; text-align: center;">
+        本系统由wenli提供技术支持
+    </div>
+</body>
+</html>

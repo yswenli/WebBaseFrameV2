@@ -1,0 +1,387 @@
+﻿@{
+    ViewBag.Title = "集成Html Demo";
+    Layout = "~/Views/Shared/_DemoLayoutPage.cshtml";
+}
+<style type="text/css">
+    fieldset {
+        width: 80%;
+        margin: 10px auto;
+    }
+
+    legend {
+        font-size: 30px;
+        font-weight: bold;
+    }
+
+    h4 {
+        color: green;
+        font-size: 13px;
+        line-height: 16px;
+        width: 150px;
+        cursor: pointer;
+    }
+
+    pre {
+        display: none;
+        color: #2B6BC3;
+        line-height: 15px;
+    }
+</style>
+<fieldset>
+    <legend>HTML集成功能示例</legend>
+    <h3>一、省市联动
+    </h3>
+    <div class="control-group">
+        <select id="province" name="province" data-mycity="city" val="1"></select>
+    </div>
+    <div class="control-group">
+        <select id="city" name="city" val="2"></select>
+    </div>
+    <h4><i class="icol-arrow-out">&nbsp;&nbsp;</i>&nbsp;&nbsp;查看HTML示例</h4>
+    <pre>&nbsp; &nbsp; &lt;div class="control-group"&gt;<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &lt;select id="province" name="province" data-mycity="city" val="1"&gt;&lt;/select&gt;<br />
+&nbsp; &nbsp; &lt;/div&gt;<br />
+&nbsp; &nbsp; &lt;div class="control-group"&gt;<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &lt;select id="city" name="city" val="2"&gt;&lt;/select&gt;<br />
+&nbsp; &nbsp; &lt;/div&gt;
+    </pre>
+    <h3>二、隐藏显示、清值
+    </h3>
+    <div class="control-group">
+        <select id="issurgest" name="issurgest" val="是" data-target="DrugContent" data-binddata="是">
+            <option value="">请选择</option>
+            <option value="是">是</option>
+            <option value="否">否</option>
+        </select>
+    </div>
+    <div class="control-group" data-display="DrugContent">
+        <select id="isdrug" name="isdrug" val="0">
+            <option value="">请选择</option>
+            <option value="0" data-target="CTContent1">是</option>
+            <option value="1" data-target="CTContent2">否</option>
+        </select>
+    </div>
+    <div class="control-group" data-display="CTContent1">
+        <label>
+            <input name="CT" type="radio" value="是" data-target="sCTContent" data-binddata="是" val="是" />
+            是</label>
+        <label>
+            <input name="CT" type="radio" value="否" data-target="sCTContent" data-binddata="是" />否</label>
+    </div>
+    <div class="control-group" data-display="CTContent2">
+        <p>
+            选否了是吧，嘿嘿
+        </p>
+    </div>
+    <div class="control-group" data-display="sCTContent">
+        <input type="checkbox" name="other" value="其它" data-target="otherContent" data-binddata="其它" val="其它" />
+        <input type="text" name="otherContent" data-display="otherContent" size="20" value="测试数据" />
+    </div>
+    <h4><i class="icol-arrow-out">&nbsp;&nbsp;</i>&nbsp;&nbsp;查看HTML示例</h4>
+    <pre>&nbsp; &nbsp; &lt;div class="control-group"&gt;<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &lt;select id="issurgest" name="issurgest" val="是" data-target="DrugContent" data-binddata="是"&gt;<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;option value=""&gt;请选择&lt;/option&gt;<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;option value="是"&gt;是&lt;/option&gt;<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;option value="否"&gt;否&lt;/option&gt;<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &lt;/select&gt;<br />
+&nbsp; &nbsp; &lt;/div&gt;<br />
+&nbsp; &nbsp; &lt;div class="control-group" data-display="DrugContent"&gt;<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &lt;select id="isdrug" name="isdrug" val="0"&gt;<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;option value=""&gt;请选择&lt;/option&gt;<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;option value="0" data-target="CTContent1"&gt;是&lt;/option&gt;<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;option value="1" data-target="CTContent2"&gt;否&lt;/option&gt;<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &lt;/select&gt;<br />
+&nbsp; &nbsp; &lt;/div&gt;<br />
+&nbsp; &nbsp; &lt;div class="control-group" data-display="CTContent1"&gt;<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &lt;label&gt;<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;input name="CT" type="radio" value="是" data-target="sCTContent" data-binddata="是" val="是" /&gt;<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 是&lt;/label&gt;<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &lt;label&gt;<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;input name="CT" type="radio" value="否" data-target="sCTContent" data-binddata="是" /&gt;否&lt;/label&gt;<br />
+&nbsp; &nbsp; &lt;/div&gt;<br />
+&nbsp; &nbsp; &lt;div class="control-group" data-display="CTContent2"&gt;<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &lt;p&gt;<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 选否了是吧，嘿嘿<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &lt;/p&gt;<br />
+&nbsp; &nbsp; &lt;/div&gt;<br />
+&nbsp; &nbsp; &lt;div class="control-group" data-display="sCTContent"&gt;<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &lt;input type="checkbox" name="other" value="其它" data-target="otherContent" data-binddata="其它" val="其它" /&gt;<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &lt;input type="text" name="otherContent" data-display="otherContent" size="20" value="测试数据" /&gt;<br />
+&nbsp; &nbsp; &lt;/div&gt;
+    </pre>
+    <h3>三、表单验证
+    </h3>
+    <div class="row-fluid">
+        <div class="span12 widget">
+            <div class="widget-header light">
+                <span class="title"><i class="icon-pencil"></i>表单验证</span>
+            </div>
+            <div class="widget-content form-container">
+                <form name="myform" id="myform" action="" method="post" class="form-horizontal validator">
+                    <div class="control-group">
+                        <label class="control-label">必填</label><div class="controls">
+                            <input id="required" name="required" type="text" value="" regex="ps_username" required />
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">ajax验证</label><div class="controls">
+                            <input id="username" name="username" type="text" value="14782301575" url="/admin/ajax/IsExist" required />
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">范围</label><div class="controls">
+                            <input id="Depth" name="Depth" type="text" value="" min="1" max="2" />
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">邮箱</label><div class="controls">
+                            <input id="email" name="email" type="text" value="" regex="email" />
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">手机</label><div class="controls">
+                            <input id="mobile" name="mobile" type="text" value="" regex="mobile" />
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">身份证</label><div class="controls">
+                            <input id="idcard" name="idcard" type="text" value="" regex="idcard" />
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">数字</label><div class="controls">
+                            <input id="num" name="num" type="text" value="" regex="num" />
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">中文</label><div class="controls">
+                            <input id="chinese" name="chinese" type="text" value="" regex="chinese" />
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">IP地址</label><div class="controls">
+                            <input id="ip4" name="ip4" type="text" value="" regex="ip4" />
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">日期</label><div class="controls">
+                            <input id="date" name="date" class="date" type="text" value="" />
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">下拉</label><div class="controls">
+                            <select id="select" name="select" val="1">
+                                <option value="">请选择..</option>
+                                <option value="1">男</option>
+                                <option value="0">女</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">复选</label><div class="controls">
+                            <input name="check" type="checkbox" value="车" val="汽车,火车"/>车
+                            <input name="check" type="checkbox" value="汽车" />汽车
+                            <input name="check" type="checkbox" value="火车" />火车
+                        </div>
+                    </div>
+                    <div class="form-actions fixed">
+                        <input type="submit" class="btn btn-primary" value="保 存" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <h4><i class="icol-arrow-out">&nbsp;&nbsp;</i>&nbsp;&nbsp;查看HTML示例</h4>
+    <pre>&lt;div class="row-fluid"&gt;
+        &lt;div class="span12 widget"&gt;
+            &lt;div class="widget-header light"&gt;
+                &lt;span class="title"&gt;&lt;i class="icon-pencil"&gt;&lt;/i&gt;表单验证&lt;/span&gt;
+            &lt;/div&gt;
+            &lt;div class="widget-content form-container"&gt;
+                &lt;form name="myform" id="myform" action="" method="post" class="form-horizontal validator"&gt;
+                    &lt;div class="control-group"&gt;
+                        &lt;label class="control-label"&gt;必填&lt;/label&gt;&lt;div class="controls"&gt;
+                            &lt;input id="required" name="required" type="text" value="" regex="ps_username" required /&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                    &lt;div class="control-group"&gt;
+                        &lt;label class="control-label"&gt;ajax验证&lt;/label&gt;&lt;div class="controls"&gt;
+                            &lt;input id="username" name="username" type="text" value="14782301575" url="/admin/ajax/IsExist" required /&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                    &lt;div class="control-group"&gt;
+                        &lt;label class="control-label"&gt;范围&lt;/label&gt;&lt;div class="controls"&gt;
+                            &lt;input id="Depth" name="Depth" type="text" value="" min="1" max="2" /&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                    &lt;div class="control-group"&gt;
+                        &lt;label class="control-label"&gt;邮箱&lt;/label&gt;&lt;div class="controls"&gt;
+                            &lt;input id="email" name="email" type="text" value="" regex="email" /&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                    &lt;div class="control-group"&gt;
+                        &lt;label class="control-label"&gt;手机&lt;/label&gt;&lt;div class="controls"&gt;
+                            &lt;input id="mobile" name="mobile" type="text" value="" regex="mobile" /&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                    &lt;div class="control-group"&gt;
+                        &lt;label class="control-label"&gt;身份证&lt;/label&gt;&lt;div class="controls"&gt;
+                            &lt;input id="idcard" name="idcard" type="text" value="" regex="idcard" /&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                    &lt;div class="control-group"&gt;
+                        &lt;label class="control-label"&gt;数字&lt;/label&gt;&lt;div class="controls"&gt;
+                            &lt;input id="num" name="num" type="text" value="" regex="num" /&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                    &lt;div class="control-group"&gt;
+                        &lt;label class="control-label"&gt;中文&lt;/label&gt;&lt;div class="controls"&gt;
+                            &lt;input id="chinese" name="chinese" type="text" value="" regex="chinese" /&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                    &lt;div class="control-group"&gt;
+                        &lt;label class="control-label"&gt;IP地址&lt;/label&gt;&lt;div class="controls"&gt;
+                            &lt;input id="ip4" name="ip4" type="text" value="" regex="ip4" /&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                    &lt;div class="control-group"&gt;
+                        &lt;label class="control-label"&gt;日期&lt;/label&gt;&lt;div class="controls"&gt;
+                            &lt;input id="date" name="date" class="date" type="text" value="" /&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                    &lt;div class="control-group"&gt;
+                        &lt;label class="control-label"&gt;下拉&lt;/label&gt;&lt;div class="controls"&gt;
+                            &lt;select id="select" name="select" val="1"&gt;
+                                &lt;option value=""&gt;请选择..&lt;/option&gt;
+                                &lt;option value="1"&gt;男&lt;/option&gt;
+                                &lt;option value="0"&gt;女&lt;/option&gt;
+                            &lt;/select&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                    &lt;div class="control-group"&gt;
+                        &lt;label class="control-label"&gt;复选&lt;/label&gt;&lt;div class="controls"&gt;
+                            &lt;input name="check" type="checkbox" value="车" val="汽车,火车"/&gt;车
+                            &lt;input name="check" type="checkbox" value="汽车" /&gt;汽车
+                            &lt;input name="check" type="checkbox" value="火车" /&gt;火车
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                    &lt;div class="form-actions fixed"&gt;
+                        &lt;input type="submit" class="btn btn-primary" value="保 存" /&gt;
+                    &lt;/div&gt;
+                &lt;/form&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    </pre>
+    <h3>四、自动完成
+    </h3>
+    <div class="control-group">
+        <input class="autocomplete form-inline" data-talbe="Member" data-field="UserName" style="height: 20px; line-height: 20px;" placeholder="请输入内容">
+    </div>
+    <h4><i class="icol-arrow-out">&nbsp;&nbsp;</i>&nbsp;&nbsp;查看HTML示例</h4>
+    <pre>&nbsp; &nbsp; &lt;div class="control-group"&gt;<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &lt;input class="autocomplete" data-talbe="Member" data-field="UserName"&gt;<br />
+&nbsp; &nbsp; &lt;/div&gt;
+    </pre>
+    <h3>五、编辑器
+    </h3>
+    <div class="control-group">
+        <label class="control-label">基本</label><div class="controls">
+            <textarea id="FckeditorBasic" class="FckeditorBasic"></textarea>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label">完整</label><div class="controls">
+            <input id="Fckeditor" class="Fckeditor" />
+        </div>
+    </div>
+    <h4><i class="icol-arrow-out">&nbsp;&nbsp;</i>&nbsp;&nbsp;查看HTML示例</h4>
+    <pre>&nbsp; &nbsp; &lt;div class="control-group"&gt;<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &lt;label class="control-label"&gt;基本&lt;/label&gt;&lt;div class="controls"&gt;<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;textarea id="FckeditorBasic" class="FckeditorBasic"&gt;&lt;/textarea&gt;<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &lt;/div&gt;<br />
+&nbsp; &nbsp; &lt;/div&gt;<br />
+&nbsp; &nbsp; &lt;div class="control-group"&gt;<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &lt;label class="control-label"&gt;完整&lt;/label&gt;&lt;div class="controls"&gt;<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;input id="Fckeditor" class="Fckeditor" /&gt;<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &lt;/div&gt;<br />
+&nbsp; &nbsp; &lt;/div&gt;
+    </pre>
+    <h3>六、上传</h3>
+    <div class="control-group">
+        <label class="control-label">image</label><div class="controls">
+            <input id="image" class="image" />
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label">file</label><div class="controls">
+            <input id="file" class="file" />
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label">media</label><div class="controls">
+            <input id="media" class="media" />
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label">多图</label><div class="controls">
+            <input id="images" class="images" />
+        </div>
+    </div>
+    <h4><i class="icol-arrow-out">&nbsp;&nbsp;</i>&nbsp;&nbsp;查看HTML示例</h4>
+    <pre>&nbsp; &nbsp; &lt;div class="control-group"&gt;<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &lt;label class="control-label"&gt;image&lt;/label&gt;&lt;div class="controls"&gt;<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;input id="image" class="image" /&gt;<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &lt;/div&gt;<br />
+&nbsp; &nbsp; &lt;/div&gt;<br />
+&nbsp; &nbsp; &lt;div class="control-group"&gt;<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &lt;label class="control-label"&gt;file&lt;/label&gt;&lt;div class="controls"&gt;<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;input id="file" class="file" /&gt;<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &lt;/div&gt;<br />
+&nbsp; &nbsp; &lt;/div&gt;<br />
+&nbsp; &nbsp; &lt;div class="control-group"&gt;<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &lt;label class="control-label"&gt;media&lt;/label&gt;&lt;div class="controls"&gt;<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;input id="media" class="media" /&gt;<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &lt;/div&gt;<br />
+&nbsp; &nbsp; &lt;/div&gt;<br />
+&nbsp; &nbsp; &lt;div class="control-group"&gt;<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &lt;label class="control-label"&gt;多图&lt;/label&gt;&lt;div class="controls"&gt;<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;input id="images" class="images" /&gt;<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &lt;/div&gt;<br />
+&nbsp; &nbsp; &lt;/div&gt;
+    </pre>
+    <h3>七、播放器</h3>
+    <div class="control-group">
+        <div>播放器</div>
+        <div id="myvideo" class="video" data-img="@Common.UrlHelper.HostUrl/Content/images/video.png" data-video="@Common.UrlHelper.HostUrl/Content/images/video.mp4" data-width="515" data-height="400"></div>
+    </div>
+    <h4><i class="icol-arrow-out">&nbsp;&nbsp;</i>&nbsp;&nbsp;查看HTML示例</h4>
+    <pre>&nbsp; &nbsp; &lt;div class="control-group"&gt;<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &lt;div&gt;播放器&lt;/div&gt;<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &lt;div id="myvideo" class="video" data-img="@Common.UrlHelper.HostUrl/Content/images/video.png" data-video="@Common.UrlHelper.HostUrl/Content/images/video.mp4" data-width="515" data-height="400"&gt;&lt;/div&gt;<br />
+&nbsp; &nbsp; &lt;/div&gt;
+    </pre>
+</fieldset>
+<script type="text/javascript">
+    $(function () {
+        $("h4").click(function () {
+            if ($(this).children("i").attr("class") == "icol-arrow-out") {
+                $(this).children("i").attr("class", "icol-arrow-in")
+                $(this).next().slideDown(500);
+            }
+            else {
+                $(this).children("i").attr("class", "icol-arrow-out")
+                $(this).next().slideUp(500);
+            }
+        });
+        $("pre").dblclick(function () {
+            $(this).slideUp(500);
+            $(this).prev().children("i").attr("class", "icol-arrow-out")
+        });
+    });
+</script>
+<div class="row alert" style="text-align: center;">
+    <p>
+        WebBaseFrame 2015 Develop By wenli
+    </p>
+</div>

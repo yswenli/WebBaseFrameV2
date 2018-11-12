@@ -1,0 +1,16 @@
+﻿@using System.Data;
+@using Libraries;
+@using Web.Areas.Manager.Helper;
+@model TempInfo
+<div class="control-group">
+    <label class="control-label">名称</label>
+    <div class="controls">
+        <input id="name" name ="name" type="text" value ="@Model.Name" required />
+    </div>
+</div>
+<div class="control-group">
+    <label class="control-label">内容</label>
+    <div class="controls">
+        <textarea id="content" name="content" required style="width: 80%; min-height:500px;">@Model.GetContent()</textarea>
+    </div>
+</div>

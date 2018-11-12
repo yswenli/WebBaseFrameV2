@@ -1,0 +1,134 @@
+﻿@using WebBaseFrame.Models
+@using System.Data;
+@using Libraries;
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Language" content="zh-cn" />
+    <meta name="author" content="R&D" />
+    <meta name="copyright" content="Copyright web All Rights Reserved." />
+    <meta name="robots" content="all" />
+    <meta name="keywords" content="@(ViewBag.KeyWords != null ? ViewBag.KeyWords : Libraries.CurrentSite.KeyWords)">
+    <meta name="description" content="@(ViewBag.Description != null ? ViewBag.Description : Libraries.CurrentSite.Description)" />
+    <title>@(ViewBag.Title == null ? "" : ViewBag.Title + " | ")@Libraries.CurrentSite.Title</title>
+    <link href="~/Areas/Admin/Content/js/select2/select2.css" rel="stylesheet" />
+    <link href="~/Areas/Admin/Content/icons/icons.css" rel="stylesheet" />
+    <link href="~/Areas/Admin/Content/js/bootstrap/css/bootstrap.css" rel="stylesheet" />
+    <link href="~/Areas/Admin/Content/css.css" rel="stylesheet" />
+    <link href="~/Areas/Admin/Content/ie6_7.css" rel="stylesheet" />
+    <link href="~/Areas/Admin/Content/js/artDialog/skins/chrome.css" rel="stylesheet" />
+    <script src="~/Areas/Admin/Content/js/jquery.min.js"></script>
+    <script src="~/Areas/Admin/Content/js/bootstrap/js/bootstrap.min.js"></script>
+    <!--[if lt IE 9]><script src="/areas/admin/content/js/html5shiv.js?body=1"></script><![endif]-->
+    <script src="~/Areas/Admin/Content/js/kindeditor-4.1.9/kindeditor.js"></script>
+    <script src="~/Areas/Admin/Content/js/kindeditor-4.1.9/plugins/code/prettify.js"></script>
+    <script src="~/Areas/Admin/Content/js/kindeditor-4.1.9/lang/zh_CN.js"></script>
+    <script src="~/Areas/Admin/Content/js/artDialog/artDialog.source.js"></script>
+    <script src="~/Areas/Admin/Content/js/artDialog/jquery.artDialog.source.js"></script>
+    <script src="~/Areas/Admin/Content/js/artDialog/plugins/iframeTools.source.js"></script>
+    <script src="~/Areas/Admin/Content/js/sidebar.js"></script>
+    <script src="~/Areas/Admin/Content/js/scripts.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            function windowW() {
+                if ($(window).width() < 980) {
+                    $('#header').css('width', 980 + 'px');
+                    $('.rightMain').css('width', 980 + 'px');
+                    $('body').attr('scroll', '');
+                    $('body').css('overflow', '');
+                }
+            }
+            windowW();
+            $(window).resize(function () {
+                if ($(window).width() < 980) {
+                    windowW();
+                } else {
+                    $('#header').css('width', 'auto');
+                    $('.rightMain').css('width', 'auto');
+                    $('body').attr('scroll', 'no');
+                    $('body').css('overflow', 'hidden');
+                }
+            });
+            window.onresize = function () {
+                var heights = document.documentElement.clientHeight - 80;
+                document.getElementById('rightMain').height = heights;
+                var openClose = $("#rightMain").height();
+            }
+            window.onresize();
+
+            $("#Open_Close").click(function () {
+                $(this).attr("class", "");
+                if ($("#td_leftMain").css("display") == "none") {
+                    $("#td_leftMain").toggle('slow');
+                    $(this).addClass("icos-go-full-screen");
+                } else {
+                    $("#td_leftMain").toggle('slow');
+                    $(this).addClass("icos-go-back-from-full-screen");
+
+                }
+            });
+
+            if ($("#rightMain").attr("src") == "") {
+                var a_first = $("#sidemenu li:first a");
+                a_first.trigger("click");
+                $("#rightMain").attr("src", a_first.attr("href"));
+            }
+        });
+    </script>
+</head>
+<body onbeforeunload="window.event.returnValue='';">
+    <header class="row-fluid" id="header">
+        <div class="span4" style="width: 260px;">
+            <h1>开发人员选项</h1>
+        </div>
+        <div class="span8 right-link">
+        </div>
+    </header>
+    <div class="main">
+        <a href="javascript:void(0);" id="Open_Close" class="icos-go-full-screen" title="展开/收缩"></a>
+        <table width="100%" border="0" cellpadding="0" cellspacing="0">
+            <tr>
+                <td id="td_leftMain" style="background: #fcfcfc; vertical-align: top; border-right: 1px solid #ccc; width: 180px;">
+                    <div class="leftMain">
+                        <!--左侧导航开始-->
+                        <div id="sidemenu">
+                            <dl>
+                                <dt><a href="javascript:void(0);"><i class="icon-chevron-down arrow-icon"></i><i class="icos-cog-4"></i>生成选项</a></dt>
+                                <dd>
+                                    <ul>
+                                        <li><a href="/manager/DataBase/Index" target="rightMain"><i class="icos-mail"></i>数据库</a>
+                                        </li>
+                                        <li><a href="/manager/TempleManager/index" target="rightMain"><i class="icos-list-images"></i>模板管理</a>
+                                        </li>
+                                        <li><a href="/manager/AutoGenerator/Index" target="rightMain"><i class="icos-cog"></i>自动生成</a>
+                                        </li>
+                                        <li><a href="http://icon.yswenli.net/icons.html" target="rightMain"><i class="icos-abacus"></i>Icon图标</a>
+                                        </li>
+                                    </ul>
+                                </dd>
+                            </dl>
+                        </div>
+                        <!--左侧导航结束-->
+                    </div>
+                </td>
+                <td valign="top">
+                    <!--右侧主体内容开始-->
+                    <div class="rightMain">
+                        <iframe name="rightMain" id="rightMain" src="" frameborder="false" scrolling="auto"
+                            style="overflow-x: hidden; border: none;" width="100%" height="auto" allowtransparency="true"></iframe>
+                    </div>
+                    <!--右侧主体内容结束-->
+                </td>
+            </tr>
+        </table>
+        <div class="clearfix">
+        </div>
+    </div>
+    <footer id="footer"></footer>
+</body>
+</html>

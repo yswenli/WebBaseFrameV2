@@ -1,0 +1,152 @@
+﻿@using System.Data;
+@using Common;
+@using Libraries;
+@using WEF.MvcPager;
+@model PagedList<DataRow>
+@{
+    string tableName = Request.QueryString["tableName"];
+    DataTable column = ViewData["column"] as DataTable;
+}
+<input type="hidden" name="tableName" id="tableName" value="@tableName" />
+@if (Model != null && Model.Count > 0)
+{
+    for (int i = 0; i < column.Columns.Count; i++)
+    {
+        if (column.Columns[i].ColumnName == "ID")
+        {
+    <div class="control-group">
+        <label class="control-label">@(column.Columns[i].ColumnName)</label><div class="controls">
+            <input id="@(column.Columns[i].ColumnName)" name ="@(column.Columns[i].ColumnName)" type="text" value ="@Model[0][i]" readonly="readonly"  />
+        </div>
+    </div>
+        }
+        else if (column.Columns[i].DataType == typeof(DateTime))
+        {
+            if (column.Columns[i].AllowDBNull)
+            {
+    <div class="control-group">
+        <label class="control-label">@(column.Columns[i].ColumnName)</label><div class="controls">
+            <input id="@(column.Columns[i].ColumnName)" name ="@(column.Columns[i].ColumnName)" class="datetime" type="text" value ="@(Model[0][i] != null ? (string.IsNullOrEmpty(Model[0][i].ToString()) ? "" : DateTime.Parse(Model[0][i].ToString()).Format("yyyy-MM-dd hh:mm:ss")) : "")" />
+        </div>
+    </div>
+            }
+            else
+            {
+    <div class="control-group">
+        <label class="control-label">@(column.Columns[i].ColumnName)</label><div class="controls">
+            <input id="@(column.Columns[i].ColumnName)" name ="@(column.Columns[i].ColumnName)" class="datetime" type="text" value ="@(Model[0][i] != null ? (string.IsNullOrEmpty(Model[0][i].ToString()) ? "" : DateTime.Parse(Model[0][i].ToString()).Format("yyyy-MM-dd hh:mm:ss")) : "")" required />
+        </div>
+    </div>
+                
+            }
+
+        }
+        else if (column.Columns[i].DataType == typeof(bool))
+        {
+            if (column.Columns[i].AllowDBNull)
+            {
+    <div class="control-group">
+        <label class="control-label">@(column.Columns[i].ColumnName)</label><div class="controls">
+            <select id="@(column.Columns[i].ColumnName)" name ="@(column.Columns[i].ColumnName)" val="@Model[0][i]">
+                <option value="">请选择..</option>
+                <option value="True">是</option>
+                <option value="False">否</option>
+            </select>
+        </div>
+    </div>
+            }
+            else
+            {
+    <div class="control-group">
+        <label class="control-label">@(column.Columns[i].ColumnName)</label><div class="controls">
+            <select id="@(column.Columns[i].ColumnName)" name ="@(column.Columns[i].ColumnName)" val="@Model[0][i]" required>
+                <option value="">请选择..</option>
+                <option value="True">是</option>
+                <option value="False">否</option>
+            </select>
+        </div>
+    </div>                
+            }
+
+        }
+        else
+        {
+            if (column.Columns[i].AllowDBNull)
+            {
+    <div class="control-group">
+        <label class="control-label">@(column.Columns[i].ColumnName)</label><div class="controls">
+            <input id="@(column.Columns[i].ColumnName)" name ="@(column.Columns[i].ColumnName)" type="text" value ="@Model[0][i]" />
+        </div>
+    </div>
+            }
+            else
+            {
+    <div class="control-group">
+        <label class="control-label">@(column.Columns[i].ColumnName)</label><div class="controls">
+            <input id="@(column.Columns[i].ColumnName)" name ="@(column.Columns[i].ColumnName)" type="text" value ="@Model[0][i]" required />
+        </div>
+    </div>                
+            }
+
+        }
+    }
+}
+else
+{
+    for (int i = 0; i < column.Columns.Count; i++)
+    {
+        if (column.Columns[i].ColumnName == "ID")
+        {
+    <div class="control-group">
+        <label class="control-label">@(column.Columns[i].ColumnName)</label><div class="controls">
+            <input id="@(column.Columns[i].ColumnName)" name ="@(column.Columns[i].ColumnName)" type="text" value ="0" readonly="readonly"  />
+        </div>
+    </div>
+
+        }
+        else if (column.Columns[i].DataType == typeof(DateTime))
+        {
+            if (column.Columns[i].AllowDBNull)
+            {
+    <div class="control-group">
+        <label class="control-label">@(column.Columns[i].ColumnName)</label><div class="controls">
+            <input id="@(column.Columns[i].ColumnName)" name ="@(column.Columns[i].ColumnName)" class="date" type="text" value ="" />
+        </div>
+    </div>
+
+            }
+            else
+            {
+    <div class="control-group">
+        <label class="control-label">@(column.Columns[i].ColumnName)</label><div class="controls">
+            <input id="@(column.Columns[i].ColumnName)" name ="@(column.Columns[i].ColumnName)" class="date" type="text" value ="" required/>
+        </div>
+    </div>
+                
+            }
+
+        }
+        else
+        {
+            if (column.Columns[i].AllowDBNull)
+            {
+    <div class="control-group">
+        <label class="control-label">@(column.Columns[i].ColumnName)</label><div class="controls">
+            <input id="@(column.Columns[i].ColumnName)" name ="@(column.Columns[i].ColumnName)" type="text" value ="" />
+        </div>
+    </div>
+            }
+            else
+            {
+    <div class="control-group">
+        <label class="control-label">@(column.Columns[i].ColumnName)</label><div class="controls">
+            <input id="@(column.Columns[i].ColumnName)" name ="@(column.Columns[i].ColumnName)" type="text" value ="" required />
+        </div>
+    </div>
+            }
+
+        }
+    }
+}
+
+

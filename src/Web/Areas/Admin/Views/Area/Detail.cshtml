@@ -1,0 +1,17 @@
+﻿@model WebBaseFrame.Models.Area 
+@{ ViewBag.Title = "Create";
+   Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<div class="row-fluid">
+    <div class="span12 widget">
+        <div class="widget-header light">
+            <span class="title"><i class="icol-magnifier"></i>详细</span>
+        </div>
+        <div class="widget-content form-container">
+            @Html.Partial("_Detail", Model, ViewData)
+			<div class="form-actions fixed">
+                <a class="btn" href="@Common.UrlHelper.BackUrl">返 回</a>
+            </div>
+        </div>
+    </div>
+</div>

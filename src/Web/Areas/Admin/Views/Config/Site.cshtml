@@ -1,0 +1,280 @@
+﻿@using Libraries
+@model WebBaseFrame.Models.Site
+@{    
+    ViewBag.Title = "Site";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<div class="row-fluid">
+    <div class="span12 widget">
+        <div class="widget-content form-container">
+            <form name="myform" id="myform" action="" method="post" class="form-horizontal validator">
+                <input type="hidden" name="ID" value="@Model.ID" />
+                <fieldset>
+                    <legend><i class="icos-documents-2"></i>基本配置</legend>
+                    <div class="control-group">
+                        <label class="control-label">
+                            站点域名</label>
+                        <div class="controls">
+                            <input type="text" name="Url" id="Url" size="30" value="@Model.Url" required />
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">
+                            流量统计JS</label>
+                        <div class="controls">
+                            <textarea name="GoogleJS" id="GoogleJS" cols="50" rows="6">@Model.GoogleJS</textarea>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">
+                            备案号
+                        </label>
+                        <div class="controls">
+                            <textarea name="CopyRight" id="CopyRight" cols="50" rows="6">@Model.CopyRight</textarea>
+                        </div>
+                    </div>
+                </fieldset>
+                <fieldset>
+                    <legend><i class="icos-globe"></i>SEO配置</legend>
+                    <div class="control-group">
+                        <label class="control-label">
+                            站点标题
+                        </label>
+                        <div class="controls">
+                            <input type="text" name="Name" id="Name" size="30" value="@Model.Name" required />
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">
+                            关键词
+                        </label>
+                        <div class="controls">
+                            <textarea name="KeyWords" id="KeyWords" cols="50" rows="6">@Model.KeyWords</textarea>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">
+                            描述
+                        </label>
+                        <div class="controls">
+                            <textarea name="Description" id="Description" cols="50" rows="6" required>@Model.Description</textarea>
+                        </div>
+                    </div>
+                </fieldset>
+                <fieldset>
+                    <legend><i class="icol-nuclear" style="margin-right: 3px;"></i>高级配置</legend>
+                    <div class="control-group">
+                        <label class="control-label">
+                            启用开发人员选项
+                        </label>
+                        <div class="controls">
+                            @Html.RadioButton("IsDeleloper", new string[] { "True", "False" }, new string[] { "是", "否" }, (Model.IsDeleloper == null ? null : Model.IsDeleloper.Value.ToString()))
+                            <a style="display: @(Model.IsDeleloper == true ? "inline" : "none");" id="isDeleloperLink" href="/Manager/" target="_blank">开发人员选项</a>
+                        </div>
+                        <script type="text/javascript">
+                            $(function () {
+                                $("input[name='IsDeleloper']").change(function () {
+                                    var IsDeleloper = $(this);
+                                    $.post("/admin/Config/SetIsDeleloper", { "val": IsDeleloper.val() }, function (data) {
+                                        if (IsDeleloper.is(":checked") && IsDeleloper.val() == "True") {
+                                            $("#isDeleloperLink").show();
+                                        }
+                                        else {
+                                            $("#isDeleloperLink").hide();
+                                        }
+                                    });
+
+                                });
+                            });
+                        </script>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">
+                            启用权限验证功能
+                        </label>
+                        <div class="controls">
+                            @Html.RadioButton("IsValidePermission", new string[] { "True", "False" }, new string[] { "是", "否" }, (Model.IsValidePermission == null ? null : Model.IsValidePermission.Value.ToString()))
+                            <script type="text/javascript">
+                                $(function () {
+                                    $("#IsFromFileDiv").hide();
+                                    $("input[name='IsValidePermission']").each(function () {
+                                        if ($(this).is(":checked") && $(this).val() == "True") {
+                                            $("#IsFromFileDiv").show();
+                                        }
+                                    });
+                                    $("input[name='IsValidePermission']").change(function () {
+                                        if ($(this).is(":checked") && $(this).val() == "True") {
+                                            $("#IsFromFileDiv").show();
+                                        }
+                                        else {
+                                            $("#IsFromFileDiv").hide();
+                                            $("input[name='IsFromFile']").removeAttr("checked");
+                                            $("input[name='IsFromFile']").change();
+                                        }
+                                    });
+                                });
+                            </script>
+                        </div>
+                    </div>
+                    <div class="control-group" id="IsFromFileDiv">
+                        <label class="control-label">
+                            启用权限文件缓存
+                        </label>
+                        <div class="controls">
+                            @Html.RadioButton("IsFromFile", new string[] { "True", "False" }, new string[] { "是", "否" }, (Model.IsFromFile == null ? null : Model.IsFromFile.Value.ToString()))
+                            <script type="text/javascript">
+                                $(function () {
+                                    $("input[name='IsFromFile']").change(function () {
+                                        if ($(this).is(":checked") && $(this).val() == "True") {
+                                            $.post("/admin/ajax/HasOperatePermission", null, function (data) {
+                                                if (data == "no") {
+                                                    ArtAlert("启用权限文件缓存需要Content目录的操作权!");
+                                                    $("input[name='IsFromFile']").removeAttr("checked");
+                                                    $("input[name='IsFromFile']").change();
+                                                }
+                                            });
+                                        }
+                                    });
+                                });
+                            </script>
+                        </div>
+                    </div>
+                </fieldset>
+                <fieldset>
+                    <legend><i class="icos-zip-file"></i>附件配置</legend>
+                    <div class="control-group">
+                        <label class="control-label">
+                            允许上传附件大小
+                        </label>
+                        <div class="controls">
+                            <input type="text" name="UploadMaxSize" id="UploadMaxSize"
+                                size="10" value="@Model.UploadMaxSize" required />
+                            MB
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">
+                            允许上传附件格式
+                        </label>
+                        <div class="controls">
+                            <input type="text" name="UploadAllowExt" id="UploadAllowExt"
+                                size="50" value="@Model.UploadAllowExt" required />
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">
+                            水印添加条件
+                        </label>
+                        <div class="controls">
+                            宽<input type="text" name="WatermarkMinWidth" id="WatermarkMinWidth"
+                                    size="10" value="@Model.WatermarkMinWidth" class="input-mini" />
+                            X 高<input type="text" name="WatermarkMinHeight" id="WatermarkMinHeight"
+                                    size="10" value="@Model.WatermarkMinHeight" class="input-mini" />
+                            PX
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">
+                            水印图片
+                        </label>
+                        <div class="controls">
+                            <input type="text" name="WatermarkImg" id="WatermarkImg" value="@Model.WatermarkImg" class='image' />
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">
+                            水印透明度
+                        </label>
+                        <div class="controls">
+                            <z>
+                                <input type="text" name="WatermarkPct" id="WatermarkPct"
+                                    size="10" value="@Model.WatermarkPct" />
+                            </z>
+                            <p class="help-block">
+                                请设置为0-100之间的数字，0代表完全透明，100代表不透明
+                            </p>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">
+                            JPEG 水印质量
+                        </label>
+                        <div class="controls">
+                            <input type="text" name="WatermarkQuality" id="WatermarkQuality"
+                                    size="10" value="@Model.WatermarkQuality" />
+                            <p class="help-block">
+                                水印质量请设置为0-100之间的数字,决定 jpg 格式图片的质量
+                            </p>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">
+                            是否开启图片水印
+                        </label>
+                        <div class="controls">
+                            <input class="radio_style" name="WatermarkEnable" value="1" type="radio" val="@Model.WatermarkEnable" >
+                            启用&nbsp;&nbsp;&nbsp;&nbsp;
+                <input class="radio_style" name="WatermarkEnable" value="0" type="radio">关闭
+                        </div>
+                    </div>
+                </fieldset>
+                <fieldset>
+                    <legend><i class="icos-image-2"></i>水印位置</legend>
+                    <div class="control-group">
+                        <table width="100%">
+                            <tr>
+                                <td rowspan="3">
+                                    <input class="radio_style" name="WatermarkPos" value="0" val="@Model.WatermarkPos" type="radio" >
+                                    随机位置
+                                </td>
+                                <td>
+                                    <input class="radio_style" name="WatermarkPos" value="1" type="radio">
+                                    顶部居左
+                                </td>
+                                <td>
+                                    <input class="radio_style" name="WatermarkPos" value="2" type="radio">
+                                    顶部居中
+                                </td>
+                                <td>
+                                    <input class="radio_style" name="WatermarkPos" value="3" type="radio">
+                                    顶部居右
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input class="radio_style" name="WatermarkPos" value="4" type="radio">
+                                    中部居左
+                                </td>
+                                <td>
+                                    <input class="radio_style" name="WatermarkPos" value="5" type="radio">
+                                    中部居中
+                                </td>
+                                <td>
+                                    <input class="radio_style" name="WatermarkPos" value="6" type="radio">
+                                    中部居右
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input class="radio_style" name="WatermarkPos" value="7" type="radio">
+                                    底部居左
+                                </td>
+                                <td>
+                                    <input class="radio_style" name="WatermarkPos" value="8" type="radio">
+                                    底部居中
+                                </td>
+                                <td>
+                                    <input class="radio_style" name="WatermarkPos" value="9" type="radio">
+                                    底部居右
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </fieldset>
+                <div class="form-actions">
+                    <input type="submit" class="btn btn-primary" value="保 存" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

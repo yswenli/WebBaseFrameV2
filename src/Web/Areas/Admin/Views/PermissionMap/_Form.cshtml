@@ -1,0 +1,55 @@
+﻿@using Libraries
+@model WebBaseFrame.Models.PermissionMap
+<input id="ID" name ="ID" type="hidden" value ="@Model.ID" />
+<div class="control-group">
+    <label class="control-label">排序</label><div class="controls">
+        <input id="SortID" name ="SortID" type="text" value ="@(Model.SortID ?? 0)" required />
+    </div>
+</div>
+<div class="control-group">
+    <label class="control-label">父级</label><div class="controls">
+        <select id="PID" name="PID" val="@Model.PID" class="skip">
+            <option value='0'>≡ 作为一级权限 ≡</option>
+            @Html.Raw(ViewData["ForeachPermissionByOption"])
+        </select>
+    </div>
+</div>
+<div class="control-group">
+    <label class="control-label">对应菜单</label><div class="controls">
+        <select id="MID" name="MID" val="@Model.MID" class="skip">
+            <option value='0'>≡ 作为一级菜单 ≡</option>
+            @Html.Raw(ViewData["ForeachMenuByOption"])
+        </select>
+    </div>
+</div>
+<div class="control-group">
+    <label class="control-label">权限名称</label><div class="controls">
+        <select id="Name" name="Name" required>
+            <option value="">≡ 请选择 ≡</option>
+            @{
+                DbUtility.DBContext db = new DBContext();
+                var dt= db.ExecuteDataTableSql("SELECT [Name] FROM [PermissionMap] AS pm GROUP BY [Name]");
+                if(dt!=null && dt.Rows.Count>0){
+                    foreach (System.Data.DataRow item in dt.Rows)
+                    {
+                        <option value="@item[0]">@item[0]</option>
+                    }   
+                    
+                }
+            }
+        </select>
+    </div>
+</div>
+<div class="control-group">
+    <label class="control-label">权限描述</label><div class="controls">
+        <textarea id="Description" name="Description" style="width: 50%; min-height: 50px;" required>@Model.Description</textarea>
+    </div>
+</div>
+<div class="control-group">
+    <label class="control-label">是否基本权限</label><div class="controls">
+        <input type="radio" name="IsBasic" value="0" required @(Model.IsBasic != 1 ? "checked" : "")/>
+        否
+        <input type="radio" name="IsBasic" value="1" required @(Model.IsBasic == 1 ? "checked" : "")/>
+        是
+    </div>
+</div>

@@ -1,0 +1,9 @@
+﻿<div class="wizard-nav" style="border-right: 1px solid #ccc;border-left: 1px solid #ccc; border-bottom: 0px;" data-key="month">
+    <ul>
+        @for (int i = 1; i <= 12; i++)
+        {
+            <li data-value="@DateTime.Now.AddMonths(i-DateTime.Now.Month).ToString("yyyyMM")"><span><i class="icos-day-calendar"></i>@(i)月</span></li>
+        }
+    </ul>
+</div>
+<div class="clearfix"></div>

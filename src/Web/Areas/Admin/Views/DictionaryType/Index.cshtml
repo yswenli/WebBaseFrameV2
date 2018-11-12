@@ -1,0 +1,65 @@
+﻿@using MvcPager;
+@using WEF.MvcPager;
+@using Libraries;
+@model PagedList<WebBaseFrame.Models.DictionaryType>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<div class="row-fluid">
+    <div class="datatable span12">
+        <div class="navbar">
+            <div class="navbar-inner">
+                @Html.CreateButton("创建新记录", "/admin/DictionaryType/Create", new { href = "/admin/DictionaryType/Create" })
+                <div class="nav-collapse pull-right">
+                    <ul class="nav">
+                        <li class="active"><a href="javascript:void(0);"><i class="icol-table"></i> 列表</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="dt-pages tab-content">
+            <div class="dt_header">
+                <form action="" method="get">
+                    <div class="row-fluid">
+                        <div class="span6">
+                            <div class="btn-group pull-left">
+                                @Html.DeleteAllButton("删除", "/Admin/DictionaryType/Delete", new { href = "javascript:void(0);", onclick = "Delete('/Admin/DictionaryType/Delete',this,'all');" })
+                                <a class="btn"><span><i class="icol-doc-excel-csv"></i> 导出</span></a>
+                                <a class="btn"><span><i class="icol-printer"></i> 打印</span></a>
+                                <a class="btn" href="javascript:void(0)" onclick="$('#control_search').slideToggle()"><span><i class="icos-preview"></i>筛选</span></a>
+                            </div>
+                        </div>
+                        <div class="span6">
+                            <div class="pull-right">
+                                <label>
+                                    <select name="pagesize" class="input-mini">
+                                        <option value="10" selected="selected">10</option>
+                                        <option value="25">25</option>
+                                        <option value="50">50</option>
+                                        <option value="100">100</option>
+                                    </select>
+                                    条记录每页
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="alert" id="control_search" style="display:none;">
+                        <div class="control-group">
+                            <label class="control-label">
+                                ID
+                            </label><div class="controls">
+                                <input id="ID" name="ID" type="text" />
+                                <button class="btn skip" type="submit"><i class="icos-magnifying-glass"></i>搜 索</button>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </form>
+            </div>
+            <div class="dataTables_wrapper">
+                @Html.Partial("_Index", Model, ViewData)
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,49 @@
+﻿@using WEF.MvcPager;
+@using Libraries;
+@model PagedList<Models.Area>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th class="checkbox-column">
+                <input type="checkbox" name="checkall" onchange="selectall(this,'ID')" />
+            </th>
+            <th class="sorting" data-sort="ParentID">上级</th>
+            <th class="sorting" data-sort="CName">名称</th>
+            <th class="sorting" data-sort="EName">英文名</th>            
+            <th class="sorting" data-sort="Depth">级别</th>
+            <th class="btns-column">操作
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td class="checkbox-column">
+                    <input type="checkbox" name="ID" value="@item.ID"/></td>
+                <td>@item.ParentID</td>
+                <td>@item.CName</td>
+                <td>@item.EName</td>
+                <td>@item.Depth</td>
+                <td class="btns-column">
+                    @Html.ViewButton("详细", "/admin/Area/Detail", new { href = "/admin/Area/Detail?id=" + item.ID })
+                    @Html.EditButton("编辑", "/admin/Area/Edit", new { href = "/admin/Area/Edit?id=" + item.ID })
+                    @Html.DeleteButton("删除", "/admin/Area/Delete", new { href = "javascript:void(0);", onclick = "Delete('/admin/Area/Delete/" + item.ID + "',this,'one');" })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<div class="dt_footer fixed">
+    <div class="row-fluid">
+        <div class="span4">
+            <div class="dataTables_info" id="DataTables_Table_0_info">
+                @Model.CurrentPageIndex/@Model.TotalPageCount 页, 共@(Model.TotalItemCount)条记录
+            </div>
+        </div>
+        <div class="span8">
+            <div class="pagination">@Html.Pager(Model)</div>
+        </div>
+    </div>
+</div>
+@Html.PermissionValideScript()

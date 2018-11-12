@@ -1,0 +1,166 @@
+﻿@{
+    ViewBag.Title = "SwfUpload";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<link href="/Areas/Admin/content/js/swfupload/swfupload.css" rel="stylesheet" type="text/css" />
+<script language="JavaScript" type="text/javascript" src="/Areas/Admin/content/js/swfupload/unpack_swfupload.js"></script>
+<script language="JavaScript" type="text/javascript" src="/Areas/Admin/content/js/swfupload/swfupload.js"></script>
+<script language="JavaScript" type="text/javascript" src="/Areas/Admin/content/js/swfupload/fileprogress.js"></script>
+<script language="JavaScript" type="text/javascript" src="/Areas/Admin/content/js/swfupload/handlers.js"></script>
+<script type="text/javascript">
+    var swfu = '';
+    $(document).ready(function () {
+        swfu = new SWFUpload({
+            flash_url: "/areas/admin/content/js/swfupload/swfupload.swf?" + Math.random(),
+            upload_url: "/admin/attachment/swfuploading",
+            file_post_name: "Filedata",
+            post_params: { "aid": "1", "ssid": "2" },
+            file_size_limit: "@ViewData["filelength"]",
+                file_types: "@ViewData["fix"]",
+                file_types_description: "@ViewData["fix"]",
+                file_upload_limit: "@ViewData["allowfiles"]",
+                custom_settings: { progressTarget: "fsUploadProgress", cancelButtonId: "btnCancel" },
+                button_image_url: "",
+                button_width: 75,
+                button_height: 28,
+                button_placeholder_id: "buttonPlaceHolder",
+                button_text_style: "",
+                button_text_top_padding: 3,
+                button_text_left_padding: 12,
+                button_window_mode: SWFUpload.WINDOW_MODE.TRANSPARENT,
+                button_cursor: SWFUpload.CURSOR.HAND,
+
+                file_dialog_start_handler: fileDialogStart,
+                file_queued_handler: fileQueued,
+                file_queue_error_handler: fileQueueError,
+                file_dialog_complete_handler: fileDialogComplete,
+                upload_progress_handler: uploadProgress,
+                upload_error_handler: uploadError,
+                upload_success_handler: uploadSuccess,
+                upload_complete_handler: uploadComplete
+            });
+        });
+</script>
+<div style="padding:0 10px;">
+    <div class="col-tab" id="tab1">
+        <ul class="tabBut cu-li">
+            <li class="on">上传附件</li>
+            <li>网络文件</li>
+            @if (ViewData["showdir"].ToString() == "1")
+            {
+                <li>图库</li>
+                <li>目录浏览</li>
+            }
+        </ul>
+        <div class="contentList pad-10 ">
+            <div>
+                <div class="addnew" id="addnew">
+                    <span id="buttonPlaceHolder"></span>
+                </div>
+                <input type="button" id="btupload" value="开始上传" onclick="swfu.startUpload();" />
+                <div id="nameTip" class="onShow">
+                    最多上传<font color="red">
+                            @ViewData["allowfiles"]</font> 个附件,单文件最大 <font color="red">
+                                @Html.Raw((Convert.ToInt32(ViewData["filelength"]) / 1024).ToString())
+                                MB</font>
+                </div>
+                <div class="bk3">
+                </div>
+                <div class="lh24">
+                    支持 <font style="font-family: Arial, Helvetica, sans-serif">
+                            @ViewData["fix"]</font>格式。
+                </div>
+                <input type="checkbox" id="watermark_enable" value="1" onclick="change_params()" @Html.Raw(ViewData["watermark"].ToString() == "1" ? "checked" : "") />
+                是否添加水印
+            </div>
+            <div class="bk10">
+            </div>
+            <fieldset class="blue pad-10" id="swfupload">
+                <legend>列表</legend>
+                <ul class="attachment-list" id="fsUploadProgress">
+                </ul>
+            </fieldset>
+        </div>
+        <div class="contentList pad-10 hidden">
+            <div class="bk10">
+            </div>
+            请输入网络地址<div class="bk3">
+            </div>
+            <input type="text" name="info[filename]" value="" style="width: 350px;"
+                onblur="addonlinefile(this)" />
+            <div class="bk10">
+            </div>
+        </div>
+        <div class="contentList pad-10 hidden">
+            <ul class="attachment-list">
+                <iframe name="album-list" src="" style="overflow-x: hidden; border: none"
+                    width="100%" height="330" allowtransparency="true" id="album_list"></iframe>
+            </ul>
+        </div>
+        <div class="contentList pad-10 hidden">
+            <ul class="attachment-list">
+                <iframe name="album-dir" src="" frameborder="false" scrolling="auto" style="overflow-x: hidden; border: none"
+                    width="100%" height="330" allowtransparency="true" id="album_dir"></iframe>
+            </ul>
+        </div>
+        <div id="att-status" class="hidden">
+        </div>
+        <div id="att-status-del" class="hidden">
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(function () {
+        $(".col-tab .tabBut li").click(function () {
+            var index = $(this).index();
+            $(".col-tab .contentList").addClass("hidden");
+            $(".col-tab .contentList").eq(index).removeClass("hidden");
+            $(".col-tab .tabBut li").removeClass("on");
+            $(this).addClass("on");
+            if (index == 2 && $("#album_list").attr("src") == "")
+                $("#album_list").attr("src", "/admin/Attachment/albumlist");
+            else if (index == 3 && $("#album_dir").attr("src") == "")
+                $("#album_dir").attr("src", "/admin/Attachment/albumdir?dir=upload");
+        });
+    });
+
+    function imgWrap(obj) {
+        $(obj).hasClass('on') ? $(obj).removeClass("on") : $(obj).addClass("on");
+    }
+
+    function addonlinefile(obj) {
+        var strs = $(obj).val() ? '|' + $(obj).val() : '';
+        $('#att-status').html(strs);
+    }
+
+    function change_params() {
+        if ($('#watermark_enable').attr('checked')) {
+            swfu.addPostParam('watermark_enable', '1');
+        } else {
+            swfu.removePostParam('watermark_enable');
+        }
+    }
+    function set_iframe(id, src) {
+        $("#" + id).attr("src", src);
+    }
+    function album_cancel(obj, id, source) {
+        var src = $(obj).children("img").attr("path");
+        if ($(obj).hasClass('on')) {
+            $(obj).removeClass("on");
+            var imgstr = $("#att-status").html();
+            var length = $("a[class='on']").children("img").length;
+            var strs = '';
+            $.get('/admin/Attachment/index?m=attachment&c=attachments&a=swfupload_json_del&aid=' + id + '&src=' + source);
+            for (var i = 0; i < length; i++) { strs += '|' + $("a[class='on']").children("img").eq(i).attr('path'); }
+            $('#att-status').html(strs);
+        } else {
+            var num = $('#att-status').html().split('|').length;
+            var file_upload_limit = '1';
+            if (num > file_upload_limit) { alert('不能选择超过' + file_upload_limit + '个附件'); return false; }
+            $(obj).addClass("on");
+            $.get('/admin/Attachment/index?m=attachment&c=attachments&a=swfupload_json_del&aid=' + id + '&src=' + source);
+            $('#att-status').append('|' + src);
+        }
+    }
+
+</script>

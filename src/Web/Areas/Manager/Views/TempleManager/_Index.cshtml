@@ -1,0 +1,60 @@
+﻿@using System.Data;
+@using Libraries;
+@using MvcPager;
+@using WEF.MvcPager;
+@using Web.Areas.Manager.Helper;
+@model PagedList<TempInfo>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>
+                名称
+            </th>
+            <th>
+                地址
+            </th>
+            <th class="btns-column">
+                操作
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Name</td>
+                <td title="@item.Path">@Common.Character.SubString(item.Path, 70)</td>
+                <td class="btns-column">
+                    <a class="icon-pencil tip" title="编辑" href="/Manager/TempleManager/Edit?name=@Url.Encode(item.Name)"></a>
+                    <a class="icon-trash tip" title="删除" href="javascript:;" onclick="removeTemp($(this),'@item.Name')"></a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<div class="dt_footer fixed">
+    <div class="row-fluid">
+        <div class="span4">
+            <div class="dataTables_info" id="DataTables_Table_0_info">
+                @Model.CurrentPageIndex/@Model.TotalPageCount 页, 共@(Model.TotalItemCount)条记录
+            </div>
+        </div>
+        <div class="span8">
+            <div class="pagination">@Html.Pager(Model)</div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    function removeTemp(obj, tempName) {
+        if (confirm("确定要删除吗？")) {
+            var dialog = art.dialog({ lock: true, icon: _icon(0), content: "正在处理...", ok: true, cancel: false });
+            $.get("/Manager/TempleManager/Delete", { "name": tempName }, function (data) {
+                dialog.close();
+                if (data == "ok") {
+                    art.dialog({ lock: true, icon: _icon(1), time: 2, content: "操作成功", ok: true, cancel: false });
+                    obj.parents("tr").fadeOut(500);
+                }
+            });
+        }
+    }
+</script>

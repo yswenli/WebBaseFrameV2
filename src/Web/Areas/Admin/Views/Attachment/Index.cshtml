@@ -1,0 +1,159 @@
+﻿@using WEF.MvcPager;
+@model PagedList<Models.Attachment>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+ <div class="subnav">
+        <div class="content-menu ib-a blue line-x">            
+            <a href='/admin/attachment/dir?dir=upload&p=admin' class="add fb"><em>切换目录模式</em></a>
+            <span>|</span><a href='javascript:;' class="on"><em>附件管理</em></a>
+        </div>
+    </div>
+    <script type="text/javascript" src="/content/js/jquery.sGallery.js"></script>
+    <div class="pad-lr-10">
+        <form name="searchform" action="" method="get">
+        <table cellspacing="0" class="search-form">
+            <tbody>
+                <tr>
+                    <td>
+                        <div class="explain-col">
+                            名称
+                            <input type="text" value="@Request.QueryString["filename"]" name="filename">
+                            上传时间
+                            <input type="text" name="start_uploadtime" id="start_uploadtime" value="@Request.QueryString["start_uploadtime"]" size="10"
+                                class="date" readonly>&nbsp;至
+                            <input type="text" name="end_uploadtime" id="end_uploadtime" value="@Request.QueryString["end_uploadtime"]" size="10"
+                                class="date" readonly>&nbsp;
+                            附件类型
+                            <input type="text" value="@Request.QueryString["fileext"]" name="fileext" />
+                            <input type="submit" value="搜索" class="button" name="dosubmit" />
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        </form>
+        <div class="table-list">
+            <form name="myform" action="" method="post" id="myform">
+            <table>
+                <thead>
+                    <tr>
+                        <th>
+                            删除
+                        </th>
+                        <th>
+                            ID
+                        </th>                        
+                        <th>
+                            附件名称
+                            <div class="tab-use">
+                                <div style="position: relative">
+                                    <div class="arrows cu" onmouseover="hoverUse('use-div');" onmouseout="hoverUse();"
+                                        onmouseover="this.style.display='block'">
+                                    </div>
+                                    <ul id="use-div" class="tab-web-panel" onmouseover="this.style.display='block'" onmouseout="hoverUse('use-div');">
+                                        <li><a href="javascript:;">未使用</a></li>
+                                        <li><a href="javascript:;">已使用</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </th>
+                        <th>
+                            附件大小
+                        </th>
+                        <th>
+                            上传时间
+                        </th>
+                        <th>
+                            管理操作
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (Models.Attachment item in Model)
+                       {
+                    <tr>
+                        <td>
+                            <input type="checkbox" name="ID" value="@item.ID" id="@item.ID" />
+                        </td>
+                        <td>
+                            @item.ID
+                        </td>
+                        <td>
+                            <img src="/content/img/ext/@Html.Raw(item.Fix+".gif")" />
+                            @item.FileName
+                            <img src="/content/img/admin_img/havthumb.png" onclick="showthumb(@item.ID, ' @item.FileName')" />
+                            <img src="/content/img/admin_img/link.png" />
+                        </td>
+                        <td>
+                            @item.Size
+                        </td>
+                        <td>
+                            @item.CreateDate
+                        </td>
+                        <td>
+                            <a href="javascript:preview(@item.ID, '@item.FileName','@Common.UploadHepler.AttachmentUrl(item.Url)')">
+                                预览</a> | <a href="javascript:;" onclick="att_delete(this,'@item.ID')">删除</a>
+                        </td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+            <div class="btn">
+                <a href="javascript:void(0);" onclick="javascript:$('input[type=checkbox]').attr('checked', true)">全选</a>/<a
+                    href="javascript:void(0);" onclick="javascript:$('input[type=checkbox]').attr('checked', false)">取消</a>
+                <input type="submit" class="button" name="dosubmit" value="删除" onclick="document.myform.action = '/attachment/delete'; return confirm('确认删除吗？')" /></div>
+            <div id="pages">@Html.Raw(Model.TotalPageCount + "Page," + Model.TotalItemCount + "Total" + Html.Pager(Model, new PagerOptions() { }))</div>
+            </form>
+        </div>
+    </div>
+    <script type="text/javascript">
+        window.top.$('#display_center_id').css('display', 'none');
+        function preview(id, name, filepath) {
+            if (IsImg(filepath)) {
+                window.top.art.dialog({ title: '预览', fixed: true, content: '<img src="' + filepath + '" onload="$(this).LoadImage(true, 500, 500,\'/content/img/s_nopic.gif\');"/>' });
+            } else {
+                window.top.art.dialog({ title: '预览', fixed: true, content: '<a href="' + filepath + '" target="_blank"/><img src="/content/img/admin_img/down.gif">单击打开</a>' });
+            }
+        }
+
+        function att_delete(obj, aid) {
+            window.top.art.dialog({ content: '确认删除吗？', fixed: true, style: 'confirm', id: 'att_delete' },
+	function () {
+	    $.get('/admin/attachment/delete/' + aid, function (data) {
+	        if (data == 1) $(obj).parent().parent().fadeOut("slow");
+	    })
+
+	},
+	function () { });
+        };
+        //管理缩略图,暂未实现
+        function showthumb(id, name) {
+            window.top.art.dialog({ title: '管理缩略图--' + name, id: 'edit', iframe: '/admin/attachment/thumb/' + id, width: '500px', height: '400px' });
+        }
+        function hoverUse(target) {
+            if ($("#" + target).css("display") == "none") {
+                $("#" + target).show();
+            } else {
+                $("#" + target).hide();
+            }
+        }
+
+        function IsImg(url) {
+            var sTemp;
+            var b = false;
+            var opt = "jpg|gif|png|bmp|jpeg";
+            var s = opt.toUpperCase().split("|");
+            for (var i = 0; i < s.length; i++) {
+                sTemp = url.substr(url.length - s[i].length - 1);
+                sTemp = sTemp.toUpperCase();
+                s[i] = "." + s[i];
+                if (s[i] == sTemp) {
+                    b = true;
+                    break;
+                }
+            }
+            return b;
+        }
+    </script>

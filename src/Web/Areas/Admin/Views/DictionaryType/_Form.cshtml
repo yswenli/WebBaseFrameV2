@@ -1,0 +1,10 @@
+﻿@model WebBaseFrame.Models.DictionaryType
+<input id="ID" name ="ID" type="hidden" value ="@Model.ID" />
+<div class="control-group">
+    <label class="control-label">数据字典分类名称</label><div class="controls">
+        <input id="Name" name ="Name" type="text" value ="@Model.Name" required /></div>
+</div>
+<div class="control-group">
+    <label class="control-label">备注</label><div class="controls">
+        <textarea id="Memo" name ="Memo">@Model.Memo</textarea></div>
+</div>

@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{A7430F49-AB43-438E-8A37-1093A7AD4BC7}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>WebBaseFrame.Models</RootNamespace>
+    <AssemblyName>WebBaseFrame.Models</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>Svn</SccProjectName>
+    <SccLocalPath>Svn</SccLocalPath>
+    <SccAuxPath>Svn</SccAuxPath>
+    <SccProvider>SubversionScc</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WEF">
+      <HintPath>..\Common\Libs\WEF.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Entity\Article.cs" />
+    <Compile Include="Entity\AutoGenerator\Area.cs" />
+    <Compile Include="Entity\AutoGenerator\Article.cs" />
+    <Compile Include="Entity\AutoGenerator\ArticleKind.cs" />
+    <Compile Include="Entity\AutoGenerator\Attachment.cs" />
+    <Compile Include="Entity\AutoGenerator\CustomPage.cs" />
+    <Compile Include="Entity\AutoGenerator\Dictionary.cs" />
+    <Compile Include="Entity\AutoGenerator\DictionaryType.cs" />
+    <Compile Include="Entity\AutoGenerator\FieldBase.cs" />
+    <Compile Include="Entity\AutoGenerator\MailSetting.cs" />
+    <Compile Include="Entity\AutoGenerator\Member.cs" />
+    <Compile Include="Entity\AutoGenerator\Menu.cs" />
+    <Compile Include="Entity\AutoGenerator\PermissionData.cs" />
+    <Compile Include="Entity\AutoGenerator\PermissionMap.cs" />
+    <Compile Include="Entity\AutoGenerator\Role.cs" />
+    <Compile Include="Entity\AutoGenerator\Site.cs" />
+    <Compile Include="Entity\AutoGenerator\StatusBtn.cs" />
+    <Compile Include="Entity\AutoGenerator\TableBase.cs" />
+    <Compile Include="Entity\AutoPage.cs" />
+    <Compile Include="Entity\Member.cs" />
+    <Compile Include="Entity\PermissionData.cs" />
+    <Compile Include="Entity\PermissionMap.cs" />
+    <Compile Include="Repository\AreaRepository.cs" />
+    <Compile Include="Repository\ArticleKindRepository.cs" />
+    <Compile Include="Repository\ArticleRepository.cs" />
+    <Compile Include="Repository\CustomPageRepository.cs" />
+    <Compile Include="Repository\DictionaryRepository.cs" />
+    <Compile Include="Repository\DictionaryTypeRepository.cs" />
+    <Compile Include="Repository\MenuRepository.cs" />
+    <Compile Include="Repository\PermissionDataRepository.cs" />
+    <Compile Include="Repository\PermissionMapRepository.cs" />
+    <Compile Include="Repository\SiteRepository.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{eefe3d48-a4c7-4664-a131-35c15f893fbb}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <None Include="app.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

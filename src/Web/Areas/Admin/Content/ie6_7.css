@@ -1,0 +1,20 @@
+.main{background:url(img/main_top_shadow.png) repeat-x;}
+
+.form-horizontal .controls{ margin-left:10px;}
+.form-horizontal :first-child.controls{ padding-left: 115px;}
+h3{ margin-top: 0; }
+.header-functions .exit i{ vertical-align: middle; margin-top: 10px; }
+.widget .widget-content .pagination .input-append input{ height: 20px; position: relative; top:-1px;}
+.widget .btn-group .slideBtn{ position: relative; top:5px;}
+
+.row-fluid [class*="span"]:first-child{ margin-left: 0;}
+#sub-sidemenu{ margin-left: 0;}
+.form-container .form-horizontal .controls{ display: inline;  margin-left: 10px;}
+#right-content{padding-top:10px;}
+.widget .form-container legend{width:100%; padding:8px 0; text-indent:20px; display: block; margin-left: -7px ;}
+
+.select2-search{ width: auto; }
+.select2-search input{ height:26px; padding:2px 0;width:inherit; min-height:auto;   }
+.select2-container .select2-choice span{ display: inline;}
+.pagination ul > li{ float: left;}
+.pagination ul > li > a{ float: none; display:inline-block;}

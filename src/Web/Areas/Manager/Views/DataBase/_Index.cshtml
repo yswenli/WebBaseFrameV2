@@ -1,0 +1,77 @@
+﻿@using System.Data;
+@using Libraries;
+@using MvcPager;
+@using WEF.MvcPager;
+@model PagedList<DataRow>
+@{ DataTable column = ViewData["column"] as DataTable;}
+<table class="table table-striped">
+    <thead>
+        <tr>
+            @foreach (DataColumn item in column.Columns)
+            {
+                <th>
+                    @item.ColumnName
+                </th>
+            }
+            <th class="btns-column">
+                操作
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (DataRow item in Model)
+        {
+            <tr>
+                @for (int i = 0; i < column.Columns.Count; i++)
+                {
+                    int s = 0;
+                    if (item[i] != null && !string.IsNullOrEmpty(item[i].ToString()) && int.TryParse(item[i].ToString(), out s) && Convert.ToInt32(item[i].ToString()) > 8)
+                    {
+                        <td>@(Convert.ToInt32(item[i].ToString()) / 2)</td>
+                    }
+                    else
+                    {
+                        <td>@item[i]</td>
+                    }
+                    if (i == column.Columns.Count - 1)
+                    {
+                        if (item[0] == null || string.IsNullOrEmpty(item[0].ToString()))
+                        {
+                            <td class="btns-column"></td>
+                        }
+                        else
+                        {
+                            <td class="btns-column">
+                                <a class="icol-magnifier tip" title="详细" href="/Manager/DataBase/List?tableName=@Url.Encode(item[0].ToString())"></a>
+                                <a class="icon-pencil tip" title="编辑" href="/Manager/DataBase/EditTable?tableName=@Url.Encode(item[0].ToString())"></a>
+                                <a class="icon-trash tip" title="删除" href="javascript:;" onclick="removeTable('@Url.Encode(item[0].ToString())')"></a>
+                            </td>
+                        }
+                    }
+                }
+
+            </tr>
+        }
+    </tbody>
+</table>
+<div class="dt_footer fixed">
+    <div class="row-fluid">
+        <div class="span4">
+            <div class="dataTables_info" id="DataTables_Table_0_info">
+                @Model.CurrentPageIndex/@Model.TotalPageCount 页, 共@(Model.TotalItemCount)条记录
+            </div>
+        </div>
+        <div class="span8">
+            <div class="pagination">@Html.Pager(Model)</div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    function removeTable(tableName) {
+        if (confirm("确定要删除【" + tableName + "】表吗？")) {
+            $.get("/Manager/DataBase/RemoveTable?rnd=" + (new Date().getMilliseconds()), { "tableName": tableName }, function (data) {
+                location.href = "/Manager/DataBase/Index";
+            });
+        }
+    }
+</script>

@@ -1,0 +1,64 @@
+﻿@using System.Data;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Manager/Views/Shared/_SqliteLayoutPage.cshtml";
+}
+@model DataTable
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title">数据表</h3>
+    </div>
+    <div class="panel-body">
+        <div class="btn-group" data-toggle="buttons-radio">
+            <button type="button" class="btn btn-success" onclick="location.href='/Manager/SqliteDataBase/CreateTable';">新建表</button>
+            <button type="button" class="btn btn-danger" onclick="location.href='/Manager/SqliteDataBase/ExecuteSQL';">执行SQL</button>
+        </div>
+        <div>
+            <div class="bs-docs-example">
+                @if (Model != null)
+                {
+                    <table class="table table-bordered table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                @foreach (DataColumn item in Model.Columns)
+                                {
+                                    if (item.ColumnName == "TABLE_NAME" || item.ColumnName == "TABLE_DEFINITION")
+                                    {
+                                    <th>@item.ColumnName</th>
+                                    }
+                                }
+                                <th class="col-xs-3">操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @for (int i = 0; i < Model.Rows.Count; i++)
+                            {
+                                if (Model.Rows[i][3] != "SYSTEM_TABLE")
+                                {
+                                <tr>
+                                    <td>@i</td>
+                                    @for (int j = 0; j < Model.Columns.Count; j++)
+                                    {
+                                        if (Model.Columns[j].ColumnName == "TABLE_NAME" || Model.Columns[j].ColumnName == "TABLE_DEFINITION")
+                                        {
+                                        <td>@Model.Rows[i][j]</td>
+                                        }
+                                    }
+                                    <td>
+                                        <div class="btn-group" data-toggle="buttons-radio">
+                                            <button type="button" class="btn btn-primary" onclick="location.href='/Manager/SqliteDataBase/Records/@(Model.Rows[i][2])';">查看</button>
+                                            <button type="button" class="btn btn-warning" onclick="location.href='/Manager/SqliteDataBase/EditTable/@(Model.Rows[i][2])'">编辑</button>
+                                            <button type="button" class="btn btn-danger" onclick="if(confirm('确定要删除表吗？')){location.href='/Manager/SqliteDataBase/DropTable/@(Model.Rows[i][2])';}">删除</button>
+                                        </div>
+                                    </td>
+                                </tr>   
+                                }
+                            }
+                        </tbody>
+                    </table>
+                }
+            </div>
+        </div>
+    </div>
+</div>

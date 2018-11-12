@@ -1,0 +1,22 @@
+﻿@model WebBaseFrame.Models.Dictionary
+@using Libraries
+@{
+    int DictionaryTypeID = Model.DictionaryTypeID == null ? Convert.ToInt32(Request.QueryString["DictionaryTypeID"]) : (int)Model.DictionaryTypeID;
+}
+<input id="ID" name ="ID" type="hidden" value ="@Model.ID" />
+<div class="control-group">
+    <label class="control-label">名称</label><div class="controls">
+        <input id="Name" name ="Name" type="text" value ="@Model.Name" required />
+    </div>
+</div>
+<div class="control-group">
+    <label class="control-label">所属数据字典分类</label><div class="controls">
+        <input name="DictionaryTypeID" type="hidden" value="@DictionaryTypeID" />
+        @Html.DropDownList("DictionaryTypeID", "DictionaryType", "IsDeleted<>1", string.Empty, "ID", "Name", @Model.DictionaryTypeID, "disabled")
+    </div>
+</div>
+<div class="control-group">
+    <label class="control-label">备注</label><div class="controls">
+        <textarea id="Memo" name="Memo">@Model.Memo</textarea>
+    </div>
+</div>

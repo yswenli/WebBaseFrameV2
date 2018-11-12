@@ -1,0 +1,25 @@
+﻿@using System.Data;
+@using Libraries;
+@using WEF.MvcPager;
+@model PagedList<DataRow>
+@{
+    ViewBag.Title = "EditTable";
+    Layout = "~/Areas/Manager/Views/Shared/_Layout.cshtml";
+    string tableName = Request.QueryString["tableName"];
+}
+<div class="row-fluid">
+    <div class="span12 widget">
+        <div class="widget-header light">
+            <span class="title"><i class="icon-pencil"></i>编辑</span>
+        </div>
+        <div class="widget-content form-container">
+            <form name="myform" id="myform" action="" method="post" class="form-horizontal validator">
+                @Html.Partial("_RecordForm", Model, ViewData)
+                <div class="form-actions fixed">
+                    <input type="submit" class="btn btn-primary" value="保 存" />
+                    <a class="btn" href="/Manager/DataBase/List?tableName=@Url.Encode(tableName)">返 回</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

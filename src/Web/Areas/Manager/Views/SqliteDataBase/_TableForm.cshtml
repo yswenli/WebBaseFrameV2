@@ -1,0 +1,74 @@
+﻿@using Common;
+@using System.Collections;
+@model List<Common.SqliteDBHelper.ColumnInfo>
+@{
+    var olts = new Dictionary<string, string>();
+    olts.Add("是", "True");
+    olts.Add("否", "False");
+    var olts2 = new Dictionary<string, string>();
+    foreach (var item in Enum.GetNames(typeof(Common.SqliteDBHelper.SqliteDBDataType)))
+    {
+        olts2.Add(item, item);
+    }
+}
+<div id="newcontentDiv"></div>
+@if (Model != null && Model.Count > 0)
+{
+    foreach (var item in Model)
+    {
+    <div class="contentDiv" style="border-bottom: 1px dashed #eee; padding-bottom: 9px;">
+        <div class="form-group">
+            <label class="col-sm-2 control-label">
+                <button type="button" class="btn btn-warning" onclick="location.href='/Manager/SqliteDataBase/EditColumn/@ViewBag.TableName?columnName=@item.Name';">编辑列</button>
+                <button type="button" class="btn btn-danger" onclick="if(confirm('确定要删除吗？')){$(this).parents('.contentDiv').remove();}">删除</button>
+                列名</label>
+            <div class="col-sm-10">
+                @item.Name
+                <input type="hidden" name="Name" value="@item.Name" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">序号</label>
+            <div class="col-sm-10">
+                <input type="text" name="Ordinal" id="Ordinal" class="form-control" value="@item.Ordinal" required="required" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">是否主键</label>
+            <div class="col-sm-10">
+                @item.IsPrimaryKey.Format()
+                <input type="hidden" name="IsPrimaryKey" value="@Html.Raw(item.IsPrimaryKey)" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">字段类型</label>
+            <div class="col-sm-10">
+                @item.DataTypeName
+                <input type="hidden" name="DataTypeName" value="@item.DataTypeName" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">字段长度</label>
+            <div class="col-sm-10">
+                <input type="hidden" name="MaxLength" value="@item.MaxLength" />
+                @item.MaxLength
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">是否可空</label>
+            <div class="col-sm-10">
+                @item.AllowDBNull.Format()
+                <input type="hidden" name="AllowDBNull" value="@Html.Raw(item.AllowDBNull)" />
+            </div>
+        </div>
+    </div>
+    }
+}
+<script type="text/javascript">
+    $(function () {
+        $("#addColumn").click(function () {
+            var newhtml = "<div class=\"contentDiv\" style=\"border-bottom: 1px dashed #eee; padding-bottom: 9px;\">        <div class=\"form-group\">            <label class=\"col-sm-2 control-label\">                <button type=\"button\" class=\"btn btn-danger\" onclick=\"if(confirm('确定要删除吗？')){ $(this).parents('.contentDiv').remove();}\">删除</button>  列名</label>            <div class=\"col-sm-10\">                <input type=\"text\" name=\"Name\" id=\"Name\" class=\"form-control\" value=\"\" required=\"required\" />            </div>        </div>        <div class=\"form-group\">            <label class=\"col-sm-2 control-label\">序号</label>            <div class=\"col-sm-10\">                <input type=\"text\" name=\"Ordinal\" id=\"Ordinal\" class=\"form-control\" value=\"0\" required=\"required\" />            </div>        </div>        <div class=\"form-group\">            <label class=\"col-sm-2 control-label\">是否主键</label>            <div class=\"col-sm-10\">                <select id=\"IsPrimaryKey\" name=\"IsPrimaryKey\" class=\"form-control\"><option value=\"True\" >是</option><option value=\"False\" selected>否</option></select>            </div>        </div>        <div class=\"form-group\">            <label class=\"col-sm-2 control-label\">字段类型</label>            <div class=\"col-sm-10\">                <select id=\"DataTypeName\" name=\"DataTypeName\" class=\"form-control\"><option value=\"INTEGER\" >INTEGER</option><option value=\"NVARCHAR\">NVARCHAR</option><option value=\"NTEXT\">NTEXT</option><option value=\"DATETIME\">DATETIME</option><option value=\"BIT\">BIT</option><option value=\"BLOB\">BLOB</option><option value=\"FLOAT\">FLOAT</option><option value=\"DECIMAL\">DECIMAL</option><option value=\"MONEY\">MONEY</option></select>            </div>        </div>        <div class=\"form-group\">            <label class=\"col-sm-2 control-label\">字段长度</label>            <div class=\"col-sm-10\">                <input type=\"text\" name=\"MaxLength\" id=\"MaxLength\" class=\"form-control\" value=\"0\" required=\"required\" />            </div>        </div>        <div class=\"form-group\">            <label class=\"col-sm-2 control-label\">是否可空</label>            <div class=\"col-sm-10\">                <select id=\"AllowDBNull\" name=\"AllowDBNull\" class=\"form-control\"><option value=\"True\">是</option><option value=\"False\" >否</option></select>            </div>        </div>    </div> ";
+            $("#newcontentDiv").append(newhtml);
+        });
+    });
+</script>

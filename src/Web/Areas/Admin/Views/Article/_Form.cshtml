@@ -1,0 +1,121 @@
+﻿@using Libraries;
+@model WebBaseFrame.Models.Article
+<input type="hidden" id="ID" name="ID" value="@Model.ID" />
+<link href="/Areas/Admin/Content/js/plupload/jquery.ui.plupload/css/jquery.ui.plupload.css" rel="stylesheet" />
+<script type="text/javascript" src="/Areas/Admin/Content/js/plupload/plupload.full.min.js"></script>
+<script type="text/javascript" src="/Areas/Admin/Content/js/plupload/jquery.ui.plupload/jquery.ui.plupload.js"></script>
+<script type="text/javascript" src="/Areas/Admin/Content/js/plupload/jquery.plupload.queue/jquery.plupload.queue.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $("#uploader").plupload({
+            runtimes: 'gears,html5,flash,silverlight,browserplus',
+            max_file_size: '100mb',
+            url: '/admin/article/UpLoadFile',
+            flash_swf_url: '/Areas/Admin/Content/js/plupload/plupload.flash.swf',
+            silverlight_xap_url: '/Areas/Admin/Content/js/plupload/plupload.silverlight.xap',
+            filters: [
+             { title: "files", extensions: "*" }
+            ],
+            init: {
+                FileUploaded: function (up, file, info) {
+                    $('#' + file.id).append('<input type="hidden" name="upaddress" value="' + info.response + '" />');
+                    $('#' + file.id).find('.plupload_file_namespan').eq(0).html('<a href="' + info.response + '" target="_blank">' + info.response + '</a>');
+                    $('#uploader_msg_ul').append($('#' + file.id));
+                }
+            }
+        });
+
+        $('#uploader_msg_ul').find('.plupload_file_action').each(function (i, item) {
+            $(this).click(function () {
+                $(this).parent().remove();
+            });
+        });
+    });
+
+    function onclickdialogimg(e) {
+        art.dialog.open(
+            "/Areas/Admin/FileResize/Avatar.aspx",
+                    {
+                        id: "thumbDialog", title: "上传缩略图", lock: true, width: 600, height: 536,
+                        close: function () {
+                            if (art.dialog.data("bValue") != 'open') {
+                                $("#uploadImg").attr("src", art.dialog.data("bValue"));
+                                $("#Thumbs").val(art.dialog.data("bValue"));
+                            }
+                        }
+                    });
+    }
+</script>
+<div class="control-group">
+    <label class="control-label">缩略图</label><div class="controls">
+        <a onclick='onclickdialogimg()' style="cursor: pointer;" id="actimg">
+            <img id="uploadImg" src="@(string.IsNullOrEmpty(Model.Thumbs) == true ? "/Areas/Admin/Content/img/upload-pic.png" : Model.Thumbs)" /></a>
+        <input type="hidden" id="Thumbs" name="Thumbs" value="@(string.IsNullOrEmpty(Model.Thumbs) == true ? "/Areas/Admin/Content/img/upload-pic.png" : Model.Thumbs)" />
+    </div>
+</div>
+
+<div class="control-group">
+    <label class="control-label">排序</label><div class="controls">
+        <input id="SortID" name ="SortID" type="text" value ="@(Model.SortID ?? 0)" required regex="num" />
+    </div>
+</div>
+<div class="control-group">
+    <label class="control-label">类别</label><div class="controls">
+        <select id="KID" name="KID" val="@Model.KID" required>
+            @Html.Raw(ViewData["GetParentOption"])
+        </select>
+    </div>
+</div>
+<div class="control-group">
+    <label class="control-label">标题</label><div class="controls">
+        <input id="Title" name ="Title" type="text" value ="@Model.Title" required />
+    </div>
+</div>
+<div class="control-group">
+    <label class="control-label">简述</label><div class="controls">
+        <textarea id="Summary" name="Summary" required style="width: 575px; height: 70px;" maxlength="150">@Model.Summary</textarea>
+    </div>
+</div>
+<div class="control-group">
+    <label class="control-label">关建字</label><div class="controls">
+        <textarea id="KeyWords" name="KeyWords" required style="width: 575px; height: 70px;" maxlength="50">@Model.KeyWords</textarea>
+    </div>
+</div>
+<div class="control-group">
+    <label class="control-label">内容</label><div class="controls">
+        <input class="Fckeditor" id="Content" name ="Content" type="text" value ="@Model.Content" />
+    </div>
+</div>
+<div class="control-group">
+    <label class="control-label">引用</label><div class="controls">
+        <input id="Quote" name ="Quote" type="text" value ="@Model.Quote" />
+    </div>
+</div>
+
+<div class="control-group">
+    <label class="control-label">附件</label><div class="controls">
+        <div id="uploader" style="background-color: #F7F7F7;">
+            <p></p>
+        </div>
+        <div id="uploader_msg">
+            <ul id="uploader_msg_ul" class="plupload_filelist_content plupload_view_list" unselectable="on">
+
+                @if (!string.IsNullOrEmpty(Model.Files))
+                {
+                    foreach (var src in Model.Files.Split(','))
+                    {
+                    <li class="plupload_delete ui-state-default plupload_file">
+                        <div class="plupload_file_thumb"></div>
+                        <div class="plupload_file_name"><span class="plupload_file_namespan"><a href="@src" target="_blank">@src</a></span></div>
+                        <div class="plupload_file_action">
+                            <div class="ui-icon ui-icon-circle-check"></div>
+                        </div>
+                        <input type="hidden" name="upaddress" value="@src">
+                    </li>
+                    }
+                }
+            </ul>
+        </div>
+    </div>
+</div>
+

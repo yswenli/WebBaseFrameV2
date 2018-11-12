@@ -1,0 +1,46 @@
+﻿@{
+    Layout = null;
+}
+<!--[if lt IE 7]> <html class="lt-ie9 lt-ie8 lt-ie7" lang="zh"> <![endif]-->
+<!--[if IE 7]>    <html class="lt-ie9 lt-ie8" lang="zh"> <![endif]-->
+<!--[if IE 8]>    <html class="lt-ie9" lang="zh"> <![endif]-->
+<!--[if gt IE 8]>
+<html lang="zh">
+<!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="R&D wenli 2015">
+    <!-- Bootstrap Stylesheet -->
+    <link rel="stylesheet" href="/areas/admin/content/js/bootstrap/css/bootstrap.min.css" />
+    <!-- Main Layout Stylesheet -->
+    <link rel="stylesheet" href="/areas/admin/content/error.min.css" media="screen">
+    <title>I'm Sorroy , 出错了!</title>
+</head>
+<body>
+    <div id="error-wrap">
+        <div id="error-digits">
+            <span>4</span>
+            <span>0</span>
+            <span>4</span>
+        </div>
+        <h1>I'm Sorroy , 出错了!</h1>
+        <p id="errormsg">
+            详细：因为您访问的地址不存在，您可以点击这里 <a href="/">主页</a>
+        </p>
+    </div>
+    <input type="hidden" id="error" value="@ViewData["error"]" />
+    <!-- Core Scripts -->
+    <script src="/areas/admin/content/js/jquery.min.js"></script>
+    <script src="/areas/admin/content/js/jquery.placeholder.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            if ($("#error").val() != "") {
+                $("#error-digits").html("<span>5</span><span>0</span><span>0</span>");
+                $("#errormsg").html($("#error").val());
+            }
+        });
+    </script>
+</body>
+</html>

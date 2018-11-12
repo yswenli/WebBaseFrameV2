@@ -1,0 +1,32 @@
+﻿<link href="/Areas/Admin/Content/js/treeview/jquery.treeview.css" rel="stylesheet" />
+<script src="/Areas/Admin/Content/js/treeview/jquery.treeview.js"></script>
+<ul id="permissionTree" class="filetree">
+    <li><span>
+        <img src="~/Areas/Admin/Content/js/artDialog/skins/icons/loading.gif" style="position: relative; top: -3px; left: 5px; margin-right: 3px;" />
+        正在加载中，请稍候...</span>
+    </li>
+</ul>
+<script type="text/javascript">
+    $(function () {
+        $.post("/admin/PermissionMap/AjaxGetMap", null, function (data) {
+            $("#permissionTree").html(data).treeview();
+            //赋值
+            var id = "@ViewData["ID"]";
+            var type = "@ViewData["Type"]";
+            $.post("/Admin/PermissionData/GetPDatas", { id: id, type: type }, function (sdata) {
+                $("input[name='pData']").each(function () {
+                    var pData = $(this);
+                    var sdataArr = sdata.split(",");
+                    for (var i = 0; i < sdataArr.length; i++) {
+                        if (sdataArr[i] == pData.val()) {
+                            pData.attr("checked", "checked");
+                            break;
+                        }
+                    }
+                });
+            });
+            //
+            $('input[type="checkbox"]').css({ "position": "relative", "top": "-4px" });
+        });
+    });
+</script>

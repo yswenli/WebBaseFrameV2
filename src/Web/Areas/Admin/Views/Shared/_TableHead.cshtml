@@ -1,0 +1,65 @@
+﻿@using Libraries;
+<div class="dt_header">
+    <form action="" method="get">
+        <div class="row-fluid">
+            <div class="span6">
+                <div class="btn-group pull-left">
+                    <a class="btn" href="javascript:void(0);" onclick="Delete('/Admin/TReservation/Delete',this,'all');"><span><i class="icol-bin-closed"></i>删除</span></a>
+                    <a class="btn"><span><i class="icol-doc-excel-csv"></i>导出</span> </a>
+                    <a class="btn"><span><i class="icol-printer"></i>打印</span></a>
+                    <a class="btn" href="javascript:void(0)" onclick="$('#control_search').slideToggle()"><span><i class="icos-preview"></i>筛选</span></a>
+                </div>
+            </div>
+            <div class="span6">
+                <div class="pull-right">
+                    <label>
+                        <select name="pagesize" class="input-mini">
+                            <option value="10" selected="selected">10</option>
+                            <option value="25">25</option>
+                            <option value="50">50</option>
+                            <option value="100">100</option>
+                        </select>
+                        条记录每页</label>
+                </div>
+            </div>
+        </div>
+        <div class="alert alert-info" id="control_search" style="display: none">
+            <div class="row-fluid">
+                <div class="control-group">
+                    <label class="control-label">
+                        会议ID</label><div class="controls">
+                            <input name="ID" type="text" />
+                        </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label">
+                        会议名称</label><div class="controls">
+                            <input name="Title" type="text" />
+                        </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label">
+                        会议类型</label><div class="controls">
+                            @Html.DropDownList("ResType", "Dictionary", "IsDeleted<>1 and DictionaryTypeID=" + Common.EnumHelper.EnumDictionaryType.会议预约类型.GetHashCode(), string.Empty, "ID", "Name", "", "")
+                        </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label">
+                        会议状态</label><div class="controls">
+                            @Html.DropDownList("Statue", "Dictionary", "IsDeleted<>1 and DictionaryTypeID=" + Common.EnumHelper.EnumDictionaryType.会议详细状态.GetHashCode(), string.Empty, "ID", "Name", "", "")
+                            <button class="btn skip" type="submit"><i class="icos-magnifying-glass"></i>搜 索</button>
+                        </div>
+                </div>
+                @*<div class="control-group">
+                    <label class="control-label">
+                        会议时间</label><div class="controls">
+                            <input name="StartTime" type="text" class="datetime" />
+                            -
+                                            <input name="EndTime" type="text" class="datetime" />
+                            <button class="btn skip" type="submit"><i class="icos-magnifying-glass"></i>搜 索</button>
+                        </div>
+                </div>*@
+            </div>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,134 @@
+﻿.auto-gernerator {
+    display: block;
+    width: 537px;
+    height: 559px;
+    overflow: hidden;
+    position: relative;
+    background: url('/Areas/Manager/Content/img/bg.png') no-repeat;
+    margin: 0px auto;
+}
+
+    .auto-gernerator .top {
+        position: absolute;
+        top: 138px;
+        left: 45px;
+        display: block;
+        width: 456px;
+        height: 37px;
+        word-wrap: break-word;
+    }
+
+.middle-table-list {
+    position: absolute;
+    top: 211px;
+    left: 25px;
+    display: block;
+    width: 116px;
+    height: 264px;
+    overflow: scroll;
+    word-wrap: hyphenate;
+}
+
+.middle-table-selectedlist {
+    position: absolute;
+    top: 211px;
+    left: 245px;
+    display: block;
+    width: 116px;
+    height: 264px;
+    overflow: scroll;
+    word-wrap: hyphenate;
+}
+
+    .middle-table-list div, .middle-table-selectedlist div {
+        cursor: default;
+    }
+
+        .middle-table-list div.selected, .middle-table-selectedlist div.selected {
+            background-color: blue;
+            color: white;
+        }
+
+#middle-table-buttons-allmove {
+    position: absolute;
+    top: 259px;
+    left: 159px;
+    display: block;
+    width: 70px;
+    height: 20px;
+    cursor: pointer;
+}
+
+#middle-table-buttons-add {
+    position: absolute;
+    top: 315px;
+    left: 159px;
+    display: block;
+    width: 70px;
+    height: 20px;
+    cursor: pointer;
+}
+
+#middle-table-buttons-remove {
+    position: absolute;
+    top: 372px;
+    left: 159px;
+    display: block;
+    width: 70px;
+    height: 20px;
+    cursor: pointer;
+}
+
+#middle-table-buttons-allremove {
+    position: absolute;
+    top: 429px;
+    left: 159px;
+    display: block;
+    width: 70px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.middle-model-temppath {
+    position: absolute;
+    top: 208px;
+    left: 379px;
+    display: block;
+    width: 130px;
+    height: 33px;
+}
+
+#temppath-select {
+    width: 125px;
+}
+
+.middle-menu {
+    position: absolute;
+    top: 289px;
+    left: 379px;
+    display: block;
+    width: 130px;
+    height: 33px;
+}
+
+#menu-select {
+    width: 125px;
+}
+
+.middle-option {
+    position: absolute;
+    top: 390px;
+    left: 379px;
+    display: block;
+    width: 130px;
+    height: 84px;
+}
+.auto-gernerator .bottom{
+    position: absolute;
+    top: 507px;
+    left: 377px;
+    display: block;
+    width: 140px;
+    height: 38px;
+    cursor:pointer;
+}

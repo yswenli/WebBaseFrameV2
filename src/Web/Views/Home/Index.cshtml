@@ -1,0 +1,52 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@Html.Partial("_Header")
+<script src="~/Content/js/s3Slider.js"></script>
+<div id="index-content">
+    <div>
+        <h4>点击<a href="/Home/Demo">这里</a>查看集成HTML Demo</h4>
+    </div>
+    <div id="slider" style="left: 0px; top: 0px; right: 0px;">
+        <ul id="sliderContent">
+            <li class="sliderImage">
+                <img src="/Content/images/img1.jpg" width="840" height="600" alt="">
+                <span class="bottom">webBaseFrame框架，尽可能的洁简和集成</span>
+            </li>
+            <li class="sliderImage">
+                <img src="/Content/images/img2.jpg" width="840" height="600" alt="">
+                <span class="bottom">C#反射架构数据库ORM，加快开发效率</span>
+            </li>
+            <li class="sliderImage">
+                <img src="/Content/images/img3.jpg" width="840" height="600" alt="">
+                <span class="bottom">常用功能敏捷API</span>
+            </li>
+            <li class="sliderImage">
+                <img src="/Content/images/img4.jpg" width="840" height="600" alt="">
+                <span class="bottom">web生成一站式服务</span>
+            </li>
+            <li class="sliderImage">
+                <img src="/Content/images/img5.jpg" width="840" height="600" alt="">
+                <span class="bottom">功能强大的后台管理、数据库操作、集成的HTMl插件功能</span>
+            </li>
+            <li class="sliderImage">
+                <img src="/Content/images/img6.jpg" width="840" height="600" alt="">
+                <span class="bottom">全自动权限架构</span>
+            </li>
+            <div class="clear sliderImage"></div>
+        </ul>
+    </div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#slider').s3Slider({
+            timeOut: 3000
+        });
+    });
+</script>
+<div class="row alert" style="text-align:center;">
+    <p>
+        WebBaseFrame 2015 Develop By wenli
+    </p>
+</div>

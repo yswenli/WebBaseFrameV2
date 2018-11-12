@@ -1,0 +1,58 @@
+﻿@using System.Data;
+@using Libraries;
+@using MvcPager;
+@using WEF.MvcPager;
+@model PagedList<DataRow>
+@{ DataTable column = ViewData["column"] as DataTable; var tableName = Request.QueryString["tableName"];}
+<table class="table table-striped">
+    <thead>
+        <tr>
+            @foreach (DataColumn item in column.Columns)
+            {
+                <th>
+                    @item.ColumnName
+                </th>
+            }
+            <th class="btns-column">
+                操作
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (DataRow item in Model)
+        {
+            <tr>
+                @for (int i = 0; i < column.Columns.Count; i++)
+                {
+                    <td>@item[i]</td>
+                }
+                <td class="btns-column">
+                    <a class="icon-pencil tip" title="编辑" href="/Manager/DataBase/EditRecord?tableName=@Url.Encode(tableName)&id=@item[0]"></a>
+                    <a class="icon-trash tip" title="删除" href="javascript:;" onclick="removeRecord('@Url.Encode(tableName)','@item[0]')"></a>
+                </td>
+
+            </tr>
+        }
+    </tbody>
+</table>
+<div class="dt_footer fixed">
+    <div class="row-fluid">
+        <div class="span4">
+            <div class="dataTables_info" id="DataTables_Table_0_info">
+                @Model.CurrentPageIndex/@Model.TotalPageCount 页, 共@(Model.TotalItemCount)条记录
+            </div>
+        </div>
+        <div class="span8">
+            <div class="pagination">@Html.Pager(Model)</div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    function removeRecord(tableName, id) {
+        if (confirm("确定要删除吗？")) {
+            $.get("/Manager/DataBase/RemoveRecord?rnd=" + (new Date().getMilliseconds()), { "tableName": tableName, "id": id }, function (data) {
+                location.reload();
+            });
+        }
+    }
+</script>

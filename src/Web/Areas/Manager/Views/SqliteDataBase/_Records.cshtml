@@ -1,0 +1,55 @@
+﻿@using System.Data;
+@using Libraries;
+@using WEF.MvcPager;
+@model PagedList<DataRow>
+@{ 
+    DataTable column = ViewData["column"] as DataTable;
+    var tableName = Request.QueryString["tableName"];
+}
+@if (Model != null)
+{
+    <table class="table table-bordered table-striped table-hover">
+        <thead>
+            <tr>
+                <th>#</th>
+                @foreach (DataRow item in column.Rows)
+                {
+                    <th>
+                        @item["ColumnName"]
+                    </th>
+                }
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (int i = 0; i < Model.Count; i++)
+            {
+                <tr>
+                    <td>@i</td>
+                    @for (int j = 0; j < column.Rows.Count; j++)
+                    {
+                        <td>@Model[i][j]</td>
+                    }
+                    <td>
+                        <div class="btn-group" data-toggle="buttons-radio">
+                            <button type="button" class="btn btn-warning" onclick="location.href='/Manager/SqliteDataBase/EditRecord/@ViewBag.TableName?key=@(Model[i][0])'">编辑</button>
+                            <button type="button" class="btn btn-danger" onclick="if(confirm('确定要删除数据吗？')){ location.href='/Manager/SqliteDataBase/DeleteRecord/@ViewBag.TableName?key=@(Model[i][0])';}">删除</button>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <div class="dt_footer fixed">
+        <div class="row-fluid">
+            <div class="col-md-4">
+                <div class="dataTables_info" id="DataTables_Table_0_info">
+                    @Model.CurrentPageIndex/@Model.TotalPageCount 页, 共@(Model.TotalItemCount)条记录
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="pagination">@Html.Pager(Model)</div>
+            </div>
+        </div>
+    </div>
+}

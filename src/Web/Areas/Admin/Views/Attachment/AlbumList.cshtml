@@ -1,0 +1,50 @@
+﻿@{
+    ViewBag.Title = "AlbumList";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+@using WebBaseFrame.Models
+@using Common;
+@using WEF.MvcPager;
+@model PagedList<Attachment>
+<ul class="attachment-list" id="fsUploadProgress">
+    @foreach (Attachment item in Model)
+    {
+        <li>
+            <div class="img-wrap">
+                <a href="javascript:;" onclick="javascript:album_cancel(this,'@item.ID','@UploadHepler.AttachmentUrl(item.Url)')">
+                    <div class="icon">
+                    </div>
+                    <img src="@UploadHepler.AttachmentIcoUrl(item.Url, "png")" width="80"
+                        path="@UploadHepler.AttachmentUrl(item.Url)" title="@item.Name" /></a>
+            </div>
+        </li>
+    }
+</ul>
+<div class="pagination">@Html.Pager(Model)</div>
+
+<link href="/Areas/Admin/content/js/swfupload/swfupload.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript">
+    $(document).ready(function () {
+        set_status_empty();
+    });
+    function set_status_empty() {
+        parent.window.$('#att-status').html('');
+    }
+    function album_cancel(obj, id, source) {
+        var src = $(obj).children("img").attr("path");
+        if ($(obj).hasClass('on')) {
+            $(obj).removeClass("on");
+            var imgstr = parent.window.$("#att-status").html();
+            var length = $("a[class='on']").children("img").length;
+            var strs = '';
+            for (var i = 0; i < length; i++) { strs += '|' + $("a[class='on']").children("img").eq(i).attr('path'); }
+            parent.window.$('#att-status').html(strs);
+        } else {
+            var num = parent.window.$('#att-status').html().split('|').length;
+            var file_upload_limit = '8';
+            if (num > file_upload_limit) { alert('不能选择超过' + file_upload_limit + '个附件'); return false; }
+            $(obj).addClass("on");
+            parent.window.$('#att-status').append('|' + src);
+        }
+    }
+</script>

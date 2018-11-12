@@ -1,0 +1,491 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.ComponentModel;
+using DbUtility;
+using MvcPager;
+
+namespace Models
+{
+	#region 实体模型
+    public partial class [ClassName]:INotifyPropertyChanged
+    {
+
+		[FieldName]
+
+    }
+	#endregion
+	#region 基本业务
+    public partial class [ClassName]Logic
+    {
+        /// <summary>
+        /// [ClassName]数据操作对象
+        /// </summary>
+        private [ClassName]Service os = new [ClassName]Service();
+        /// <summary>
+        /// 构造函数
+        /// </summary>
+        public [ClassName]Logic()
+        {
+            
+        }
+	    /// <summary>
+        /// 构造函数
+        /// </summary>
+        /// <param name="obj">操作数据库对象</param>
+        public [ClassName]Logic(DBContext obj)
+        {
+            os = new [ClassName]Service(obj);
+        }
+        /// <summary>
+        /// 添加[ClassName]
+        /// </summary>
+        /// <param name="obj">添加对象</param>
+        /// <returns>成功True失败False</returns>
+        public bool Add([ClassName] obj)
+        {
+            try
+            {
+				if (obj.ID > 0) throw new Exception("数据库已存在此数据");
+
+                string result = os.Add(obj);
+
+                return os.Save(result);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+		/// <summary>
+        /// 添加[ClassName]
+        /// </summary>
+        /// <param name="obj">添加对象</param>
+        /// <returns>返回ID</returns>
+        public int Create([ClassName] obj)
+        {
+            try
+            {
+			    if (obj.ID > 0) throw new Exception("数据库已存在此数据");
+                string result = os.Add(obj);
+                os.Save(result);
+                return Convert.ToInt32(new DBContext().ExecuteScalarSql("select max(id) from [[ClassName]]"));
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+		/// <summary>
+        /// 批量添加
+        /// </summary>
+        public bool Add(List<[ClassName]> obj)
+        {
+            try
+            {
+                List<string> result = new List<string>();
+
+                foreach ([ClassName] item in obj)
+                {
+                    if (item.ID == 0)
+                    {
+                        string sql = os.Add(item);
+                        result.Add(sql);
+                    }
+                }
+
+                return os.Save(result);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        /// <summary>
+        /// 修改[ClassName]
+        /// </summary>
+        /// <param name="obj">修改对象</param>
+        /// <returns>成功True失败False</returns>
+        public bool Update([ClassName] obj)
+        {
+            try
+            {
+				if (obj.ID == 0) throw new Exception("数据库不存在当前数据");
+                string result = os.Update(obj);
+                return os.Save(result);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+		/// <summary>
+        /// 批量修改
+        /// </summary>
+        /// <param name="olts"></param>
+        /// <returns></returns>
+        public bool Update(List<[ClassName]> olts)
+        {
+            try
+            {
+                string sql = "";
+                foreach (var item in olts)
+                {
+                    sql += os.Update(item) + " ";
+                }
+                return os.Save(sql);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+		/// <summary>
+        /// 根据编号删除[ClassName]，此处为逻辑删除，实为更新IsDelete字段
+        /// </summary>
+        /// <param name="id">编号</param>
+        /// <returns>成功True失败False</returns>
+        public bool Delete(int id)
+        {
+            try
+            {
+                string result = os.Update(new [ClassName] { ID = id, IsDeleted = true });
+
+                return os.Save(result);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+		/// <summary>
+        /// 删除[ClassName]，此处为逻辑删除，实为更新IsDelete字段
+        /// </summary>
+        /// <param name="obj">删除对象</param>
+        /// <returns>成功True失败False</returns>
+        public bool Delete([ClassName] obj)
+        {
+            string sql = "";
+            try
+            {
+                var olts = os.GetObjects<[ClassName]>(obj);
+                if (olts != null)
+                {
+                    foreach (var item in olts)
+                    {
+                        if (item.ID > 0)
+                        {
+                            item.IsDeleted = true;
+                            sql += os.Update(item) + " ";
+                        }
+                    }
+					return os.Save(sql);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return false;
+        }
+		/// <summary>
+        /// 删除[ClassName]集合，此处为逻辑删除，实为更新IsDelete字段
+        /// </summary>
+        /// <param name="objs">删除对象集合</param>
+        /// <returns>成功True失败False</returns>
+        public bool Delete(IList<[ClassName]> objs)
+        {
+            try
+            {
+                if (objs == null || objs.Count == 0) return false;
+
+                StringBuilder sql = new StringBuilder();
+
+                foreach (var item in objs)
+                {
+                    if (item.ID > 0)
+                    {
+                        item.IsDeleted = true;
+
+                        string result = os.Update(item) + " ";
+
+                        sql.Append(result);
+                    }
+                }
+
+                return os.Save(sql.ToString());
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+		/// <summary>
+        /// 根据编号删除[ClassName]，物理删除
+        /// </summary>
+        /// <param name="id">编号</param>
+        /// <returns>成功True失败False</returns>
+        public bool Remove(int id)
+        {
+            try
+            {
+                string result = os.Delete(new [ClassName] { ID = id });
+
+                return os.Save(result);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+		/// <summary>
+        /// 根据编号删除[ClassName]，物理删除
+        /// </summary>
+        /// <param name="obj">查询条件对象</param>
+        /// <returns>成功True失败False</returns>
+        public bool Remove([ClassName] obj)
+        {
+            try
+            {
+			    if (obj.ID < 1) throw new Exception("数据库不存在当前数据");
+                string result = os.Delete(obj);
+                return os.Save(result);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+		/// <summary>
+        /// 根据编号删除[ClassName]，物理删除
+        /// </summary>
+        /// <param name="obj">查询条件对象</param>
+        /// <returns>成功True失败False</returns>
+        public bool Remove(IList<[ClassName]> objs)
+        {
+            try
+            {
+                string result = "";
+                foreach (var obj in objs)
+                {
+                    if (obj.ID > 0)
+                    {
+                        result = os.Delete(obj);
+                        os.Save(result);
+                    }
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        /// <summary>
+        /// 获取[ClassName]集合
+        /// </summary>
+        /// <returns>返回[ClassName]集合</returns>
+        public List<[ClassName]> Get[ClassName]s()
+        {
+            List<[ClassName]> objs = os.GetObjects<[ClassName]>(new [ClassName]() { IsDeleted = false });
+
+            return objs;
+        }
+        /// <summary>
+        /// 获取[ClassName]集合
+        /// </summary>
+        /// <param name="obj">查询条件</param>
+        /// <returns>返回[ClassName]集合</returns>
+        public List<[ClassName]> Get[ClassName]s([ClassName] obj)
+        {
+            obj.IsDeleted = false;
+
+            List<[ClassName]> objs = os.GetObjects(obj);
+
+            return objs;
+        }
+		 /// <summary>
+        /// 获取[ClassName]集合
+        /// </summary>
+        /// <param name="obj">查询条件</param>
+        /// <param name="where">特殊条件</param>
+        /// <returns>返回[ClassName]集合</returns>
+        public List<[ClassName]> Get[ClassName]s([ClassName] obj, string where)
+        {
+            obj.IsDeleted = false;
+
+            List<[ClassName]> objs = os.GetObjects(obj, where);
+
+            return objs;
+        }
+        /// <summary>
+        /// 获取[ClassName]集合
+        /// </summary>
+        /// <param name="obj">查询条件</param>
+        /// <param name="where">特殊条件</param>
+        ///  <param name="orderby">排序</param>
+        /// <returns>返回[ClassName]集合</returns>
+        public List<[ClassName]> Get[ClassName]s([ClassName] obj,string where, string order)
+        {
+            obj.IsDeleted = false;
+
+            List<[ClassName]> objs = os.GetObjects(obj, where, order,string.Empty);
+
+            return objs;
+        }
+		/// <summary>
+        /// 获取[ClassName]集合
+        /// </summary>
+        /// <param name="obj">查询条件</param>
+        /// <param name="where">特殊条件</param>
+        /// <param name="orderby">排序</param>
+        /// <param name="orderbyType">排序类型</param>
+        /// <returns>返回[ClassName]集合</returns>
+        public List<[ClassName]> Get[ClassName]s([ClassName] obj, string where,string order,string by)
+        {
+            obj.IsDeleted = false;
+
+            List<[ClassName]> objs = os.GetObjects(obj, where, order,by);
+
+            return objs;
+        }
+        /// <summary>
+        /// 获取[ClassName]集合
+        /// </summary>
+        /// <param name="pageIndex">页数</param>
+        /// <param name="pageCount">每页多少条</param>
+        /// <returns>返回[ClassName]集合</returns>
+        public PagedList<[ClassName]> Get[ClassName]s(int pageIndex, int pageCount)
+        {
+            PagedList<[ClassName]> objs = os.GetObjects(new [ClassName]() { IsDeleted = false }, pageIndex, pageCount);
+
+            return objs;
+        }
+        /// <summary>
+        /// 获取[ClassName]集合
+        /// </summary>
+        /// <param name="pageIndex">页数</param>
+        /// <param name="pageCount">每页多少条</param>
+        /// <param name="obj">查询条件</param>
+        /// <returns>返回[ClassName]集合</returns>
+        public PagedList<[ClassName]> Get[ClassName]s([ClassName] obj, int pageIndex, int pageCount)
+        {
+            obj.IsDeleted = false;
+
+            PagedList<[ClassName]> objs = os.GetObjects(obj,pageIndex, pageCount);
+
+            return objs;
+        }
+		/// <summary>
+        /// 获取[ClassName]集合
+        /// </summary>
+        /// <param name="pageIndex">页数</param>
+        /// <param name="pageCount">每页多少条</param>
+        /// <param name="obj">查询条件</param>
+        /// <returns>返回[ClassName]集合</returns>
+        public PagedList<[ClassName]> Get[ClassName]s(string sql, int pageIndex, int pageCount)
+        {
+            PagedList<[ClassName]> objs = os.GetObjects<[ClassName]>(sql, pageIndex, pageCount);
+            return objs;
+        }
+        /// <summary>
+        /// 获取[ClassName]集合
+        /// </summary>
+        /// <param name="pageIndex">页数</param>
+        /// <param name="pageCount">每页多少条</param>
+        /// <param name="obj">查询条件</param>
+        ///  <param name="where">自定义查询条件</param>
+        /// <returns>返回[ClassName]集合</returns>
+        public PagedList<[ClassName]> Get[ClassName]s([ClassName] obj, int pageIndex, int pageCount, string where)
+        {
+            obj.IsDeleted = false;
+
+            PagedList<[ClassName]> objs = os.GetObjects(obj, pageIndex, pageCount, where);
+
+            return objs;
+        }
+		 /// <summary>
+        /// 获取[ClassName]集合
+        /// </summary>
+        /// <param name="pageIndex">页数</param>
+        /// <param name="pageCount">每页多少条</param>
+        /// <param name="obj">查询条件</param>
+        ///  <param name="orderby">排序</param>
+        /// <returns>返回[ClassName]集合</returns>
+        public PagedList<[ClassName]> Get[ClassName]s([ClassName] obj, int pageIndex, int pageCount, string order, string by)
+        {
+            obj.IsDeleted = false;
+
+            PagedList<[ClassName]> objs = os.GetObjects(obj, pageIndex, pageCount, string.Empty, order,by);
+
+            return objs;
+        }
+		/// <summary>
+        /// 获取[ClassName]集合
+        /// </summary>
+        /// <param name="pageIndex">页数</param>
+        /// <param name="pageCount">每页多少条</param>
+        /// <param name="obj">查询条件</param>
+        ///  <param name="orderby">排序</param>
+        /// <returns>返回[ClassName]集合</returns>
+        public PagedList<[ClassName]> Get[ClassName]s([ClassName] obj, int pageIndex, int pageCount,string where, string order, string by)
+        {
+            obj.IsDeleted = false;
+
+            PagedList<[ClassName]> objs = os.GetObjects(obj, pageIndex, pageCount, where, order, by);
+
+            return objs;
+        }
+        /// <summary>
+        /// 获取[ClassName]
+        /// </summary>
+        /// <param name="obj">查询条件</param>
+        /// <returns>返回[ClassName]</returns>
+        public [ClassName] Get[ClassName]([ClassName] obj)
+        {
+			obj.IsDeleted = false;
+			
+            [ClassName] entity = os.GetObject(obj);
+
+            return entity;
+        }
+        /// <summary>
+        /// 根据编号获取[ClassName]
+        /// </summary>
+        /// <param name="id">编号</param>
+        /// <returns>返回[ClassName]</returns>
+        public [ClassName] Get[ClassName](int id)
+        {
+            [ClassName] entity = os.GetObject(new [ClassName] { ID = id, IsDeleted = false });
+
+            return entity;
+        }
+
+    }
+	#endregion
+
+	#region 基本数据库访问
+    internal partial class [ClassName]Service : EntityService
+    {
+         /// <summary>
+        /// 构造函数
+        /// </summary>
+        public [ClassName]Service()
+        {
+            db = new DBContext();
+        }
+        /// <summary>
+        /// 构造函数
+        /// </summary>
+        /// <param name="obj">操作数据库对象</param>
+        public [ClassName]Service(DBContext obj)
+        {
+            db = obj;
+        }
+      
+    }
+	#endregion
+}

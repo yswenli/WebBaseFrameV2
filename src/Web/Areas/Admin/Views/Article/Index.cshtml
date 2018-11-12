@@ -1,0 +1,93 @@
+﻿@using MvcPager;
+@using WEF.MvcPager;
+@using Libraries;
+@model PagedList<WebBaseFrame.Models.Article>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<div id="articlecontent">
+    <div id="treeDiv">
+        <iframe id="treeFrame" src="/admin/article/treeview" marginwidth="0" marginheight="0" name="treeFrameName"></iframe>
+    </div>
+    <div id="articleList" class="row-fluid">
+        <div class="datatable span12">
+            <div class="navbar">
+                <div class="navbar-inner">
+                    @Html.CreateButton("创建新记录", "/admin/article/create", new { id = "createLink", href = "javascript:;", onclick = "openDialog('创建内容', '/admin/article/create?KID='+$('#KID').val(), 1000, 540, 1)" })
+                    <div class="nav-collapse pull-right">
+                        <ul class="nav">
+                            <li class="active"><a href="javascript:void(0);"><i class="icol-table"></i>列表</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="dt-pages tab-content">
+                <div class="dt_header">
+                    <form action="/admin/article/index" method="get">
+                        <div class="row-fluid">
+                            <div class="span6">
+                                <div class="btn-group pull-left">
+                                    @Html.DeleteAllButton("删除", "/Admin/Article/Delete", new { href = "javascript:void(0);", onclick = "Delete('/Admin/Article/Delete',this,'all');" });
+                                    <a class="btn"><span><i class="icol-doc-excel-csv"></i>导出</span></a>
+                                    <a class="btn"><span><i class="icol-printer"></i>打印</span></a>
+                                    <a class="btn" href="javascript:void(0)" onclick="$('#control_search').slideToggle()"><span><i class="icos-preview"></i>筛选</span></a>
+                                </div>
+                            </div>
+                            <div class="span6">
+                                <div class="pull-right">
+                                    <label>
+                                        <select name="pagesize" class="input-mini">
+                                            <option value="10" selected="selected">10</option>
+                                            <option value="25">25</option>
+                                            <option value="50">50</option>
+                                            <option value="100">100</option>
+                                        </select>
+                                        条记录每页
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="alert alert-info" id="control_search" style="@(string.IsNullOrEmpty(Request.QueryString["KID"]) ? "display: none" : "");margin-bottom:0px;">
+                            <div class="control-group">
+                                <label class="control-label">
+                                    类别
+                                </label><div class="controls">
+                                    <input id="KID" name="KID" type="text" value="@Request.QueryString["KID"]" />
+                                    <button class="btn skip" type="submit" id="searchbutton"><i class="icos-magnifying-glass"></i>搜 索</button>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </form>
+                </div>
+                <div class="dataTables_wrapper">
+                    <div>@Html.Partial("_Index", Model, ViewData)</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    function PageResize() {
+        var treeFrameWidth = 190;
+        var treeFrameHeight = $(window).height() - 10;
+        $("#treeDiv").css("width", treeFrameWidth);
+        $("#treeFrame").css("height", treeFrameHeight);
+        $("#treeDiv").css("float", "left");
+        $("#treeDiv").css("marginRight", 12);
+        var articleListWidth = $(window).width() - treeFrameWidth - 12 - 14;
+        if (articleListWidth < 368) {
+            articleListWidth = 368;
+        }
+        $("#articleList").css("width", articleListWidth);
+    }
+    //调整页面布局
+    $(function () {
+        PageResize();
+        $(window).resize(function () {
+            PageResize();
+        });
+        $(".navbar").css("marginBottom", 0);
+    });
+</script>

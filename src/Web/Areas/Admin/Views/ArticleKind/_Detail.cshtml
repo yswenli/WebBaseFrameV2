@@ -1,0 +1,22 @@
+﻿@model WebBaseFrame.Models.ArticleKind
+@using WebBaseFrame.Models
+@{
+    string kind = "";
+    try
+    {
+        kind = new ArticleKindRepository().GetArticleKind(new ArticleKind() { ID = Model.PID ?? 0 }).Name;
+    }
+    catch { }
+}
+<div class="control-group">
+    <label class="control-label">排序</label><div class="controls padt5">@Model.SortID</div>
+</div>
+<div class="control-group">
+    <label class="control-label">父类</label><div class="controls padt5">@kind</div>
+</div>
+<div class="control-group">
+    <label class="control-label">名称</label><div class="controls padt5">@Model.Name</div>
+</div>
+<div class="control-group">
+    <label class="control-label">描述</label><div class="controls padt5">@Model.Discription</div>
+</div>

@@ -1,0 +1,19 @@
+﻿@using WebBaseFrame.Models
+@{
+    ViewBag.Title = "TreeView";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<link href="~/Areas/Admin/Content/js/treeview/jquery.treeview.css" rel="stylesheet" />
+<script src="~/Areas/Admin/Content/js/treeview/jquery.treeview.js"></script>
+@Html.Raw(ViewData["treeView"])
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#browser").treeview();
+        $("#browser .file").click(function () {
+            $(window.parent.document).find(".controls").children("input").val($(this).attr("data-id"));
+            $(window.parent.document).find("#searchbutton").click();
+        });
+        $("#browser .file").css("cursor", "pointer");
+        $("html,body").css("background", "#fff");
+    });
+</script>

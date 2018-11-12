@@ -1,0 +1,96 @@
+﻿@{
+    ViewBag.Title = "Mail";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+@model WebBaseFrame.Models.MailSetting
+<div class="row-fluid">
+    <div class="span12 widget">
+        <div class="widget-header light">
+            <span class="title"><i class="icol-email-open-image"></i>邮箱设置</span>
+        </div>
+        <div class="widget-content form-container">
+            <form action="" method="post" id="myform" class="form-horizontal validator">
+                <input type="hidden" name="ID" value="@Model.ID" />
+                <div class="control-group">
+                    <label class="control-label">
+                        邮件服务器
+                    </label>
+                    <div class="controls">
+                        <input type="text" name="MailServer" id="MailServer"
+                                    size="30" value="@Model.MailServer" required />
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label">
+                        邮件发送端口
+                    </label>
+                    <div class="controls">
+                        <input type="text" name="MailPort" id="MailPort" size="30"
+                                    value="@Model.MailPort" required regex="num" />
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label">
+                        发件人地址
+                    </label>
+                    <div class="controls">
+                        <input type="text" name="MailFrom" id="MailFrom" size="30"
+                                    value="@Model.MailFrom" required regex="email" />
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label">
+                        AUTH LOGIN验证
+                    </label>
+                    <div class="controls">
+                        <input name="MailAuth" value="1" type="radio" val="@Model.MailAuth">
+                        开启
+                <input name="MailAuth" value="0" type="radio">
+                        关闭
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label">
+                        SSL验证
+                    </label>
+                    <div class="controls">
+                        <input name="MailSSL" value="1" type="radio" val="@Model.MailSSL">
+                        开启
+                <input name="MailSSL" value="0" type="radio">
+                        关闭
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label">
+                        验证用户名
+                    </label>
+                    <div class="controls">
+                        <input type="text" name="MailUser" id="MailUser" size="30"
+                                    value="@Model.MailUser" required regex="email" />
+                    </div>
+
+                </div>
+                <div class="control-group">
+                    <label class="control-label">
+                        验证密码
+                    </label>
+                    <div class="controls">
+                        <input type="password" name="MailPassword" id="MailPassword"
+                                    size="30" value="@Model.MailPassword" />
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label">
+                        管理员邮箱
+                    </label>
+                    <div class="controls">
+                        <input type="text" name="AdminMail" id="AdminMail" size="30" value="@Model.AdminMail" required regex="email" />
+                    </div>
+                </div>
+                <div class="form-actions">
+                    <input type="submit" class="btn btn-primary" value="保 存" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

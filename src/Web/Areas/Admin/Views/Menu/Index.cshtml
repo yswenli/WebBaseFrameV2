@@ -1,0 +1,66 @@
+﻿@using MvcPager;
+@using WEF.MvcPager;
+@using Libraries;
+@model PagedList<WebBaseFrame.Models.Menu>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<div class="row-fluid">
+    <div class="datatable span12">
+        <div class="navbar">
+            <div class="navbar-inner">
+                @Html.CreateButton("创建新记录", "/admin/Menu/Create", new { href = "/admin/Menu/Create" })
+                <div class="nav-collapse pull-right">
+                    <ul class="nav">
+                        <li class="active"><a href="javascript:void(0);"><i class="icol-table"></i>列表</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="dt-pages tab-content">
+            <div class="dt_header">
+                <div class="row-fluid">
+                    <div class="span6">
+                        <div class="btn-group pull-left">
+                            @Html.DeleteAllButton("删除", "/Admin/Menu/Delete", new { href = "javascript:void(0);", onclick = "Delete('/Admin/Menu/Delete',this,'all');" })<a class="btn">
+                                <span>
+                                    <i class="icol-doc-excel-csv"></i>导出
+                                </span>
+                            </a>
+                            <a class="btn"><span><i class="icol-printer"></i>打印</span></a>
+                        </div>
+                    </div>
+                    <div class="span6">
+                        <div class="pull-right">
+                            <label>
+                                <select name="pagesize" class="input-mini" val="@Request.QueryString["pagesize"]">
+                                    <option value="10" selected="selected">10</option>
+                                    <option value="25">25</option>
+                                    <option value="50">50</option>
+                                    <option value="100">100</option>
+                                </select>
+                                条记录每页
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <form name="myform" id="myform" action="" method="post">
+                @{ Html.RenderPartial("_Index", Model, ViewData); }
+            </form>
+            <div class="dt_footer">
+                <div class="row-fluid">
+                    <div class="span4">
+                        <div class="dataTables_info" id="DataTables_Table_0_info">
+                            @Model.CurrentPageIndex/@Model.TotalPageCount 页, 共@(Model.TotalItemCount)条记录
+                        </div>
+                    </div>
+                    <div class="span8">
+                        <div class="pagination">@Html.Pager(Model)</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

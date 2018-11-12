@@ -1,0 +1,50 @@
+﻿@model WebBaseFrame.Models.Menu
+@using Common;
+@{
+    int ParentID = 0;
+    if (Model.ID == null && !string.IsNullOrEmpty(Request.QueryString["ParentID"]))
+    {
+        ParentID = int.Parse(Request.QueryString["ParentID"]);
+    }
+    if (Model.ID != null)
+    { ParentID = Model.ParentID ?? 0; }
+}
+<input id="ID" name ="ID" type="hidden" value ="@Model.ID" />
+<div class="control-group">
+    <label class="control-label">
+        上级菜单</label>
+    <div class="controls">
+        <select id="ParentID" name="ParentID" val="@ParentID" class="skip">
+            <option value='0'>≡ 作为一级菜单 ≡</option>
+            @Html.Raw(ViewData["ForeachMenuByOption"])
+        </select>
+    </div>
+</div>
+<div class="control-group">
+    <label class="control-label">
+        名称</label>
+    <div class="controls">
+        <input id="Name" name ="Name" type="text" value ="@Model.Name" required  />
+    </div>
+</div>
+<div class="control-group">
+    <label class="control-label">
+        图标样式</label>
+    <div class="controls">
+        <input id="Icon" name ="Icon" type="text" value ="@(string.IsNullOrEmpty(Model.Icon) ? "icos-list-images" : Model.Icon)" required  />
+    </div>
+</div>
+<div class="control-group">
+    <label class="control-label">
+        链接地址</label>
+    <div class="controls">
+        <input id="Url" name ="Url" type="text" value ="@Model.Url" class="span6 validator_skip"/>
+    </div>
+</div>
+<div class="control-group">
+    <label class="control-label">
+        排序</label>
+    <div class="controls">
+        <input id="Sort" name ="Sort" type="text" value ="@Model.Sort" class="input-mini"  />
+    </div>
+</div>

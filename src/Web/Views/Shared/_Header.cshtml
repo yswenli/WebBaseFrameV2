@@ -1,0 +1,21 @@
+﻿<div id="header">
+    <ul id="clound">
+        <li></li>
+        <li></li>
+    </ul>
+</div>
+<script type="text/javascript">
+    $(function () {
+        var left1 = 0;
+        var left2 = 1920;
+        setInterval(function () {
+            left1--; left2--;
+            if (left2 == 0) {
+                left1 = 0;
+                left2 = 1920;
+            }
+            $("#clound li:eq(0)").css({ "left": left1 });
+            $("#clound li:eq(1)").css({ "left": left2 });
+        }, 50);
+    });
+</script>

@@ -1,0 +1,173 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Manager/Views/Shared/_Layout.cshtml";
+}
+<div class="row-fluid">
+    <div class="span12 widget">
+        <div class="widget-header light">
+            <span class="title"><i class="icon-pencil"></i>MVC生成
+            </span>
+        </div>
+        <div class="widget-content form-container">
+            <div class="auto-gernerator">
+                <div class="top">
+                    @ViewData["conn"]
+                </div>
+                <div class="middle">
+                    <div class="middle-table-list">
+                    </div>
+                    <div>
+                        <div id="middle-table-buttons-allmove"></div>
+                        <div id="middle-table-buttons-add"></div>
+                        <div id="middle-table-buttons-remove"></div>
+                        <div id="middle-table-buttons-allremove"></div>
+                    </div>
+                    <div class="middle-table-selectedlist"></div>
+                    <div class="middle-model-temppath">
+                        <select id="temppath-select">
+                        </select>
+                    </div>
+                    <div class="middle-menu">
+                        <select id="menu-select">
+                        </select>
+                    </div>
+                    <div class="middle-option">
+                        <div>
+                            <label>
+                                <input type="checkbox" name="optionCheckbox" value="全部" />全部</label>
+                        </div>
+                        @*<div>
+                            <label>
+                                <input type="checkbox" name="optionCheckbox" value="实体" checked="checked" />实体</label>
+                        </div>*@
+                        <div>
+                            <label>
+                                <input type="checkbox" name="optionCheckbox" value="控制器" />控制器</label>
+                        </div>
+                        <div>
+                            <label>
+                                <input type="checkbox" name="optionCheckbox" value="视图" />视图</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="bottom" id="generat">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    function eventHanddle(event) {
+        if ($(this).is(".selected")) {
+            $(this).removeClass("selected");
+        }
+        else {
+            $(this).addClass("selected");
+        }
+    }
+    $(function () {
+        $.get("/Manager/AutoGenerator/GetDBTables?rnd=" + (new Date().getMilliseconds()), null, function (data) {
+            $(".middle-table-list").html(data);
+            $(".middle-table-list div").bind("click", eventHanddle);
+            //全部添加
+            $("#middle-table-buttons-allmove").click(function () {
+                $(".middle-table-selectedlist").html($(".middle-table-list").html());
+                $(".middle-table-selectedlist div").bind("click", eventHanddle);
+                $(".middle-table-selectedlist div").each(function () {
+                    $(this).removeClass("selected");
+                });
+            });
+            //添加一批
+            $("#middle-table-buttons-add").click(function () {
+                $(".middle-table-list div").each(function () {
+                    if ($(this).is(".selected") && $(".middle-table-selectedlist").html().indexOf($(this).html()) < 0) {
+                        $(".middle-table-selectedlist").append($(this).prop("outerHTML"));
+                        $(".middle-table-selectedlist div").each(function () {
+                            $(this).removeClass("selected");
+                        });
+                        $(".middle-table-selectedlist div").unbind("click");
+                        $(".middle-table-selectedlist div").bind("click", eventHanddle);
+                    }
+                });
+            });
+            $(".middle-table-selectedlist div").bind("click", eventHanddle);
+            //选择删除
+            $("#middle-table-buttons-remove").click(function () {
+                $(".middle-table-selectedlist div").each(function () {
+                    if ($(this).is(".selected")) {
+                        $(this).remove();
+                    }
+                });
+            });
+            //全部删除
+            $("#middle-table-buttons-allremove").click(function () {
+                $(".middle-table-selectedlist").html("");
+            });
+        });
+        //获取模板列表
+        $.get("/Manager/AutoGenerator/GetTempPathList?rnd=" + (new Date().getMilliseconds()), null, function (data) {
+            $("#temppath-select").html(data).change();
+        });
+        //获取菜单列表
+        $.get("/Manager/AutoGenerator/GetMenuList?rnd=" + (new Date().getMilliseconds()), null, function (data) {
+            $("#menu-select").html(data).change();
+        });
+        //全部选中
+        $("input[name='optionCheckbox']").change(function () {
+            if ($(this).is(":checked") && $(this).val() == "全部") {
+                $("input[name='optionCheckbox']").each(function (index) {
+                    if (index > 0) {
+                        $(this).attr("checked", "checked").change();
+                    }
+                });
+            }
+            else if (!$(this).is(":checked") && $(this).val() == "全部") {
+                $("input[name='optionCheckbox']").each(function (index) {
+                    if (index > 0) {
+                        $(this).removeAttr("checked").change();
+                    }
+                });
+            }
+        });
+        //生成
+        $("#generat").click(function () {
+            if ($(".middle-table-selectedlist").text() == undefined || $(".middle-table-selectedlist").text() == "") {
+                ArtAlertB("请选择要生成的数据表");
+                return;
+            }
+            var isChecked = false;
+            $("input[name='optionCheckbox']").each(function (index) {
+                if (index > 0) {
+                    if ($(this).is(":checked")) {
+                        isChecked = true
+                    }
+                }
+            });
+            if (!isChecked) {
+                ArtAlertB("请选择要生成的对象");
+                return;
+            }
+            var isCover = false;
+            if (confirm("如果存在是否选择直接覆盖？")) {
+                isCover = true;
+            }
+            var tableStr = "";
+            $(".middle-table-selectedlist div").each(function () {
+                tableStr += $(this).html() + ",";
+            });
+            var tempPath = $("#temppath-select").val();
+            var menuOption = $("#menu-select").val();
+            var generateObj = "";
+            $("input[name='optionCheckbox']").each(function () {
+                if ($(this).is(":checked")) {
+                    generateObj += $(this).val() + ",";
+                }
+            });
+            var artAlert = art.dialog({ lock: true, icon: _icon(0), content: "正在生成，请稍候...", ok: false, cancel: false });
+            $.post("/Manager/AutoGenerator/Generate?rnd=" + (new Date().getMilliseconds()), { "tableStr": tableStr, "tempPath": tempPath, "menuOption": menuOption, "generateObj": generateObj, "isCover": isCover }, function (data) {
+                artAlert.close();
+                art.dialog({ lock: true, icon: _icon(0), content: data, time: 2, ok: false, cancel: false });
+            });
+        });
+    });
+</script>

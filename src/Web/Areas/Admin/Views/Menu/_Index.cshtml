@@ -1,0 +1,29 @@
+﻿@using MvcPager;
+@using WEF.MvcPager;
+@using Libraries;
+@model PagedList<WebBaseFrame.Models.Menu>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th class="checkbox-column">
+                <input type="checkbox" name="checkall" onchange="selectall(this,'ID')" />
+            </th>
+            <th>
+                #
+            </th>
+            <th>
+                名称
+            </th>
+            <th>
+                链接地址
+            </th>
+            <th class="btns-column">
+                操作
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @Html.Raw(ViewData["TR"].ToString())
+    </tbody>
+</table>
+@Html.PermissionValideScript()

@@ -1,0 +1,19 @@
+﻿@model WebBaseFrame.Models.Article 
+@{ ViewBag.Title = "Edit";
+   Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<div class="row-fluid">
+    <div class="span12 widget">
+        <div class="widget-header light">
+            <span class="title"><i class="icon-pencil"></i>编辑</span>
+        </div>
+        <div class="widget-content form-container">
+            <form name="myform" id="myform" action="" method="post" class="form-horizontal validator">
+            @Html.Partial("_Form", Model, ViewData)
+            <div class="form-actions fixed">
+                <input id="dosubmit" type="submit" class="btn btn-primary" value="保 存" />
+            </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,66 @@
+﻿@using MvcPager;
+@using WEF.MvcPager;
+@using Libraries;
+@using WebBaseFrame.Models;
+@model PagedList<Article>
+<div id="_Index">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th class="checkbox-column">
+                    <input type="checkbox" name="checkall" onchange="selectall(this,'ID')" />
+                </th>
+                <th class="btns-column">排序</th>
+                <th class="btns-column">类别</th>
+                <th class="btns-column">标题</th>
+                <th class="btns-column">简述</th>
+                <th class="btns-column">
+                    操作
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null && Model.Count > 0)
+            {
+                foreach (var item in Model)
+                {
+                    <tr>
+                        <td class="checkbox-column">
+                            <input type="checkbox" name="ID" value="@item.ID" />
+                        </td>
+                        <td>@item.SortID</td>
+                        <td>@(new ArticleKindRepository().GetArticleKind(item.KID).Name)</td>
+                        <td title="@item.Title">@Common.Character.SubString(item.Title, 6)</td>
+                        <td title="@item.Summary">@Common.Character.SubString(item.Summary, 6)</td>
+                        <td class="btns-column">
+                            @Html.ViewButton("查看", "/admin/Article/Detail", new { href = "/admin/Article/Detail?id=" + item.ID })
+                            @Html.EditButton("编辑", "/admin/Article/Edit", new { href = "javascript:;", onclick = "openDialog('内容', '/admin/Article/Edit?id=" + item.ID + "', 930, 540, 1)" })
+                            @Html.DeleteButton("删除", "/admin/Article/Delete", new { href = "javascript:void(0);", onclick = "Delete('/admin/Article/Delete/" + item.ID + "',this,'one');" })
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>
+<div class="dt_footer fixed">
+    <div class="row-fluid">
+        <div class="span4">
+            <div class="dataTables_info" id="DataTables_Table_0_info">
+                @if (Model != null && Model.Count > 0)
+                {
+                    <div>
+                        @Model.CurrentPageIndex/@Model.TotalPageCount 页, 共@(Model.TotalItemCount)条记录
+                    </div>
+                }
+            </div>
+        </div>
+        <div class="span8">
+            @if (Model != null && Model.Count > 0)
+            {
+                <div class="pagination">@Html.Pager(Model)</div>
+            }
+        </div>
+    </div>
+</div>
+@Html.PermissionValideScript()

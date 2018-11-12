@@ -1,0 +1,19 @@
+﻿@using Libraries
+@model WebBaseFrame.Models.Area
+<input id="ID" name ="ID" type="hidden" value ="@Model.ID" />
+<div class="control-group">
+    <label class="control-label">上级</label><div class="controls">
+        @Html.DropDownList("ParentID","Area","","ParentID","CName",Model.ParentID,"")</div>
+</div>
+<div class="control-group">
+    <label class="control-label">名称</label><div class="controls">
+        <input id="CName" name ="CName" type="text" value ="@Model.CName" required /></div>
+</div>
+<div class="control-group">
+    <label class="control-label">英文名</label><div class="controls">
+        <input id="EName" name ="EName" type="text" value ="@Model.EName" required /></div>
+</div>
+<div class="control-group">
+    <label class="control-label">级别</label><div class="controls">
+        <input id="Depth" name ="Depth" type="text" value ="@Model.Depth" required /></div>
+</div>

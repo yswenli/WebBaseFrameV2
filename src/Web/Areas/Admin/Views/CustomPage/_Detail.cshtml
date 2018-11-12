@@ -1,0 +1,16 @@
+﻿@model WebBaseFrame.Models.CustomPage
+<div class="control-group">
+    <label class="control-label">Type</label><div class="controls padt5">@Model.Type</div>
+</div>
+<div class="control-group">
+    <label class="control-label">Controller</label><div class="controls padt5">@Model.Controller</div>
+</div>
+<div class="control-group">
+    <label class="control-label">Action</label><div class="controls padt5">@Model.Action</div>
+</div>
+<div class="control-group">
+    <label class="control-label">Path</label><div class="controls padt5">@Model.Path</div>
+</div>
+<div class="control-group">
+    <label class="control-label">EditContent</label><div class="controls padt5">@Html.Raw(Model.EditContent)</div>
+</div>

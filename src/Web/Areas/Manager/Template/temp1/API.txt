@@ -1,0 +1,94 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+using Models;
+using MvcPager;
+using DbUtility;
+using Common;
+
+namespace Pro.Web.Areas.API.Controllers
+{
+    public class [ClassName]Controller : Controller
+    {
+        #region 查询
+        public ActionResult Index(int? pageIndex, int? pageCount, [ClassName] entity)
+        {
+            [ClassName]Logic ml = new [ClassName]Logic();
+            IList<[ClassName]> objs = ml.Get[ClassName]s(entity).ToPagedList(pageIndex ?? 1, pageCount ?? int.MaxValue);
+            return Content(JsonHelp.JsonSerializer(objs));
+        }
+        #endregion
+
+        #region 新增
+        [HttpPost]
+        public ActionResult Create(FormCollection formCollection)
+        {
+            try
+            {
+                [ClassName]Logic ml = new [ClassName]Logic();
+
+                [ClassName] obj = new [ClassName]() {  CreateDate = DateTime.Now,CreateUser =CurrentUser.User.RealName, CreateUserID = CurrentUser.ID, IsDeleted = false  };
+
+                UpdateModel(obj);
+
+                obj.ID = Guid.NewGuid();
+
+                bool result = ml.Add(obj);
+
+                return result ? Content("1") : Content("0");
+            }
+            catch (Exception ex)
+            {
+                return Content(ex.Message);
+            }
+        }
+        #endregion
+
+        #region 修改
+        [HttpPost]
+        public ActionResult Edit([ClassName] obj, FormCollection formCollection)
+        {
+            try
+            {
+                [ClassName]Logic ml = new [ClassName]Logic();
+
+                obj.ModifyDate = DateTime.Now;
+
+                obj.ModifyUser = CurrentUser.User.RealName;
+
+                obj.ModifyUserID = CurrentUser.ID;
+
+                UpdateModel(obj);
+
+                bool result = ml.Update(obj);
+
+                return result ? Content("1") : Content("0");
+            }
+            catch (Exception ex)
+            {
+                return Content(ex.Message);
+            }
+        }
+        #endregion
+
+        #region 删除
+        [HttpPost]
+        public ActionResult Delete(Guid id)
+        {
+            try
+            {
+                [ClassName]Logic ml = new [ClassName]Logic();
+                 bool result = ml.Delete(id);
+
+                return result ? Content("1") : Content("0");
+            }
+            catch (Exception ex)
+            {
+                return Content(ex.Message);
+            }
+        }
+        #endregion
+    }
+}

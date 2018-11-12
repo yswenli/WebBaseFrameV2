@@ -1,0 +1,110 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{5FEAA16B-9DEB-4904-ADAC-D91D2A69409A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>WeiXinAPIs</RootNamespace>
+    <AssemblyName>WeiXinAPI</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>Svn</SccProjectName>
+    <SccLocalPath>Svn</SccLocalPath>
+    <SccAuxPath>Svn</SccAuxPath>
+    <SccProvider>SubversionScc</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\Common\Libs\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AppAPI.cs" />
+    <Compile Include="AttentionAPI.cs" />
+    <Compile Include="ChatAPI.cs" />
+    <Compile Include="Libs\HttpRequestExtention.cs" />
+    <Compile Include="MaterialAPI.cs" />
+    <Compile Include="Models\App.cs" />
+    <Compile Include="Models\Chat.cs" />
+    <Compile Include="Models\CurrentAccessToken.cs" />
+    <Compile Include="MediaAPI.cs" />
+    <Compile Include="MessageAPI.cs" />
+    <Compile Include="Models\AccessToken.cs" />
+    <Compile Include="BaseAPI.cs" />
+    <Compile Include="DepartmentAPI.cs" />
+    <Compile Include="MenuAPI.cs" />
+    <Compile Include="Models\Department.cs" />
+    <Compile Include="Models\Material.cs" />
+    <Compile Include="Models\QyJsonResult.cs" />
+    <Compile Include="Models\InterFaceUrlAPI.cs" />
+    <Compile Include="Models\Menu.cs" />
+    <Compile Include="Models\Message.cs" />
+    <Compile Include="Models\HttpReceive.cs" />
+    <Compile Include="Models\OAuth2.cs" />
+    <Compile Include="Models\Recive.cs" />
+    <Compile Include="Models\ReturnCodeEnum.cs" />
+    <Compile Include="Models\Tag.cs" />
+    <Compile Include="Models\TenPay.cs" />
+    <Compile Include="Models\ThirdPartyAuth.cs" />
+    <Compile Include="Models\UserInfo.cs" />
+    <Compile Include="OAuthAPI.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TagAPI.cs" />
+    <Compile Include="TenPayAPI.cs" />
+    <Compile Include="ThirdPartyAuthAPI.cs" />
+    <Compile Include="UserAPI.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{eefe3d48-a4c7-4664-a131-35c15f893fbb}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Models\Models.csproj">
+      <Project>{a7430f49-ab43-438e-8a37-1093a7ad4bc7}</Project>
+      <Name>Models</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

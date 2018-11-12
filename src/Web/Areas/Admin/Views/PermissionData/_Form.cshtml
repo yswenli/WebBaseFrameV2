@@ -1,0 +1,19 @@
+﻿@using Libraries
+@model WebBaseFrame.Models.PermissionData
+<input id="ID" name ="ID" type="hidden" value ="@Model.ID" />
+<div class="control-group">
+    <label class="control-label">PID</label><div class="controls">
+        <input id="PID" name ="PID" type="text" value ="@Model.PID" required /></div>
+</div>
+<div class="control-group">
+    <label class="control-label">RID</label><div class="controls">
+        <input id="RID" name ="RID" type="text" value ="@Model.RID" required /></div>
+</div>
+<div class="control-group">
+    <label class="control-label">MID</label><div class="controls">
+        <input id="MID" name ="MID" type="text" value ="@Model.MID" required /></div>
+</div>
+<div class="control-group">
+    <label class="control-label">HasPermission</label><div class="controls">
+        <input id="HasPermission" name ="HasPermission" type="text" value ="@Model.HasPermission" required /></div>
+</div>

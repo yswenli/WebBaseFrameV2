@@ -1,0 +1,25 @@
+﻿@using System.Data;
+@using Libraries;
+@using WEF.MvcPager;
+@model PagedList<DataRow>
+@{
+    ViewBag.Title = "Records";
+    Layout = "~/Areas/Manager/Views/Shared/_SqliteLayoutPage.cshtml";
+    var tableName = Request.QueryString["tableName"];
+}
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title">@ViewBag.TableName 表记录</h3>
+    </div>
+    <div class="panel-body">
+        <div class="btn-group" data-toggle="buttons-radio">
+            <button type="button" class="btn btn-default" onclick="location.href='/Manager/SqliteDataBase/Tables';">返回</button>
+            <button type="button" class="btn btn-success" onclick="location.href='/Manager/SqliteDataBase/CreateRecord/@ViewBag.TableName';">添加记录</button>
+            <button type="button" class="btn btn-danger" onclick="if(confirm('确定要清除表数据?')){location.href='/Manager/SqliteDataBase/Truncate/@ViewBag.TableName';}">清空表</button>
+        </div>
+        <p></p>
+        <div class="bs-docs-example dataTables_wrapper">
+            @Html.Partial("_Records", Model, ViewData)           
+        </div>
+    </div>
+</div>

@@ -1,0 +1,146 @@
+﻿
+.attachment_show {float:left;color:#000;text-align:center;width:99px;}
+.attachment_show li {line-height:180%;word-wrap:break-word;word-break:break-all;}
+.attachment_show img {padding:3px;margin-bottom:3px;width:60px;height:60px;background:#fff;border:1px solid #dfdfdf;}
+.progressWrapper {
+	overflow: hidden;
+}
+
+.progressContainer {
+	margin: 5px;
+	padding: 4px;
+	border: solid 1px #E8E8E8;
+	background-color: #F7F7F7;
+	overflow: hidden;
+}
+/* Message */
+.message {
+	margin: 1em 0;
+	padding: 10px 20px;
+	border: solid 1px #FFDD99;
+	background-color: #FFFFCC;
+	overflow: hidden;
+}
+/* Error */
+.red {
+	border: solid 1px #B50000;
+	background-color: #FFEBEB;
+}
+
+/* Current */
+.green {
+	border: solid 1px #DDF0DD;
+	background-color: #EBFFEB;
+}
+
+/* Complete */
+.blue {
+	border: solid 1px #CEE2F2;
+}
+
+.progressName {
+	font-size: 8pt;
+	font-weight: 700;
+	color: #555;
+	width: 200px;
+	height: 14px;
+	text-align: left;
+	white-space: nowrap;
+	overflow: hidden;
+	height:26px; line-height:26px; float:left;
+}
+.progresshidden {
+	display:none;
+}
+.progressBarComplete
+.progressBarInProgress,
+.progressBarComplete,
+.progressBarError {
+	font-size: 0;
+	width: 0%;
+	height: 2px;
+	background-color: blue;
+	margin-top: 2px;
+}
+
+.progressBarComplete {
+	width: 100%;
+	background-color: green;
+	visibility: hidden;
+}
+
+.progressBarError {
+	width: 100%;
+	background-color: red;
+	visibility: hidden;
+}
+
+.progressBarStatus {
+	width: 200px;
+	font-size: 12px;;
+	font-family: Arial;
+	text-align: left;
+	white-space: nowrap; float:left; height:24px; line-height:24px
+}
+
+a.progressCancel {
+	font-size: 0;
+	display: block;
+	height: 16px;
+	width: 16px;
+	background-image: url(images/cross.png);
+	background-repeat: no-repeat;
+	background-position:0 4px ;
+	float: right;
+}
+
+a.progressCancel:hover {
+	background-position:0 bottom ;
+}
+
+
+/* -- SWFUpload Object Styles ------------------------------- */
+.swfupload {
+	vertical-align: top;
+}
+#btupload,.addnew{background: url(images/swfBnt.png) no-repeat; float:left; margin-right:10px;width:75px; height:28px; line-height:28px;font-weight:700; color:#fff}
+#btupload{ vertical-align:middle;border:none;cursor: hand;!important;cursor: pointer }
+.addnew{background-position: left bottom;}
+
+/*扩展*/
+body{background-image:none;padding:0;}
+.pad-10{padding:10px; overflow:hidden}
+ul, ol,li{margin:0px;padding:0px;}
+/*容器样式*/
+.col-tab{ }
+.col-tab ul.tabBut{height:27px; padding-left:14px;position:relative;bottom:-1px;margin:0px;}
+.col-tab ul.tabBut li{float:left; border:1px solid #dce3ed; height:25px; line-height:26px; margin-right:5px;list-style:none;cursor:pointer;}
+.col-tab ul.tabBut li{ background:#eaeef4; padding:0 8px;}
+.col-tab ul.tabBut li.on{position:relative; background:#fff;border-bottom:0;height:26px;_height:27px; font-weight:700;}
+.col-tab ul.tabBut li.icon{background-image:url(../images/icon/exclamation_small.png);padding-left:18px;background-repeat: no-repeat;background-position: 3px center;}
+.col-tab .content{border:1px solid #dce3ed;_zoom:1;}
+.col-tab .content-r{border-top:1px solid #dce3ed}
+.col-tab .contentList{border:1px solid #dce3ed;_zoom:1;}
+.col-1{ border:1px solid #f4f6f5;zoom:1; background:#fff}
+.col-1 div.content{border:1px solid #c2d1d8;zoom:1;}
+.col-2{ border:1px solid #c7d8ea;zoom:1;}
+.col-2 h6{border-bottom:1px solid #c7d8ea; color:#3a6ea5;background: url(../images/admin_img/x_bg.png) repeat-x left -42px; height:26px; line-height:28px; padding:0 10px}
+.col-2 div.content{ padding:9px 10px}
+body fieldset{border:1px solid #D8D8D8; padding:10px;}
+body fieldset legend{padding:3px 8px;font-weight:700;border:1px solid #D8D8D8;background-color: #F9F9F9;width:auto;font-size:10pt;margin:0px;}
+body fieldset.blue{border:1px solid #dce3ed}
+body fieldset.blue legend{padding:3px 8px;font-weight:700;color:#347add; background:none; border:none}
+/*附件列表样式*/
+.attachment-list{overflow:hidden;list-style:none;}
+.attachment-list li{width:104px;height:104px;overflow:hidden; float:left;list-style:none;}
+.attachment-list .img-wrap{width:94px;height:94px;text-align:center;background:#fff; border:none; position:relative}
+.attachment-list .img-wrap a{display:table-cell;vertical-align:middle;text-align:center;*display:block;border:1px solid #eee;width:101px; height:91px;*font-size:67px;}
+.attachment-list .img-wrap a:hover,.attachment-list .img-wrap a.on{border-color:#d0def1; background:#f3f6fa}
+.attachment-list .img-wrap a.on .icon{background: url(../../img/msg_bg.png) no-repeat left -249px;width:16px; height:18px;bottom:4px;*bottom:2px; right:3px; z-index:100; position: absolute; overflow:hidden}
+
+#imgPreview td.on{background:#f4f9fe}
+#imgPreview td.on a{background:url("../../img/msg_bg.png") no-repeat right -250px;vertical-align:middle; padding-right:70px;display:inline-block;display:-moz-inline-stack;zoom:1;*display:inline; height:16px; line-height:16px}
+
+.table-list{}
+.table-list td{border-bottom:1px dashed #eee;padding:5px 0;}
+	.table-list tr:hover{background-color:#F5F7FC}
