@@ -186,6 +186,7 @@
     <Compile Include="Areas\Admin\Controllers\PermissionDataController.cs" />
     <Compile Include="Areas\Admin\Controllers\PermissionMapController.cs" />
     <Compile Include="Areas\Admin\Controllers\RoleController.cs" />
+    <Compile Include="Areas\Admin\Controllers\TestController.cs" />
     <Compile Include="Areas\Admin\FileResize\CameraSave.aspx.cs">
       <DependentUpon>CameraSave.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2011,7 +2012,6 @@
     <Content Include="Areas\Manager\Content\bootstrap\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Areas\Manager\Views\Shared\_SqliteLayoutPage.cshtml" />
     <Content Include="Areas\Manager\Views\SqliteDataBase\_Records.cshtml" />
-    <None Include="Properties\PublishProfiles\baseFrame.pubxml" />
     <Content Include="Views\Shared\_AtuoLayout.cshtml" />
     <Content Include="_Documents\项目结构图例.pdf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

@@ -150,7 +150,7 @@ namespace Web.Areas.Manager.Helper
         //创建列表控件
         void Create_Index(string table)
         {
-            DataTable dt = new DBContext(constring).GetMap(table);
+            DataTable dt = new DBContext().GetMap(table);
             string savePath = PathHelper.Viewpath + table + "\\_Index.cshtml";
             string templatePath = PathHelper.SelectedTempPath + "_Index.txt";
             string content = FileHelper.ReadFile(templatePath);
