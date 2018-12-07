@@ -186,7 +186,6 @@
     <Compile Include="Areas\Admin\Controllers\PermissionDataController.cs" />
     <Compile Include="Areas\Admin\Controllers\PermissionMapController.cs" />
     <Compile Include="Areas\Admin\Controllers\RoleController.cs" />
-    <Compile Include="Areas\Admin\Controllers\TestController.cs" />
     <Compile Include="Areas\Admin\FileResize\CameraSave.aspx.cs">
       <DependentUpon>CameraSave.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
