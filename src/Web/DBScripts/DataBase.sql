@@ -109,6 +109,8 @@ GO
 /****** Object:  User [baseframeuser]    Script Date: 03/21/2017 15:03:41 ******/
 CREATE USER [baseframeuser] FOR LOGIN [baseframeuser] WITH DEFAULT_SCHEMA=[dbo]
 GO
+exec sp_addrolemember 'db_owner', '[baseframeuser]'
+go
 /****** Object:  Table [dbo].[TableBase]    Script Date: 03/21/2017 15:03:41 ******/
 SET ANSI_NULLS ON
 GO
