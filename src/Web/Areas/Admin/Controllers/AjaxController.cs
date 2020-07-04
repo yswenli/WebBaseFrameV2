@@ -205,7 +205,7 @@ namespace Web.Areas.Admin.Controllers
         public ActionResult IsExist(string username)
         {
             string result = "1";
-            var member = new MemberRepository().Search().Where(b => b.UserName == username && b.IsDeleted == false).FirstDefault();
+            var member = new MemberRepository().Search().Where(b => b.UserName == username && b.IsDeleted == false).First();
             if (member != null && member.ID > 0)
             {
                 result = "0";

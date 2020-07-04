@@ -33,29 +33,34 @@ namespace Web.Areas.Admin.Controllers
             try
             {
                 bool result = false;
+
+                int.TryParse(formCollection["id"], out int id);
+
                 SiteRepository ml = new SiteRepository();
-                List<Site> list = ml.GetList(1, 20);
-                Site obj = new Site();
-                if (list.Count > 0)
+
+                var site= ml.Search().Where(b=>b.ID== id).First();
+
+                if (site!=null)
                 {
-                    obj.LastUpdateDate = DateTime.Now;
+                    site.LastUpdateDate = DateTime.Now;
 
-                    obj.LastUpdateUserID = ID;
+                    site.LastUpdateUserID = ID;
 
-                    UpdateModel(obj);
-                    if (obj.IsValidePermission == null || obj.IsValidePermission == false)
+                    UpdateModel(site);
+
+                    if (site.IsValidePermission == null || site.IsValidePermission == false)
                     {
-                        obj.IsFromFile = null;
+                        site.IsFromFile = null;
                     }
-                    result = ml.Update(obj) > 0 ? true : false;
+                    result = ml.Update(site) > 0 ? true : false;
                 }
                 else
                 {
-                    obj = new Site() { CreateDate = DateTime.Now, CreateUserID = ID, IsDeleted = false };
+                    site = new Site() { CreateDate = DateTime.Now, CreateUserID = ID, IsDeleted = false };
 
-                    UpdateModel(obj);
+                    UpdateModel(site);
 
-                    result = ml.Insert(obj) > 0 ? true : false;
+                    result = ml.Insert(site) > 0 ? true : false;
                 }
 
                 return result ? Content(ContentIcon.Succeed + "|保存成功") : Content(ContentIcon.Error + "|保存失败");

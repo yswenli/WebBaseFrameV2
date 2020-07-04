@@ -206,7 +206,7 @@ namespace Web.Areas.Admin.Controllers
         #region 删除
         public ActionResult DeleteByName(string atname, string dir)
         {
-            attachment = attachmentclass.Search().Where(b => b.Name == atname).FirstDefault();
+            attachment = attachmentclass.Search().Where(b => b.Name == atname).First();
             Common.DirHelper.RemoveFile(Server.MapPath("~") + "\\" + dir + atname);
             if (attachment != null)
             {

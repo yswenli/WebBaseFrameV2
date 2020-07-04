@@ -155,7 +155,7 @@ namespace Libraries
             Member user = new Member();
             bool flag = true;
             message = "";
-            user = userlogic.Search().Where(b=>b.UserName==username && b.Password== Character.EncrytPassword(password)).FirstDefault();
+            user = userlogic.Search().Where(b=>b.UserName==username && b.Password== Character.EncrytPassword(password)).First();
             if (user == null)
             {
                 flag = false;

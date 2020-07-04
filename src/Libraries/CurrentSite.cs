@@ -9,7 +9,10 @@ namespace Libraries
         /// </summary>
         public static Site Site
         {
-            get { return new SiteRepository().Search().First(); }
+            get
+            {
+                return new SiteRepository().Search().First();
+            }
         }
         /// <summary>
         /// 站点名称

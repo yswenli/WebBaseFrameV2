@@ -66,7 +66,7 @@ namespace Web.Areas.Admin.Controllers
 
                 ArticleRepository ml = new ArticleRepository();
 
-                Article obj = ml.Search().Where(b => b.ID == id).FirstDefault();
+                Article obj = ml.Search().Where(b => b.ID == id).First();
 
                 return View(obj);
             }
