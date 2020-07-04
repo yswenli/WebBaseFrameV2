@@ -226,7 +226,7 @@ namespace Web.Areas.Admin.Controllers
                 "<a href='javascript:void(0);' onclick=\"Delete('/admin/Menu/Delete/{0}',this,'one');\"><i class='icon-trash tip' title='编辑'></i></a></td>" +
                     "</tr>";
             StringBuilder html = new StringBuilder();
-            List<Menu> menulist = new MenuRepository().Search(new Menu { ParentID = parentID }).GetPagedList(1, 1000, "Sort", true);
+            List<Menu> menulist = new MenuRepository().Search().Where(b => b.ParentID == parentID).GetPagedList(1, 1000, "Sort", true);
             var i = 0;
             foreach (var item in menulist)
             {

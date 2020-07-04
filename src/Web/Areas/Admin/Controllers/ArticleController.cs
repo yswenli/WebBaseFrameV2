@@ -19,7 +19,7 @@ namespace Web.Areas.Admin.Controllers
             try
             {
                 entity.IsDeleted = false;
-                var page = ml.Search(entity).GetPagedList(pageIndex ?? PageIndex, pageSize ?? PageSize, Order, By);
+                var page = ml.Search().Where(b=>b.KID== entity.KID).GetPagedList(pageIndex ?? PageIndex, pageSize ?? PageSize, Order, By);
                 if (Request.IsAjaxRequest())
                     return PartialView("_Index", page);
                 return View(page);

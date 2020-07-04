@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Web.Mvc;
 using WebBaseFrame.Models;
+using WEF;
+using WEF.Expressions;
 using WEF.MvcPager;
 
 namespace Web.Areas.Admin.Controllers
@@ -16,7 +18,16 @@ namespace Web.Areas.Admin.Controllers
             try
             {
                 ArticleKindRepository ml = new ArticleKindRepository();
-                PagedList<ArticleKind> page = ml.Search(entity).GetPagedList(pageIndex ?? PageIndex, pageSize ?? PageSize, Order, By);
+
+                var where = new Where<ArticleKind>();
+
+                if (!string.IsNullOrEmpty(entity.Name))
+                {
+                    where.And(b => b.Name.Like(entity.Name));
+                }
+
+                PagedList<ArticleKind> page = ml.Search().Where(where).GetPagedList(pageIndex ?? PageIndex, pageSize ?? PageSize, Order, By);
+
                 if (Request.IsAjaxRequest())
                     return PartialView("_Index", page);
                 return View(page);

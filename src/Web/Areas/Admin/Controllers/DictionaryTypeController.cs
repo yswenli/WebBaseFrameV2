@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Web.Mvc;
 using WebBaseFrame.Models;
+using WEF;
+using WEF.Expressions;
 using WEF.MvcPager;
 
 namespace Web.Areas.Admin.Controllers
@@ -12,9 +14,13 @@ namespace Web.Areas.Admin.Controllers
             try
             {
                 DictionaryTypeRepository ml = new DictionaryTypeRepository();
-                entity.IsDeleted = false;
 
-                PagedList<DictionaryType> page = ml.Search(entity).GetPagedList(pageIndex ?? PageIndex, pageSize ?? PageSize, Order, By);
+                var where = new Where<DictionaryType>();
+
+                where.And(b => b.ID == entity.ID);
+
+                PagedList<DictionaryType> page = ml.Search().Where(where).GetPagedList(pageIndex ?? PageIndex, pageSize ?? PageSize, Order, By);
+
                 if (Request.IsAjaxRequest())
                     return PartialView("_Index", page);
                 return View(page);
