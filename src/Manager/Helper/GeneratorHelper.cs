@@ -13,14 +13,15 @@ namespace Web.Areas.Manager.Helper
     /// </summary>
     public class GeneratorHelper
     {
-        //
-        private string constring = "";
         /// <summary>
         /// 是否覆盖
         /// </summary>
-        private bool isCovert = false;
+        private bool _isCovert = false;
         //
         string filePath = PathHelper.BasePath;
+
+
+        DBContext _dbContext = null;
 
         /// <summary>
         /// 生成可空字段时替换
@@ -54,7 +55,7 @@ namespace Web.Areas.Manager.Helper
         void CreateEntity(string table)
         {
             DirHelper.CheckFolder(PathHelper.Entitypath);
-            DataTable dt = new DBContext(constring).GetMap(table);
+            DataTable dt = _dbContext.GetMap(table);
             string savePath = PathHelper.Entitypath + table + ".cs";
 
             string templatePath = PathHelper.SelectedTempPath + "Entity.txt";
@@ -75,7 +76,7 @@ namespace Web.Areas.Manager.Helper
             sb.Append("\r\n                }\r\n                 if(PropertyChanged != null)\r\n                {\r\n");
             sb.Append("                        PropertyChanged(this, new PropertyChangedEventArgs(propName));\r\n");
             sb.Append("\r\n                }\r\n        }\r\n");
-            var d_dt = DBColumnDescriptionHelper.GetDescriptions(constring, table);
+            var d_dt = DBColumnDescriptionHelper.GetDescriptions(_dbContext.Db.ConnectionString, table);
             foreach (DataColumn item in dt.Columns)
             {
                 string MS_Description = DBColumnDescriptionHelper.GetDescription(d_dt, item.ColumnName);
@@ -88,7 +89,7 @@ namespace Web.Areas.Manager.Helper
                 sb.Append("} } \r\n\r\n\r\n");
             }
             content = content.Replace("[FieldName]", sb.ToString());
-            if (isCovert)
+            if (_isCovert)
             {
                 FileHelper.WriteFile(savePath, content);
             }
@@ -123,7 +124,7 @@ namespace Web.Areas.Manager.Helper
         {
             string savePath = PathHelper.Controllerpath + table + "Controller.cs";
             string templatePath = PathHelper.SelectedTempPath + "Controller.txt";
-            if (isCovert)
+            if (_isCovert)
             {
                 SaveFile(table, templatePath, savePath);
             }
@@ -142,7 +143,7 @@ namespace Web.Areas.Manager.Helper
         {
             string savePath = PathHelper.Viewpath + table + "\\Index.cshtml";
             string templatePath = PathHelper.SelectedTempPath + "Index.txt";
-            if (isCovert)
+            if (_isCovert)
             {
                 SaveFile(table, templatePath, savePath);
             }
@@ -157,7 +158,7 @@ namespace Web.Areas.Manager.Helper
             StringBuilder fieldName = new StringBuilder();
             StringBuilder itemName = new StringBuilder();
             //
-            var d_dt = DBColumnDescriptionHelper.GetDescriptions(constring, table);
+            var d_dt = DBColumnDescriptionHelper.GetDescriptions(_dbContext.Db.ConnectionString, table);
             foreach (DataColumn item in dt.Columns)
             {
                 string MS_Description = DBColumnDescriptionHelper.GetDescription(d_dt, item.ColumnName);
@@ -178,7 +179,7 @@ namespace Web.Areas.Manager.Helper
                 }
             }
             content = content.Replace("[ClassName]", table).Replace("[ModelName]", table).Replace("[FieldName]", fieldName.ToString()).Replace("[ItemName]", itemName.ToString());
-            if (isCovert)
+            if (_isCovert)
             {
                 FileHelper.WriteFile(savePath, content);
             }
@@ -186,13 +187,13 @@ namespace Web.Areas.Manager.Helper
         //创建表单控件
         void Create_Form(string table)
         {
-            DataTable dt = new DBContext(constring).GetMap(table);
+            DataTable dt = _dbContext.GetMap(table);
             string savePath = PathHelper.Viewpath + table + "\\_Form.cshtml";
             string templatePath = PathHelper.SelectedTempPath + "_Form.txt";
             string content = FileHelper.ReadFile(templatePath);
             StringBuilder field = new StringBuilder();
             //
-            var d_dt = DBColumnDescriptionHelper.GetDescriptions(constring, table);
+            var d_dt = DBColumnDescriptionHelper.GetDescriptions(_dbContext.Db.ConnectionString, table);
             foreach (DataColumn item in dt.Columns)
             {
                 string MS_Description = DBColumnDescriptionHelper.GetDescription(d_dt, item.ColumnName);
@@ -309,7 +310,7 @@ namespace Web.Areas.Manager.Helper
                 }
             }
             content = content.Replace("[ClassName]", table).Replace("[ModelName]", table).Replace("[Field]", field.ToString());
-            if (isCovert)
+            if (_isCovert)
             {
                 FileHelper.WriteFile(savePath, content);
             }
@@ -319,7 +320,7 @@ namespace Web.Areas.Manager.Helper
         {
             string savePath = PathHelper.Viewpath + table + "\\Create.cshtml";
             string templatePath = PathHelper.SelectedTempPath + "Create.txt";
-            if (isCovert)
+            if (_isCovert)
             {
                 SaveFile(table, templatePath, savePath);
             }
@@ -329,7 +330,7 @@ namespace Web.Areas.Manager.Helper
         {
             string savePath = PathHelper.Viewpath + table + "\\Edit.cshtml";
             string templatePath = PathHelper.SelectedTempPath + "Edit.txt";
-            if (isCovert)
+            if (_isCovert)
             {
                 SaveFile(table, templatePath, savePath);
             }
@@ -337,13 +338,13 @@ namespace Web.Areas.Manager.Helper
         //创建详细控件
         void Create_Detail(string table)
         {
-            DataTable dt = new DBContext(constring).GetMap(table);
+            DataTable dt = _dbContext.GetMap(table);
             string savePath = PathHelper.Viewpath + table + "\\_Detail.cshtml";
             string templatePath = PathHelper.SelectedTempPath + "_Detail.txt";
             string content = FileHelper.ReadFile(templatePath);
             StringBuilder field = new StringBuilder();
             //
-            var d_dt = DBColumnDescriptionHelper.GetDescriptions(constring, table);
+            var d_dt = DBColumnDescriptionHelper.GetDescriptions(_dbContext.Db.ConnectionString, table);
             foreach (DataColumn item in dt.Columns)
             {
                 string MS_Description = DBColumnDescriptionHelper.GetDescription(d_dt, item.ColumnName);
@@ -353,7 +354,7 @@ namespace Web.Areas.Manager.Helper
             }
 
             content = content.Replace("[ClassName]", table).Replace("[ModelName]", table).Replace("[Field]", field.ToString());
-            if (isCovert)
+            if (_isCovert)
             {
                 FileHelper.WriteFile(savePath, content);
             }
@@ -363,7 +364,7 @@ namespace Web.Areas.Manager.Helper
         {
             string savePath = PathHelper.Viewpath + table + "\\Detail.cshtml";
             string templatePath = PathHelper.SelectedTempPath + "Detail.txt";
-            if (isCovert)
+            if (_isCovert)
             {
                 SaveFile(table, templatePath, savePath);
             }
@@ -382,10 +383,10 @@ namespace Web.Areas.Manager.Helper
         /// </summary>
         /// <param name="cnn"></param>
         /// <param name="iscovert"></param>
-        public GeneratorHelper(string cnn, bool iscovert)
+        public GeneratorHelper(bool iscovert)
         {
-            constring = cnn;
-            isCovert = iscovert;
+            _dbContext = new DBContext();
+            _isCovert = iscovert;
         }
 
         /// <summary>

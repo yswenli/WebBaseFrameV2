@@ -19,7 +19,7 @@ namespace Web.Areas.Manager.Controllers
 
         public ActionResult Index()
         {
-            ViewData["conn"] = Web.Areas.Manager.Helper.PathHelper.DBConnectionString;
+            ViewData["conn"] = new DBContext().Db.ConnectionString;
             return View();
         }
 
@@ -229,7 +229,7 @@ namespace Web.Areas.Manager.Controllers
         public ActionResult Generate(string tableStr, string tempPath, int menuOption, string generateObj, bool isCover)
         {
             string result = "";
-            GeneratorHelper generatorHelper = new GeneratorHelper(PathHelper.DBConnectionString, isCover);
+            GeneratorHelper generatorHelper = new GeneratorHelper(isCover);
             try
             {
                 int check = 0;

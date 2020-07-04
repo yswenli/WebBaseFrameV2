@@ -8,16 +8,6 @@ namespace Web.Areas.Manager.Helper
     public class PathHelper
     {
         /// <summary>
-        /// 数据库连接字符串
-        /// </summary>
-        public static string DBConnectionString
-        {
-            get
-            {
-                return new DBContext().Db.ConnectionString;     
-            }
-        }
-        /// <summary>
         /// 当前应用所在地址
         /// </summary>
         static string basePath = AppDomain.CurrentDomain.BaseDirectory;
