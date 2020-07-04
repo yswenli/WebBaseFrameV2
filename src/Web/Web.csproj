@@ -905,6 +905,7 @@
     <Content Include="Areas\Manager\Scripts\knockout-2.2.0.js" />
     <Content Include="Areas\Manager\Scripts\modernizr-2.6.2.js" />
     <Content Include="Areas\Manager\Scripts\_references.js" />
+    <Content Include="Areas\Manager\Template\temp1\API.txt" />
     <Content Include="Areas\Manager\Template\temp1\Controller.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -917,9 +918,11 @@
     <Content Include="Areas\Manager\Template\temp1\Edit.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Areas\Manager\Template\temp1\Entity.txt" />
     <Content Include="Areas\Manager\Template\temp1\Index.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Areas\Manager\Template\temp1\Logic.txt" />
     <Content Include="Areas\Manager\Template\temp1\Repository.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

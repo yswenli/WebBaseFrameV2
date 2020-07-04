@@ -455,14 +455,20 @@ namespace Common
         {
             get
             {
-                return Convert.ToBoolean(System.Configuration.ConfigurationManager.AppSettings["IsMSSQL"]);
+                var result = Convert.ToBoolean(System.Configuration.ConfigurationManager.AppSettings["IsMSSQL"]);
+
+                if (!result)
+                {
+                    connectionString = System.Configuration.ConfigurationManager.AppSettings["Sqlite"].ToString();
+                }
+                return result;
             }
         }
 
         /// <summary>
         /// 数据库连接字符串。默认读取web.config中的dbconnectionString
         /// </summary>
-        private static string connectionString = System.Configuration.ConfigurationManager.AppSettings["Sqlite"].ToString();
+        private static string connectionString = string.Empty;
 
 
         /// <summary>
@@ -470,8 +476,16 @@ namespace Common
         /// </summary>
         public static string ConnectionString
         {
-            get { return SqliteDBHelper.connectionString; }
-            set { SqliteDBHelper.connectionString = value; }
+            get
+            {
+                if (string.IsNullOrEmpty(connectionString))
+                {
+                    connectionString = System.Configuration.ConfigurationManager.AppSettings["Sqlite"].ToString();
+                }
+
+                return connectionString;
+            }
+            set { connectionString = value; }
         }
 
         #region 枚举
@@ -2599,5 +2613,5 @@ namespace Common
 
     }
     #endregion
-   
+
 }
